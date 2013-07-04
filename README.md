@@ -48,6 +48,18 @@ Avalon基于springmvc、hibernate、spring-data、grunt、maven、yeoman、backb
 ### 2.Github的"Pull Request"
 
 
+### 前端开发基本教程
+>前端开发关注view模块中yeoman就可以，最后的集合与打包等等都一键打包完成(
+>前端开发不用关注)。
+
+>yeoman路径`avalon\view\yo`
+
+>开发配置都基于yeoman默认
+
+
+### 服务器端开发基本教程
+>服务器端开发关注web模块就可以了,基于maven的结构，采用spring mvc的控制层
+>
 
 ## 文档
 _(Coming soon)_

@@ -1,3 +1,6 @@
+/**
+* requirejs 全局配置
+*/
 require.config({
     paths: {
         jquery: '../bower_components/jquery/jquery',
@@ -10,7 +13,9 @@ require.config({
         }
     }
 });
-
+/**
+* 程序入口
+*/
 require(['app', 'jquery', 'bootstrap','hello'], function (app, $) {
     'use strict';
     // use app here
