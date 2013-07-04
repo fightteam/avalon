@@ -428,6 +428,7 @@
                             <fileset>
                                 <directory>yo/.tmp</directory>
                             </fileset>
+                            <!--不清除插件-->
                             <!--<fileset>-->
                                 <!--<directory>yo/app/components</directory>-->
                             <!--</fileset>-->
