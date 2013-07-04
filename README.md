@@ -43,9 +43,9 @@ Avalon基于springmvc、hibernate、spring-data、grunt、maven、yeoman、backb
 
 ## 如何参与开发(二选一)
 
-###1.加入我们学习小组
-
-###2.Github的"Pull Request"
+### 1.加入我们学习小组
+发送email到lzy7750015@qq.com，请注明你的Github帐号，我们将会邀请你加入我们fightteam小组
+### 2.Github的"Pull Request"
 
 
 
