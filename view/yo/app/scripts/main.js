@@ -16,7 +16,7 @@ require.config({
 /**
 * 程序入口
 */
-require(['app', 'jquery', 'bootstrap','hello'], function (app, $) {
+require(['app', 'jquery', 'bootstrap','hello'], function (app, $,hello) {
     'use strict';
     // use app here
     console.log(app);
