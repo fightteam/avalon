@@ -2,9 +2,148 @@ $iconSpritePath: "../images/glyphicons-halflings.png";
 $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 
 @import 'sass-bootstrap/lib/bootstrap';
+@import 'genericons.css';
+@import 'raphaelicons.css';
+//定义基本颜色
+$black:#000000;
+$grayDark:#222222;
+$darkBule:#263248;
+$lighterBule:#7e8aa2;
+$white:#ffffff;
+$orange:#ff9800;
+$gray:#e0e0e0;
+body{
+	background:$grayDark;
+	color:$gray;
+	//@include gradient-directional(#222222, $black);   
+}
 
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 300px;
-    
+#header{
+	color:$lighterBule;
+	width:100%;
+	.logo{
+		margin: 50px 0 50px 50px;
+		display: inline-block;
+	}
+	nav{
+		list-style: none;
+		width: 96%;
+		margin: 0 auto;
+		border: 1px solid #4d4d4d;
+		min-height: 40px;
+		padding: 8px;
+		
+		li{
+			display: inline-block;
+			width: (96%/6);
+		}
+	}
+
+}
+
+#searchForm{
+	[type='text']{
+		background:#161616;
+		border: 1px solid #111111;
+	}		
+}
+
+#wrapper{
+	.row-fluid > [class^='span']{
+		
+	}
+	.content{
+		min-height: 500px;
+	}
+	aside{
+		color: $darkBule;
+
+		ul{
+			list-style: none;
+			margin: 0;
+			li{
+				width: 60%;
+			}
+		}
+		a{
+			border-bottom: 1px solid #161616;
+			border-left: 3px solid #555555;
+			border-top: 1px solid #2D2D2D;
+			color: #888888;
+			display: block;
+			line-height: 1.8em;
+			padding: 5px 10px;
+			text-decoration: none;
+			&:hover {
+				background: none repeat scroll 0 0 #161616;
+			    border-left: 3px solid #2b99e6;
+			    color: #FFFFFF;
+			}
+		}
+	}
+}
+
+.article{
+	margin:2em 0;
+	background-color: rgba(0, 0, 0, 0.2);
+	border: 1px solid #000000;
+	@include box-shadow(0 0 0 1px rgba(255, 255, 255, 0.1) inset); 
+	@include border-radius(4px);  
+	
+	header,section{
+	  	box-sizing: border-box;
+	  	padding: 2em 2em 0 2em;
+		margin: 0;
+		border-bottom: 1px solid #1a1819;
+		color: #b2b2b2;
+		position: relative;
+		
+	}
+	header{
+		
+			
+			
+			img{
+
+				width: 5em;
+				height: 5em;
+				padding: 1px;
+				background-color: #fff;
+				border: 1px solid #ccc;
+				border: 1px solid rgba(0, 0, 0, 0.2);
+				@include box-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
+
+
+		}
+		h3:before{
+			content: "///";
+			color: #9ddcff;
+			padding-right: 1em;
+		}
+		.type-tag{
+			position:absolute;
+			top: 1em;
+			right: 0;
+			background: #333333;
+			color: $orange;
+			text-align: center;
+			padding:0.5em;
+		}
+	}
+	section{
+		padding: 2em;
+	}
+	  
+}
+
+
+
+#footer{
+	background:#111111;
+	section{
+		width: 96%;
+		margin: 0 auto;
+		
+		
+	}
 }

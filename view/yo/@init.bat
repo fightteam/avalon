@@ -6,12 +6,14 @@ echo [Pre-Requirement] Makesure install compsass
 echo [Pre-Requirement] Makesure install bower
 echo [Pre-Requirement] Makesure install Grunt.
 
-
-echo [Step 1]  run grunt server task.
-echo [INFO]  Please wait a moment. When you see "Waiting forever..." in both consoles, you can access below demo sites:
-echo [INFO] http://localhost:9000
-call grunt server
+echo [Step 1]  run npm install task.
+call npm install
 if errorlevel 1 goto error
+
+echo [Step 2]  run bower task.
+call bower install
+if errorlevel 1 goto error
+
 
 goto end
 :error
