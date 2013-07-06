@@ -12,10 +12,12 @@ $lighterBule:#7e8aa2;
 $white:#ffffff;
 $orange:#ff9800;
 $gray:#e0e0e0;
+$darkRed:#c3325f;
 body{
 	background:$grayDark;
 	color:$gray;
-	//@include gradient-directional(#222222, $black);   
+	
+	//@include gradient-directional(#555,#313131);   
 }
 
 #header{
@@ -105,8 +107,8 @@ body{
 			
 			img{
 
-				width: 5em;
-				height: 5em;
+				width: 3em;
+				height: 3em;
 				padding: 1px;
 				background-color: #fff;
 				border: 1px solid #ccc;
@@ -130,8 +132,11 @@ body{
 			padding:0.5em;
 		}
 	}
-	section{
+	section,.toolbar{
 		padding: 2em;
+		border-color: rgba(255, 255, 255, 0.12);
+		border-top: 1px solid rgba(255, 255, 255, 0.12);
+		margin: 0;
 	}
 	  
 }

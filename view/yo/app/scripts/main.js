@@ -16,9 +16,14 @@ require.config({
 /**
 * 程序入口
 */
-require(['app', 'jquery', 'bootstrap','hello'], function (app, $,hello) {
+require(['app', 'jquery', 'bootstrap','hello'], function (app, $) {
     'use strict';
     // use app here
     console.log(app);
+     // Tabs
+    $('.demoTabs a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    })
     console.log('Running jQuery %s', $().jquery);
 });
