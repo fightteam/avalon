@@ -10,42 +10,16 @@
     @include buttonBackground(#7d628c,#55425f);
     background-color:#80648f;
   }
-// Core
-.btn {
-   
-  
-  /* cutom button*/
-  &.btn-alt{
-      padding: 5px 15px;
 
-      @include buttonBackground(#ffffff,#f7f7f7,#555555);
-      background-color: #ffffff;
-      border: none;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-      @include box-shadow(inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.6));
-      border-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.25);
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-      @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(255, 255, 255, 0.3) inset);
-      &:hover,
-      &:focus,
-      &:active,
-      &.active,
-      &.disabled,
-      &[disabled] {
-        color: #555555;
-        background-color: #f7f7f7;
-        *background-color: #ebebeb;
-      }
-      &:active,
-      &.active {
-        background-color: #dedede \9;
-      }
+
+/* defiend alt button mix*/
+@mixin altBtnChangeStyle($backgroundColor,$textColor:#ffffff){
       &:hover,
       &:active,
       &.active {
-        color: #555555;
+        color: $textColor;
         background-position: 0 0;
-        background-color: #dedede;
+        background-color: darken($backgroundColor,10%);
         background-image: none;
       }
       &:active,
@@ -61,219 +35,164 @@
         filter: alpha(opacity=65);
         @include box-shadow(none);
       }
-      &.btn-primary {
-        @include buttonBackground(#0088bb,#0044bb);
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-        background-color: #0088bb;
-        border: none;
-        @include box-shadow(inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.6));
-
-        &:hover,
-        &:active,
-        &.active {
-          color: #ffffff;
-          background-position: 0 0;
-          background-color:  darken(#0044bb, 10%);
-          background-image: none;
-        }
-
-        &:active,
-        &.active {
-          outline: 0;
-          @include box-shadow(inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05));
-        }
-
-        &.disabled,
-        &[disabled] {
-          background-color: #e6e6e6;
-          background-image: none;
-          opacity: 0.65;
-          filter: alpha(opacity=65);
-          @include box-shadow(none);
-        }
-      }
-      &.btn-warning {
-        @include buttonBackground(#c9ad7d, #c09853);
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-        background-color: #c9ad7d;
-        border: none;
-        @include box-shadow(inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.6));
-        
-        &:hover,
-        &:active,
-        &.active {
-          color: #ffffff;
-          background-position: 0 0;
-          background-color: darken(#c09853, 10%);
-          background-image: none;
-        }
-
-        &:active,
-        &.active {
-          outline: 0;
-          @include box-shadow(inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05));
-        }
-
-        &.disabled,
-        &[disabled] {
-          background-color: #e6e6e6;
-          background-image: none;
-          opacity: 0.65;
-          filter: alpha(opacity=65);
-          @include box-shadow(none);
-        }
-      }
-
-      &.btn-danger {
-      @include buttonBackground(#c27372, #b94a48);
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-      background-color: #c27372;
+}
+// alt default button 
+.btn.btn-alt{
+      padding: 5px 15px;
+      @include buttonBackground(#ffffff,#f7f7f7,#555555);
+      background-color: #ffffff;
       border: none;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       @include box-shadow(inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.6));
-      
-     
-      &:hover,
-      &:active,
-      &.active {
-        color: #ffffff;
-        background-position: 0 0;
-        background-color: darken(#b94a48, 10%);
-        background-image: none;
-      }
-
-      &:active,
-      &.active {
-        outline: 0;
-        @include box-shadow(inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05));
-      }
-
-      &.disabled,
-      &[disabled] {
-        background-color: #e6e6e6;
-        background-image: none;
-        opacity: 0.65;
-        filter: alpha(opacity=65);
-        @include box-shadow(none);
-      }
-    }
-
-    &.btn-success {
+      border-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.25);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(255, 255, 255, 0.3) inset);
+      @include altBtnChangeStyle(#f7f7f7,#555555);
+}
+/* alt primary button */
+.btn.btn-alt.btn-primary {
+    @include buttonBackground(#0088bb,#0044bb);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    background-color: #0088bb;
+    border: none;
+    @include box-shadow(inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.6));
+    @include altBtnChangeStyle(#0044bb); 
+}
+/* alt warning button */
+.btn.btn-alt.btn-warning {
+    @include buttonBackground(#c9ad7d, #c09853);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    background-color: #c9ad7d;
+    border: none;
+    @include box-shadow(inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.6));
+    @include altBtnChangeStyle(#c09853); 
+}
+/* alt danger button */
+.btn.btn-alt.btn-danger {
+    @include buttonBackground(#c27372, #b94a48);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    background-color: #c27372;
+    border: none;
+    @include box-shadow(inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.6));
+    @include altBtnChangeStyle(#b94a48);
+}
+/* alt success button */
+.btn.btn-alt.btn-success {
     @include buttonBackground( #5ea35f, #468847);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     background-color: #5ea35f;
     border: none;
     @include box-shadow(inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.6));
-    
-    &:hover,
-    &:active,
-    &.active {
-      color: #ffffff;
-      background-position: 0 0;
-      background-color: darken(#468847, 10%);
-      background-image: none;
-    }
-
-    &:active,
-    &.active {
-      outline: 0;
-      @include box-shadow(inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05));
-    }
-
-    &.disabled,
-    &[disabled] {
-      background-color: #e6e6e6;
-      background-image: none;
-      opacity: 0.65;
-      filter: alpha(opacity=65);
-      @include box-shadow(none);
-    }
-  }
-
-  &.btn-info {
+    @include altBtnChangeStyle(#468847);
+}
+/* alt info button */
+.btn.btn-alt.btn-info {
     @include buttonBackground(#5a9ec0, #3a87ad);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     background-color: #5a9ec0;
     border: none;
     @include box-shadow(inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.6));
-
-    &:hover,
-    &:active,
-    &.active {
-      color: #ffffff;
-      background-position: 0 0;
-      background-color: darken(#3a87ad, 10%);
-      background-image: none;
-    }
-
-    &:active,
-    &.active {
-      outline: 0;
-      @include box-shadow(inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05));
-    }
-
-    &.disabled,
-    &[disabled] {
-      background-color: #e6e6e6;
-      background-image: none;
-      opacity: 0.65;
-      filter: alpha(opacity=65);
-      @include box-shadow(none); 
-    }
+    @include altBtnChangeStyle(#3a87ad);
   }
-
-  &.btn-inverse{
+/* alt inverse button */
+.btn.btn-alt.btn-inverse{
     @include buttonBackground(#94839e, #7d628c);
     color: #ffffff;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     background-color: #94839e;
     border: none;
     @include box-shadow(inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.6));
-    
-    &:hover,
-    &:active,
-    &.active {
-      color: #ffffff;
-      background-position: 0 0;
-      background-color: darken(#7d628c, 10%);
-      background-image: none;
-    }
-
-    &:active,
-    &.active {
-      outline: 0;
-      @include box-shadow(inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)); 
-    }
-
-    &.disabled,
-    &[disabled] {
-      background-color: #e6e6e6;
-      background-image: none;
-      opacity: 0.65;
-      filter: alpha(opacity=65);
-      @include box-shadow(none);
-    }
+    @include altBtnChangeStyle(#7d628c);
   }
-
-  &.btn-large {
-    padding: 10px 15px;
+/* alt button size*/
+.btn.btn-alt.btn-large{
+  padding: 10px 15px;
+}
+.btn.btn-alt.btn-small {
+  padding: 4px 10px;
+}
+.btn.btn-alt.btn-mini {
+  padding: 3px 7px;
+}
+/* defined flat mix*/
+@mixin flatBtnChangeStyle($textColor:#ffffff){
+  &:hover,
+  &:active,
+  &.active,
+  &.disabled,
+  &[disabled] {
+    color: #ffffff;
+    background-color: #404040;
   }
-  &.btn-small {
-    padding: 4px 10px;
+  &:active,
+  &.active {
+    outline: 0;
+    @include box-shadow(inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05));
   }
-  &.btn-mini {
-    padding: 3px 7px;
-  }
+  &:hover {
+    color: $textColor;
   }
 }
+/* flat default button */
+.btn.btn-flat{
+  padding: 3px 12px;
+  @include transition(all 400ms ease);
+  border: none;
+  background-image: none;
+  background-color: #d9d9d9;
+  color: #555555;
+  text-shadow: none;
+  @include box-shadow(none);
+  @include border-radius(4px);
+  @include flatBtnChangeStyle();
+}
 
-
-
-
-
-
-
-
-
+/* flat primary button */
+.btn.btn-flat.btn-primary {
+  background-color: #003188;
+  color: #ffffff;
+  @include flatBtnChangeStyle();
+}
+/* flat warning button */
+.btn.btn-flat.btn-warning {
+  background-color: #c09853;
+  color: #ffffff;
+  @include flatBtnChangeStyle();
+}
+/* flat danger button */
+.btn.btn-flat.btn-danger {
+  background-color: #b94a48;
+  color: #ffffff;
+  @include flatBtnChangeStyle();
+}
+/* flat success button */
+.btn.btn-flat.btn-success {
+  background-color: #468847;
+  color: #ffffff;
+  @include flatBtnChangeStyle();
+}
+/* flat info button */
+.btn.btn-flat.btn-info {
+  background-color: #3a87ad;
+  color: #ffffff;
+  @include flatBtnChangeStyle();
+}
+/* flat inverse button */
+.btn.btn-flat.btn-inverse {
+  background-color: #7d628c;
+  color: #ffffff;
+  @include flatBtnChangeStyle();
+}
+/* flag button size*/
+.btn.btn-flat.btn-large {
+  padding: 6px 14px;
+}
+.btn.btn-flat.btn-small {
+  padding: 3px 9px;
+}
+.btn.btn-flat.btn-mini {
+  padding: 2px 6px;
+}
 
 
 

@@ -10,14 +10,14 @@
   padding: 8px 35px 8px 14px;
   margin-bottom: $baseLineHeight;
   text-shadow: 0 1px 0 rgba(255,255,255,.5);
-  background-color: $warningBackground;
-  border: 1px solid $warningBorder;
+  background-color: #f1f1f1;
+  border: none;
   @include border-radius($baseBorderRadius);
 }
 .alert,
 .alert h4 {
   // Specified for the h4 to prevent conflicts of changing $headingsColor
-  color: $warningText;
+  color: #222222;
 }
 .alert h4 {
   margin: 0;
@@ -61,7 +61,14 @@
 .alert-info h4 {
   color: $infoText;
 }
-
+.alert-warning{
+  background-color: $warningBackground;
+  border-color: $warningBorder;
+  color: $warningText;
+  h4{
+   color: $warningText; 
+  }
+}
 
 // Block alerts
 // -------------------------

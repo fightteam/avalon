@@ -1,35 +1,59 @@
 //
 // Labels and badges
 // --------------------------------------------------
-
+@mixin changeStyle($bgColor,$textColor:#ffffff){
+  &.label:hover,
+  &.label:focus,
+  &.badge:hover,
+  &.badge:focus {
+    color: $textColor;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: $bgColor;
+  }
+}
 
 // Base classes
 .label,
 .badge {
   display: inline-block;
-  padding: 2px 4px;
-  font-size: $baseFontSize * .846;
-  font-weight: bold;
+  font-size: $baseFontSize * .646;
+  font-weight: normal;
   line-height: 14px; // ensure proper line-height if floated
   color: $white;
   vertical-align: baseline;
   white-space: nowrap;
-  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
   background-color: $grayLight;
+  font-weight: normal;
+  padding: 1px 4px;
+  text-shadow: none;
 }
 // Set unique padding and border-radii
 .label {
+  background-color:#999999;
   @include border-radius(3px);
 }
 .badge {
-  padding-left: 9px;
-  padding-right: 9px;
-  @include border-radius(9px);
+  padding: 0;
+  margin: 0;
+  display: block;
+  line-height: 25px;
+  text-align: center;
+  text-shadow: none;
+  position: absolute;
+  cursor: help;
+  width: 26px;
+  height: 26px;
+  @include border-radius(13px);
+  @include box-shadow(0 1px 1px 0 rgba(0, 0, 0, 0.8));
+  @include buttonBackground(#f2f5ff,#c2c4cc,#333333);
+  background-color: #dfe1eb;
 }
 
 // Empty labels/badges collapse
 .label,
 .badge {
+
   &:empty {
     display: none;
   }
@@ -37,35 +61,54 @@
 
 // Hover/focus state, but only for links
 a {
-  &.label:hover,
-  &.label:focus,
-  &.badge:hover,
-  &.badge:focus {
-    color: $white;
-    text-decoration: none;
-    cursor: pointer;
-  }
+  @include changeStyle(#aaaaaa);
+  
 }
-
+// 重新定义
 // Colors
 // Only give background-color difference to links (and to simplify, we don't qualifty with `a` but [href] attribute)
-@each $item in label, badge {
-  // Important (red)
-  .#{$item}-important         { background-color: $errorText; }
-  .#{$item}-important[href]   { background-color: darken($errorText, 10%); }
-  // Warnings (orange)
-  .#{$item}-warning           { background-color: $orange; }
-  .#{$item}-warning[href]     { background-color: darken($orange, 10%); }
-  // Success (green)
-  .#{$item}-success           { background-color: $successText; }
-  .#{$item}-success[href]     { background-color: darken($successText, 10%); }
-  // Info (turquoise)
-  .#{$item}-info              { background-color: $infoText; }
-  .#{$item}-info[href]        { background-color: darken($infoText, 10%); }
-  // Inverse (black)
-  .#{$item}-inverse           { background-color: $grayDark; }
-  .#{$item}-inverse[href]     { background-color: darken($grayDark, 10%); }
-}
+
+// primary 
+.label.label-primary {  background-color: #0044cc; }
+.label.label-primary[href]   { background-color: #0044cc; @include changeStyle(#003188);}
+ // Important 
+.label.label-important         { background-color: #b94a48;}
+.label.label-important[href]   { background-color: #b94a48;  @include changeStyle(#953b39);}
+// Warnings 
+.label.label-warning           { background-color: #f89406; }
+.label.label-warning[href]   { background-color: #f89406;  @include changeStyle(#c67605);}
+// Success 
+.label.label-success           { background-color: #468847; }
+.label.label-success[href]   { background-color: #468847;  @include changeStyle(#356635);}
+// Info 
+.label.label-info              { background-color: #3a87ad; @include changeStyle(#2d6987);}
+.label.label-info[href]   { background-color: #3a87ad; }
+// Inverse 
+.label.label-inverse           { background-color: #222222; }
+.label.label-inverse[href]   { background-color: #222222;  @include changeStyle(#080808);}
+
+
+// primary 
+.badge.badge-primary         { @include buttonBackground(#0088cc,#0044cc); }
+
+ // Important 
+.badge.badge-important       { @include buttonBackground(#c46766,#b94a48);}
+
+// Warnings 
+.badge.badge-warning         { @include buttonBackground(#c09853,#ceae78); }
+
+// Success 
+.badge.badge-success         { @include buttonBackground(#58a959,#468847); }
+
+// Info 
+.badge.badge-info            { @include buttonBackground(#54a0c6,#3a87ad); }
+
+// Inverse 
+.badge.badge-inverse         { @include buttonBackground(#856895,#7d628c); }
+
+
+
+
 
 // Quick fix for labels/badges in buttons
 .btn {

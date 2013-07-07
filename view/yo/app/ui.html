@@ -14,24 +14,43 @@
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
-        
+        <style type="text/css">
+            .main-navigation .badge {
+            top: -4px;
+            float: right;
+            position: relative;
+            font-size: 11.9px;
+            }
+        </style>
     </head>
     <body>
-        <!-- Main page container -->
-        <div class="container">
+       <div class="container-fluid">
         
-      
+            <!-- Left (navigation) side -->
+            <div class="sidebar">
+            
+               
+              
+               
+           
+                
+            </div>
+            <!-- /Left (navigation) side -->
+            
+            <!-- Right (content) side -->
+            <div class="content-block" role="main">
+                
                 <!-- Breadcrumb -->
                 <ul class="breadcrumb">
-                    <li><a href="#"><span class="awe-home"></span></a><span class="divider"></span></li>
-                    <li><a href="#">Organon template</a><span class="divider"></span></li>
+                    <li><a href="#"><span class="icon-home"></span></a><span class="divider"><i class="icon-double-angle-right"></i></span></li>
+                    <li><a href="#">Organon template</a><span class="divider"><i class="icon-double-angle-right"></i></span></li>
                     <li class="active">UI &amp; Buttons</li>
                 </ul>
                 <!-- /Breadcrumb -->
                 
                 <!-- Page header -->
                 <article class="page-header">
-                    <h1><span class="awe-magic"></span> User interface &amp; buttons</h1>
+                    <h1><span class="icon-magic"></span> User interface &amp; buttons</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit, dolor mollis adipiscing elementum, ipsum turpis euismod tellus, vitae mollis velit leo id nisi. Morbi non lectus turpis, eu interdum orci. In at rutrum nisi. Donec sit amet urna purus, at eleifend ipsum. Sed magna enim, tempor eu tincidunt vitae, dictum tristique arcu.</p>
                 </article>
                 <!-- /Page header -->
@@ -48,23 +67,23 @@
                             </header>
                             <section>
                                 <div class="alert fade in">
-                                    <button class="close" data-dismiss="alert"><span class="awe-remove-circle"></span></button>
+                                    <button class="close" data-dismiss="alert"><span class="icon-remove-circle"></span></button>
                                     <strong>Default alert box!</strong> This is default style. Nothing special to see.
                                 </div>
                                 <div class="alert alert-info fade in">
-                                    <button class="close" data-dismiss="alert"><span class="awe-remove-circle"></span></button>
+                                    <button class="close" data-dismiss="alert"><span class="icon-remove-circle"></span></button>
                                     <strong>Info alert box!</strong> Also a blue one for tips and info highlights.
                                 </div>
                                 <div class="alert alert-warning fade in">
-                                    <button class="close" data-dismiss="alert"><span class="awe-remove-circle"></span></button>
+                                    <button class="close" data-dismiss="alert"><span class="icon-remove-circle"></span></button>
                                     <strong>Warning alert box!</strong> Best check yo self, you're not looking too good.
                                 </div>
                                 <div class="alert alert-error fade in">
-                                    <button class="close" data-dismiss="alert"><span class="awe-remove-circle"></span></button>
+                                    <button class="close" data-dismiss="alert"><span class="icon-remove-circle"></span></button>
                                     <strong>Error alert box!</strong> Nice red alert when something goes wrong.
                                 </div>
                                 <div class="alert alert-success fade in">
-                                    <button class="close" data-dismiss="alert"><span class="awe-remove-circle"></span></button>
+                                    <button class="close" data-dismiss="alert"><span class="icon-remove-circle"></span></button>
                                     <h4 class="alert-heading">Warning!</h4>
                                     Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
                                 </div>
@@ -77,7 +96,7 @@
                     <article class="span4 data-block nested">
                         <div class="data-container">
                             <header>
-                                <h2><span class="awe-tint"></span> Fusce nisl dolor</h2>
+                                <h2><span class="icon-tint"></span> Fusce nisl dolor</h2>
                                 <ul class="data-header-actions">
                                     <li><a href="#" class="btn btn-alt btn-primary">Options</a></li>
                                 </ul>
@@ -111,15 +130,15 @@
                             <header>
                                 <h2>Buttons</h2>
                                 <ul class="data-header-actions tabs">
-                                    <li class="demoTabs active"><a href="#default">Default</a></li>
+                                    <li class="demoTabs"><a href="#default">Default</a></li>
                                     <li class="demoTabs"><a href="#organon">Organon</a></li>
-                                    <li class="demoTabs"><a href="#flat">Flat</a></li>
+                                    <li class="demoTabs active"><a href="#flat">Flat</a></li>
                                 </ul>
                             </header>
                             <section class="tab-content">
                             
                                 <!-- Tab #default -->
-                                <div class="tab-pane active" id="default">
+                                <div class="tab-pane" id="default">
                                 
                                     <h3>Default buttons</h3>
                                     <table class="table table-striped">
@@ -469,7 +488,7 @@
                                 <!-- Tab #organon -->
                                 
                                 <!-- Tab #flat -->
-                                <div class="tab-pane" id="flat">
+                                <div class="tab-pane active" id="flat">
                                 
                                     <h3>Flat buttons</h3>
                                     <table class="table table-striped">
@@ -695,7 +714,7 @@
                                 <h2>jQuery Snippet</h2>
                             </header>
                             <section>
-<div class="snippet-container" style="undefined;"><div class="sh_navy snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="#" style="display: none;">copy</a><a class="snippet-text sh_url" href="#">text</a><a class="snippet-window sh_url" href="#">pop-up</a></pre></div><pre class="html sh_html snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_keyword">&lt;pre&gt;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;// comment</li><li>&nbsp;&nbsp;&nbsp;&nbsp;function checkMeaningOfLife ( decimal, success ) {</li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ( parseInt(decimal,10) === 42 ) {</li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.console.log(success);</li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li><li>&nbsp;&nbsp;&nbsp;&nbsp;};</li><li><span class="sh_keyword">&lt;/pre&gt;</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">&lt;pre&gt;
+<div class="snippet-container" style="undefined;"><div class="sh_whatis snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="#" style="display: none;">copy</a><a class="snippet-text sh_url" href="#">text</a><a class="snippet-window sh_url" href="#">pop-up</a></pre></div><pre class="html sh_html snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_keyword">&lt;pre&gt;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;// comment</li><li>&nbsp;&nbsp;&nbsp;&nbsp;function checkMeaningOfLife ( decimal, success ) {</li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ( parseInt(decimal,10) === 42 ) {</li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.console.log(success);</li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li><li>&nbsp;&nbsp;&nbsp;&nbsp;};</li><li><span class="sh_keyword">&lt;/pre&gt;</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">&lt;pre&gt;
     // comment
     function checkMeaningOfLife ( decimal, success ) {
         if ( parseInt(decimal,10) === 42 ) {
@@ -796,12 +815,12 @@
                                 </div>
                                 <div class="pagination">
                                     <ul>
-                                        <li class="disabled"><a href="#"><span class="awe-chevron-left"></span></a></li>
+                                        <li class="disabled"><a href="#"><span class="icon-chevron-left"></span></a></li>
                                         <li class="active"><a href="#">1</a></li>
                                         <li><a href="#">2</a></li>
                                         <li><a href="#">3</a></li>
                                         <li><a href="#">4</a></li>
-                                        <li><a href="#"><span class="awe-chevron-right"></span></a></li>
+                                        <li><a href="#"><span class="icon-chevron-right"></span></a></li>
                                     </ul>
                                 </div>
                                 <ul class="pager">
@@ -819,15 +838,56 @@
                     
                 </div>
                 <!-- /Grid row -->
-
-       
-                
-              
-         
+                <!-- Grid row -->
+                <div class="row-fluid">
+                    <article class="span4 data-block">
+                        <div class="data-container">
+                            <header>
+                                <h2>badge</h2>
+                            </header>
+                            <section>
+                                <nav class="main-navigation" role="navigation">
+                    <ul>
+                        <li>
+                            <a href="#"><span class="badge" title="" data-original-title="You have 5 new tasks">5</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-primary" title="" data-original-title="You have 5 new tasks">15</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-success" title="" data-original-title="You have 5 new tasks">145</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-warning" title="" data-original-title="You have 5 new tasks">125</span></a>
+                        </li>
+                       <li>
+                            <a href="#"><span class="badge badge-info" title="" data-original-title="You have 5 new tasks">15</span></a>
+                        </li>
+                       <li>
+                            <a href="#"><span class="badge badge-inverse" title="" data-original-title="You have 5 new tasks">12</span></a>
+                        </li>
+                       <li>
+                            <a href="#"><span class="badge badge-important" title="" data-original-title="You have 5 new tasks">12</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="badge badge-important" title="" data-original-title="You have 5 new tasks">12</a>
+                        </li>
+                    </ul>
+                </nav>
+                               
+                               
+                            </section>
+                        </div>
+                    </article>
+                 
+                   
+                    
+                </div>
+                <!-- /Grid row -->
+            </div>
             <!-- /Right (content) side -->
 
         </div>
-        <!-- Main page container -->
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
          

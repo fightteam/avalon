@@ -82,9 +82,9 @@ $borderRadiusSmall:     3px !default;
 // Tables
 // -------------------------
 $tableBackground:                   transparent !default; // overall background-color
-$tableBackgroundAccent:             #f9f9f9 !default; // for striping
-$tableBackgroundHover:              #f5f5f5 !default; // for hover
-$tableBorder:                       #ddd !default; // table and cell border
+$tableBackgroundAccent:             #26323A !default; // for striping
+$tableBackgroundHover:              rgba(0, 0, 0, 0.3) !default; // for hover
+$tableBorder:                       #1a1819 !default; // table and cell border
 
 // Buttons
 // -------------------------
@@ -113,11 +113,11 @@ $btnInverseBackgroundHighlight:     $grayDarker !default;
 
 // Forms
 // -------------------------
-$inputBackground:               $white !default;
-$inputBorder:                   #ccc !default;
+$inputBackground:               #403e3f !default;
+$inputBorder:                   #1a1819 !default;
 $inputBorderRadius:             $baseBorderRadius !default;
-$inputDisabledBackground:       $grayLighter !default;
-$formActionsBackground:         #f5f5f5 !default;
+$inputDisabledBackground:       transparent !default;
+$formActionsBackground:         transparent !default;
 $inputHeight:                   $baseLineHeight + 10px; // base line-height + 8px vertical padding + 2px top/bottom border
 
 
@@ -234,20 +234,20 @@ $heroUnitLeadColor:               inherit !default;
 
 // Form states and alerts
 // -------------------------
-$warningText:             #c09853 !default;
-$warningBackground:       #fcf8e3 !default;
+$warningText:             #ffffff !default;
+$warningBackground:       #c09853 !default;
 $warningBorder:           darken(adjust-hue($warningBackground, -10), 3%) !default;
 
-$errorText:               #b94a48 !default;
-$errorBackground:         #f2dede !default;
+$errorText:               #ffffff !default;
+$errorBackground:         #b94a48 !default;
 $errorBorder:             darken(adjust-hue($errorBackground, -10), 3%) !default;
 
-$successText:             #468847 !default;
-$successBackground:       #dff0d8 !default;
+$successText:             #ffffff !default;
+$successBackground:       #468847 !default;
 $successBorder:           darken(adjust-hue($successBackground, -10), 5%) !default;
 
-$infoText:                #3a87ad !default;
-$infoBackground:          #d9edf7 !default;
+$infoText:                #ffffff !default;
+$infoBackground:          #3a87ad !default;
 $infoBorder:              darken(adjust-hue($infoBackground, -10), 7%) !default;
 
 

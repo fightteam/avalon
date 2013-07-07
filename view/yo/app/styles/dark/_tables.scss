@@ -17,20 +17,40 @@ table {
 // ---------------
 
 .table {
+  border-top: 1px solid #1a1819;
+  border-bottom: 1px solid #1a1819;
   width: 100%;
+  max-width: 100%;
   margin-bottom: $baseLineHeight;
   // Cells
+  .btn-group{
+    float: right;
+    margin: 0;
+  }
   th,
   td {
     padding: 8px;
     line-height: $baseLineHeight;
-    text-align: left;
     vertical-align: top;
     border-top: 1px solid $tableBorder;
+    text-align: center;
+    color: #e5e5e5;
+    .toolbar{
+      text-align: right;
+      padding: 4px;
+      .btn-flat{
+        padding: 4px 8px;
+      }
+      > a span{
+        margin-top: 4px;
+      }
+    }
   }
   th {
     font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.3);
   }
+
   // Bottom align for column headings
   thead th {
     vertical-align: bottom;
