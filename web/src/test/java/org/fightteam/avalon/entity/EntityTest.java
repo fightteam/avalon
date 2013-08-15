@@ -14,7 +14,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
  *  测试实体关系是否正确
  */
 @DirtiesContext
-@ContextConfiguration(locations = { "/applicationContext.xml" })
+@ContextConfiguration(locations = {"classpath:/spring-configuration/applicationContext.xml"})
 @TransactionConfiguration(transactionManager = "transactionManager")
 public class EntityTest extends SpringContextTest{
 

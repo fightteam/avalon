@@ -7,7 +7,7 @@
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
   <artifactId>avalon-web</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <name>Avalon :: Module :: Web</name>
 
   <dependencies>
@@ -108,6 +108,18 @@
       <dependency>
           <groupId>net.sourceforge.htmlunit</groupId>
           <artifactId>htmlunit</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-java</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-firefox-driver</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-htmlunit-driver</artifactId>
       </dependency>
       <!-- test end-->
 
@@ -252,6 +264,71 @@
           <groupId>com.h2database</groupId>
           <artifactId>h2</artifactId>
       </dependency>
+      <!-- LOGGING begin -->
+      <!-- slf4j -->
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+      </dependency>
 
+      <!-- slf4j-log4j绑定 -->
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+      </dependency>
+
+      <!-- common-logging 实际调用slf4j -->
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>jcl-over-slf4j</artifactId>
+      </dependency>
+
+      <!-- java.util.logging 实际调用slf4j -->
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>jul-to-slf4j</artifactId>
+      </dependency>
+
+      <!-- log4j -->
+      <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+      </dependency>
+
+      <!-- log4jdbc -->
+      <dependency>
+          <groupId>org.lazyluke</groupId>
+          <artifactId>log4jdbc-remix</artifactId>
+
+      </dependency>
+      <!-- LOGGING end -->
+      <!-- Jackson JSON start -->
+      <dependency>
+          <groupId>org.codehaus.jackson</groupId>
+          <artifactId>jackson-mapper-asl</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.codehaus.jackson</groupId>
+          <artifactId>jackson-core-asl</artifactId>
+      </dependency>
+      <!--Jackson JSON end-->
   </dependencies>
+    <build>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <!--<scanIntervalSeconds>1</scanIntervalSeconds>-->
+                    <!--<webAppConfig>-->
+                        <!--<contextPath>/admin</contextPath>-->
+                    <!--</webAppConfig>-->
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
 </project>

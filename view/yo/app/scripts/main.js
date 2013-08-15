@@ -16,34 +16,49 @@ require.config({
     },
     shim: {
         bootstrap: {
-            deps: ['jquery'],
+            deps: [
+                'jquery'
+            ],
             exports: 'jquery'
         },
-        datepicker:{
-            deps: ['bootstrap']
+        datepicker: {
+            deps: [
+                'bootstrap'
+            ]
         },
-        colorpicker:{
-            deps: ['bootstrap']
+        colorpicker: {
+            deps: [
+                'bootstrap'
+            ]
         },
-        fileupload:{
-            deps: ['bootstrap']
+        fileupload: {
+            deps: [
+                'bootstrap'
+            ]
         },
-        tags:{
-            deps: ['jquery'],
+        tags: {
+            deps: [
+                'jquery'
+            ],
             exports: '$.tagsInput'
         },
-        bwysihtml5:{
-            deps: ['jquery','wysihtml5']
-        }, 
-        jwysiwyg:{
-            deps: ['jquery']
+        bwysihtml5: {
+            deps: [
+                'jquery',
+                'wysihtml5'
+            ]
+        },
+        jwysiwyg: {
+            deps: [
+                'jquery'
+            ]
         }
     }
 });
 /**
 * 程序入口
 */
-require(['app', 'jquery', 'bootstrap','hello','datepicker','colorpicker','fileupload','tags','bwysihtml5','jwysiwyg'], function (app, $) {
+require(['app', 'jquery', 'bootstrap','datepicker','colorpicker','fileupload','tags','bwysihtml5','jwysiwyg'], function (app, $) {
     'use strict';
     // use app here
     console.log(app);

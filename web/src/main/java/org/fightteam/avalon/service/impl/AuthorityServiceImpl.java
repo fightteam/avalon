@@ -14,5 +14,9 @@ import org.springframework.stereotype.Service;
  * 继承了 BasicServiceImpl 的CRUD、分页与排序
  */
 @Service
-public class AuthorityServiceImpl extends BasicServiceImpl<AuthorityDao,Authority,Long> implements AuthorityService {
+public class AuthorityServiceImpl extends BasicServiceImpl<Authority,Long> implements AuthorityService {
+    @Override
+    public void setUp() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

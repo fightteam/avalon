@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 
 /**
@@ -18,10 +19,17 @@ import java.io.Serializable;
  * CRUD与分页、排序
  */
 @Transactional(readOnly = true)
-public class BasicServiceImpl<DAO extends PagingAndSortingRepository<T,ID>,T,ID extends Serializable> implements BasicService<T,ID> {
-    @Autowired
-    private DAO pagingAndSortingRepository;
+public abstract class BasicServiceImpl<T,ID extends Serializable> implements BasicService<T,ID> {
+    // 方便继承类使用
+    protected PagingAndSortingRepository<T,ID> pagingAndSortingRepository;
 
+    /**
+     * 设置方法
+     * 主要是设置 pagingAndSortingRepository
+     * 否则会产生异常
+     */
+    @PostConstruct
+    public abstract void setUp();
 
     @Override
     public T findById(ID id) {

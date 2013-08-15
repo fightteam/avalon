@@ -11,6 +11,31 @@
   <name>Avalon :: Module :: View</name>
 
 
+   <dependencies>
+       <dependency>
+           <groupId>org.fightteam</groupId>
+           <artifactId>avalon-web</artifactId>
+       </dependency>
+
+       <dependency>
+           <groupId>opensymphony</groupId>
+           <artifactId>sitemesh</artifactId>
+           <scope>runtime</scope>
+       </dependency>
+       <!--spring mvc start-->
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-webmvc</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-web</artifactId>
+       </dependency>
+       <!--spring mvc end-->
+   </dependencies>
+
+
+
 
     <build>
         <plugins>
@@ -28,7 +53,9 @@
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
-                    <webAppSourceDirectory>${basedir}/yo/dist</webAppSourceDirectory>
+
+                    <!--<webAppSourceDirectory>${basedir}/yo/dist</webAppSourceDirectory>-->
+
                 </configuration>
 
             </plugin>

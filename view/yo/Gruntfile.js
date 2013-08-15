@@ -189,6 +189,13 @@ module.exports = function (grunt) {
                     wrap: true
                     //uglify2: {} // https://github.com/mishoo/UglifyJS2
                 }
+            },
+            // add multi page support add name and out
+            dist2: {
+                options: {
+                   name: 'main2', 
+                   out: '<%= yeoman.dist %>/scripts/main2.js'
+                }
             }
         },
         rev: {
@@ -207,7 +214,12 @@ module.exports = function (grunt) {
             options: {
                 dest: '<%= yeoman.dist %>'
             },
-            html: '<%= yeoman.app %>/index.html'
+            // change to adapt single page
+            //html: '<%= yeoman.app %>/index.html'
+            // change to adapt mult page
+            html: [
+                '<%= yeoman.app %>/*.html'
+            ]
         },
         usemin: {
             options: {
@@ -237,11 +249,28 @@ module.exports = function (grunt) {
             }
         },
         cssmin: {
+            // dist: {
+            //     files: {
+            //         '<%= yeoman.dist %>/styles/main.css': [
+            //             '.tmp/styles/{,*/}*.css',
+            //             '<%= yeoman.app %>/styles/{,*/}*.css'
+            //         ]
+            //     }
+            // }
+            // add multi css support
             dist: {
                 files: {
                     '<%= yeoman.dist %>/styles/main.css': [
-                        '.tmp/styles/{,*/}*.css',
-                        '<%= yeoman.app %>/styles/{,*/}*.css'
+                        '.tmp/styles/main.css',
+                        '<%= yeoman.app %>/styles/main.css'
+                    ]
+                }
+            },
+            dist2: {
+                files: {
+                    '<%= yeoman.dist %>/styles/dark.css': [
+                        '.tmp/styles/dark.css',
+                        '<%= yeoman.app %>/styles/dark.css'
                     ]
                 }
             }
@@ -313,7 +342,7 @@ module.exports = function (grunt) {
                 exclude: ['modernizr']
             },
             all: {
-                rjsConfig: '<%= yeoman.app %>/scripts/main.js'
+                rjsConfig: '<%= yeoman.app %>/scripts/config.js'
             }
         }
     });

@@ -3,6 +3,8 @@ package org.fightteam.avalon.tools.persistence.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 
@@ -13,6 +15,7 @@ import java.io.Serializable;
  * Time: 上午10:31
  * 包含基本的增删改查与分页
  */
+@Transactional(readOnly = true)
 public interface BasicService<T,ID extends Serializable> {
     /**
      * 根据id查找该对象

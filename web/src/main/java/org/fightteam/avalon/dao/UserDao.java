@@ -16,5 +16,12 @@ public interface UserDao extends PagingAndSortingRepository<User,Long>{
      * @param username
      * @return
      */
-    public UserDao findByUsername(String username);
+    public User findByUsername(String username);
+
+    /**
+     * 根据email查找用户
+     * @param email
+     * @return
+     */
+    public User findByEmail(String email);
 }

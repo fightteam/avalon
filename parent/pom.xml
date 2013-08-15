@@ -32,6 +32,7 @@
 
         <jacksonMapper.version>1.9.2</jacksonMapper.version>
         <jacksonCore.version>1.9.2</jacksonCore.version>
+        <sitemesh.version>2.4.2 </sitemesh.version>
 
         <ehcache.version>2.6.0</ehcache.version>
 
@@ -172,6 +173,15 @@
             </dependency>
 
             <!--spring security end-->
+
+            <!-- sitemesh -->
+            <dependency>
+                <groupId>opensymphony</groupId>
+                <artifactId>sitemesh</artifactId>
+                <version>${sitemesh.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
             <!-- test start-->
             <!-- junit-->
             <dependency>
@@ -192,6 +202,24 @@
                 <groupId>net.sourceforge.htmlunit</groupId>
                 <artifactId>htmlunit</artifactId>
                 <version>2.6</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-java</artifactId>
+                <version>2.26.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-firefox-driver</artifactId>
+                <version>2.26.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-htmlunit-driver</artifactId>
+                <version>2.26.0</version>
                 <scope>test</scope>
             </dependency>
             <!-- test end-->
@@ -412,6 +440,10 @@
                         <webResources>
                             <resource>
                                 <directory>yo/dist</directory>
+                            </resource>
+                            <resource>
+                                <directory>src/main/webapp</directory>
+                                <filtering>true</filtering>
                             </resource>
                         </webResources>
                     </configuration>

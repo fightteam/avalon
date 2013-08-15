@@ -14,5 +14,9 @@ import org.springframework.stereotype.Service;
  * 继承了 BasicServiceImpl 的CRUD、分页与排序
  */
 @Service
-public class ResourceServiceImpl extends BasicServiceImpl<ResourceDao,Resource,Long> implements ResourceService {
+public class ResourceServiceImpl extends BasicServiceImpl<Resource,Long> implements ResourceService {
+    @Override
+    public void setUp() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

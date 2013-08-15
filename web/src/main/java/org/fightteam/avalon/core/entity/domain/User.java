@@ -24,7 +24,7 @@ public class User extends Entity<Long> implements UserDetails{
 
     //系统帐号采用email 但是为了扩展需求 保留了username
     private String username;
-    private String emial;
+    private String email;
     //加密过后的密码 (数据库不储存用户的明文密码)
     private String password;
     //用户及实际姓名
@@ -63,12 +63,12 @@ public class User extends Entity<Long> implements UserDetails{
         this.username = username;
     }
 
-    public String getEmial() {
-        return emial;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmial(String emial) {
-        this.emial = emial;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

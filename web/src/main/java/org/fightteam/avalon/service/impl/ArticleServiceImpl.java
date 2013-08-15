@@ -14,5 +14,9 @@ import org.springframework.stereotype.Service;
  * 继承了 BasicServiceImpl 的CRUD、分页与排序
  */
 @Service
-public class ArticleServiceImpl extends BasicServiceImpl<ArticleDao,Article,Long> implements ArticleService {
+public class ArticleServiceImpl extends BasicServiceImpl<Article,Long> implements ArticleService {
+    @Override
+    public void setUp() {
+
+    }
 }

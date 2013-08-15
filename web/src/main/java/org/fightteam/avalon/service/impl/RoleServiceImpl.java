@@ -14,5 +14,9 @@ import org.springframework.stereotype.Service;
  * 继承了 BasicServiceImpl 的CRUD、分页与排序
  */
 @Service
-public class RoleServiceImpl extends BasicServiceImpl<RoleDao,Role,Long> implements RoleService {
+public class RoleServiceImpl extends BasicServiceImpl<Role,Long> implements RoleService {
+    @Override
+    public void setUp() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

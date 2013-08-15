@@ -1,4 +1,4 @@
-package org.fightteam.avalon.tools;
+package org.fightteam.avalon.tools.persistence;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -44,9 +44,6 @@ public class Hibernates {
                 throw new IllegalStateException("Connection returned by DataSource [" + dataSource + "] was null");
             }
             jdbcUrl = connection.getMetaData().getURL();
-            System.out.println("******************");
-            System.out.println(connection.getMetaData().getUserName());
-            System.out.println(connection.getMetaData().getURL());
         } catch (SQLException e) {
             throw new RuntimeException("Could not get database url", e);
         } finally {
