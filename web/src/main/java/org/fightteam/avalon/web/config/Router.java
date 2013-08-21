@@ -20,7 +20,7 @@ public final class Router {
     public final static String roleManager ="/roles";
 
     // authority
-    public final static String authorityManager ="/authoritys";
+    public final static String authorityManager ="/authorities";
 
     // resource
     public final static String resourceManager ="/resources";

@@ -3,6 +3,7 @@ package org.fightteam.avalon.dao;
 import junit.framework.Assert;
 import org.fightteam.avalon.core.entity.domain.User;
 import org.fightteam.avalon.entity.EntityTest;
+import org.fightteam.avalon.repositroy.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class UserDaoTest extends EntityTest{
     @Autowired
-    protected UserDao userDao;
+    protected UserRepository userDao;
     //=====================测试数据环境============================
     // 为了方便继承类使用
     protected User user;

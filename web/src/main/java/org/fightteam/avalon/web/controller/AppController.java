@@ -21,11 +21,5 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class AppController {
 
-    private final static String VIEW_NAME = "appView";
 
-    @RequestMapping(value = Router.index)
-    public String index(Model model){
-        System.out.println(model);
-        return VIEW_NAME;
-    }
 }

@@ -130,7 +130,7 @@
       </dependency>
       <dependency>
           <groupId>javax.servlet</groupId>
-          <artifactId>servlet-api</artifactId>
+          <artifactId>javax.servlet-api</artifactId>
       </dependency>
       <dependency>
           <groupId>javax.servlet.jsp</groupId>
@@ -149,35 +149,13 @@
           <artifactId>slf4j-api</artifactId>
       </dependency>
 
-      <!-- slf4j-log4j绑定 -->
       <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-log4j12</artifactId>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <scope>runtime</scope>
       </dependency>
 
-      <!-- common-logging 实际调用slf4j -->
-      <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>jcl-over-slf4j</artifactId>
-      </dependency>
 
-      <!-- java.util.logging 实际调用slf4j -->
-      <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>jul-to-slf4j</artifactId>
-      </dependency>
-
-      <!-- log4j -->
-      <dependency>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
-      </dependency>
-
-      <!-- log4jdbc -->
-      <dependency>
-          <groupId>org.lazyluke</groupId>
-          <artifactId>log4jdbc-remix</artifactId>
-      </dependency>
       <!-- LOGGING end -->
 
       <!-- Hibernate strat -->
@@ -295,12 +273,7 @@
           <artifactId>log4j</artifactId>
       </dependency>
 
-      <!-- log4jdbc -->
-      <dependency>
-          <groupId>org.lazyluke</groupId>
-          <artifactId>log4jdbc-remix</artifactId>
 
-      </dependency>
       <!-- LOGGING end -->
       <!-- Jackson JSON start -->
       <dependency>
@@ -312,6 +285,53 @@
           <artifactId>jackson-core-asl</artifactId>
       </dependency>
       <!--Jackson JSON end-->
+
+      <dependency>
+          <groupId>com.github.dandelion</groupId>
+          <artifactId>datatables-jsp</artifactId>
+      </dependency>
+
+      <dependency>
+          <groupId>commons-fileupload</groupId>
+          <artifactId>commons-fileupload</artifactId>
+      </dependency>
+
+
+      <dependency>
+          <groupId>org.apache.tiles</groupId>
+          <artifactId>tiles-core</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.tiles</groupId>
+          <artifactId>tiles-servlet</artifactId>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.tiles</groupId>
+          <artifactId>tiles-jsp</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.data</groupId>
+          <artifactId>spring-data-rest-webmvc</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.data</groupId>
+          <artifactId>spring-data-rest-repository</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.data</groupId>
+          <artifactId>spring-data-rest-core</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.hateoas</groupId>
+          <artifactId>spring-hateoas</artifactId>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework.plugin</groupId>
+          <artifactId>spring-plugin-core</artifactId>
+      </dependency>
+
   </dependencies>
     <build>
 

@@ -1,7 +1,6 @@
 package org.fightteam.avalon.service.impl;
 
 import org.fightteam.avalon.core.entity.domain.Resource;
-import org.fightteam.avalon.dao.ResourceDao;
 import org.fightteam.avalon.service.ResourceService;
 import org.fightteam.avalon.tools.persistence.service.impl.BasicServiceImpl;
 import org.springframework.stereotype.Service;

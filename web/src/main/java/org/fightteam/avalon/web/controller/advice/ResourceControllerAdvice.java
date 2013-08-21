@@ -1,18 +1,11 @@
 package org.fightteam.avalon.web.controller.advice;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * 资源控制
@@ -27,6 +20,7 @@ import java.util.Properties;
  */
 @ControllerAdvice
 public class ResourceControllerAdvice {
+    private Date date;
     private Map<String,String> styles;
     private Map<String,String> scripts;
     @Autowired
@@ -70,11 +64,20 @@ public class ResourceControllerAdvice {
      * @param locale
      */
     @ModelAttribute
-    public void set(Model model,Locale locale){
+    public void setLang(Model model,Locale locale){
         String lang = locale.getLanguage();
         if (locale.getCountry()!=null && !locale.getCountry().equals("")){
             lang +="_"+locale.getCountry();
         }
         model.addAttribute("lang", lang);
+    }
+
+    /**
+     * 获取当前时间
+     * @param model
+     */
+    @ModelAttribute
+    public void setDate(Model model){
+        model.addAttribute("date", new Date());
     }
 }

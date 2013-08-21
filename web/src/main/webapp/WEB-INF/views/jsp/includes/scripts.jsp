@@ -1,16 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: excalibur
-  Date: 13-8-18
-  Time: 上午10:40
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-</body>
-</html>
+<script type="text/javascript" src="${scripts.jquery}"></script>
+<script type="text/javascript" src="${scripts.bootstrap}"></script>
+<script type="text/javascript" src="${scripts['jquery-nicescroll']}"></script>
+<script type="text/javascript" src="/assets/components/datatables/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" src="/assets/components/datatables/plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("html").niceScroll();
+        $("#table").dataTable();
+    });
+</script>

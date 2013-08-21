@@ -6,6 +6,7 @@
 
 
 
-
+    <import resource="properties/properties.xml"/>
     <import resource="security/applicationContext-http.xml"/>
+    <import resource="rest/REST-service.xml"/>
 </beans>

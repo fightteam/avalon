@@ -1,7 +1,6 @@
 package org.fightteam.avalon.service.impl;
 
 import org.fightteam.avalon.core.entity.domain.Authority;
-import org.fightteam.avalon.dao.AuthorityDao;
 import org.fightteam.avalon.service.AuthorityService;
 import org.fightteam.avalon.tools.persistence.service.impl.BasicServiceImpl;
 import org.springframework.stereotype.Service;

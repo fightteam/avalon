@@ -1,7 +1,6 @@
 package org.fightteam.avalon.service.impl;
 
 import org.fightteam.avalon.core.entity.domain.Role;
-import org.fightteam.avalon.dao.RoleDao;
 import org.fightteam.avalon.service.RoleService;
 import org.fightteam.avalon.tools.persistence.service.impl.BasicServiceImpl;
 import org.springframework.stereotype.Service;
