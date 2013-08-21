@@ -1,0 +1,102 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.fightteam</groupId>
+    <artifactId>avalon</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+
+
+
+    <!--项目名称、地址、描述与开始时间-->
+    <name>Avalon</name>
+    <url>http://fightteam.github.io/avalon</url>
+    <description>
+        这是一个blog系统采用REST风格的架构，服务器端完全采用json风格的是数据模式;前端显示基于spa（单页）。
+        后续会支持手机等终端。
+    </description>
+    <inceptionYear>2013</inceptionYear>
+
+    <!--组织-->
+    <organization>
+        <name>fightteam</name>
+        <url>http://fightteam.github.io/</url>
+    </organization>
+
+    <!--开发团队-->
+    <developers>
+        <developer>
+            <id>excalibur</id>
+            <name>excalibur</name>
+            <url>http://excalibur.github.io/</url>
+            <email>lzy7750015@qq.com</email>
+            <organization>ceit</organization>
+            <roles>
+                <role>Project lead</role>
+            </roles>
+            <timezone>+8</timezone>
+
+        </developer>
+    </developers>
+
+    <!--内网nexus 服务器-->
+    <!--<distributionManagement>-->
+    <!--<repository>-->
+    <!--<id>nexus-releases</id>-->
+    <!--<name>Nexus Release Repository</name>-->
+    <!--<url>http://127.0.0.1:8081/nexus/content/repositories/releases/</url>-->
+    <!--</repository>-->
+    <!--<snapshotRepository>-->
+    <!--<id>nexus-snapshots</id>-->
+    <!--<name>Nexus Snapshot Repository</name>-->
+    <!--<url>http://127.0.0.1:8081/nexus/content/repositories/snapshots/</url>-->
+    <!--</snapshotRepository>-->
+    <!--</distributionManagement>-->
+
+    <!--项目版本控制-->
+    <scm>
+        <url>http://avalon.cloudfoundry.com/</url>
+        <connection>scm:git:https://github.com/fightteam/Avalon.git</connection>
+        <developerConnection>scm:git:https://github.com/fightteam/Avalon.git</developerConnection>
+    </scm>
+
+    <!--持续集成-->
+    <!--<ciManagement>-->
+    <!--<system>Hudson</system>-->
+    <!--<url />-->
+    <!--</ciManagement>-->
+
+    <!--问题跟踪-->
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/fightteam/Avalon/issues</url>
+    </issueManagement>
+
+    <!--email地址-->
+    <mailingLists>
+        <mailingList>
+            <name>Fightteam 成员email地址</name>
+            <subscribe />
+            <unsubscribe />
+            <post />
+            <!--archive/-->
+            <!--otherArchives-->
+        </mailingList>
+    </mailingLists>
+
+    <!-- 项目授权 -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <!--项目模块 -->
+    <modules>
+        <module>parent</module>
+    </modules>
+
+
+</project>
