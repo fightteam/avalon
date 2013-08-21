@@ -9,7 +9,7 @@
 
     <!--项目名称、地址、描述与开始时间-->
     <name>Avalon</name>
-    <url>http://maven.apache.org</url>
+    <url>http://fightteam.github.io/avalon</url>
     <description>
         这是一个blog系统采用REST风格的架构，服务器端完全采用json风格的是数据模式;前端显示基于spa（单页）。
         后续会支持手机等终端。
