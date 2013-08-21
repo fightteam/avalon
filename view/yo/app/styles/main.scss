@@ -1,0 +1,91 @@
+$iconSpritePath: "../images/glyphicons-halflings.png";
+$iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
+
+
+
+//定义基本颜色
+$black:#000000;
+$grayDark:#222222;
+$darkBule:#263248;
+$lighterBule:#7e8aa2;
+$white:#ffffff;
+$orange:#ff9800;
+$gray:#e0e0e0;
+$darkRed:#c3325f;
+body{
+	background:$grayDark;
+	color:$gray;
+	
+	//@include gradient-directional(#555,#313131);   
+}
+
+#header{
+	color:$lighterBule;
+	width:100%;
+	.logo{
+		margin: 50px 0 50px 50px;
+		display: inline-block;
+	}
+	nav{
+		list-style: none;
+		width: 96%;
+		margin: 0 auto;
+		border: 1px solid #4d4d4d;
+		min-height: 40px;
+		padding: 8px;
+		
+		li{
+			display: inline-block;
+			width: (96%/6);
+		}
+	}
+
+}
+
+
+#wrapper{
+	.row-fluid > [class^='span']{
+		
+	}
+	.content{
+		min-height: 500px;
+	}
+	aside{
+		color: $darkBule;
+
+		ul{
+			list-style: none;
+			margin: 0;
+			li{
+				width: 60%;
+			}
+		}
+		a{
+			border-bottom: 1px solid #161616;
+			border-left: 3px solid #555555;
+			border-top: 1px solid #2D2D2D;
+			color: #888888;
+			display: block;
+			line-height: 1.8em;
+			padding: 5px 10px;
+			text-decoration: none;
+			&:hover {
+				background: none repeat scroll 0 0 #161616;
+			    border-left: 3px solid #2b99e6;
+			    color: #FFFFFF;
+			}
+		}
+	}
+}
+
+
+
+#footer{
+	background:#111111;
+	section{
+		width: 96%;
+		margin: 0 auto;
+		
+		
+	}
+}
