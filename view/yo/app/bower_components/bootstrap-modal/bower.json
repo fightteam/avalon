@@ -1,0 +1,8 @@
+{
+  "name": "bootstrap-modal",
+  "version": "2.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jschr/bootstrap-modal.git"
+  }
+}
