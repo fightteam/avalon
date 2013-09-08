@@ -50,19 +50,18 @@
         <jacksonMapper.version>1.9.2</jacksonMapper.version>
         <jacksonCore.version>1.9.2</jacksonCore.version>
         <sitemesh.version>2.4.2 </sitemesh.version>
-        <h2.version>1.3.168</h2.version>
+        <h2.version>1.3.173</h2.version>
         <ehcache.version>2.6.0</ehcache.version>
 
 
         <apacheTiles.version>3.0.1</apacheTiles.version>
         <sd.rest>2.0.0.BUILD-SNAPSHOT</sd.rest>
-        <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.2</slf4j.version>
-        <jackson.version>2.2.2</jackson.version>
         <logback.version>1.0.13</logback.version>
-        <h2.version>1.3.168</h2.version>
+        <jackson.version>2.2.2</jackson.version>
+
         <!-- plugin-->
-        <jetty.version>8.1.5.v20120716</jetty.version>
+        <jetty.version>9.0.3.v20130506</jetty.version>
         <jdk.version>1.7</jdk.version>
     </properties>
 
@@ -188,7 +187,11 @@
                 <artifactId>spring-security-aspects</artifactId>
                 <version>${spring.security.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-acl</artifactId>
+                <version>${spring.security.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-taglibs</artifactId>
@@ -211,6 +214,12 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-library</artifactId>
+                <version>1.3</version>
                 <scope>test</scope>
             </dependency>
             <!--spring test-->
@@ -275,45 +284,11 @@
             <!-- WEB basic end -->
 
             <!-- LOGGING begin -->
-            <!-- slf4j -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-
-            <!-- slf4j-log4j绑定 -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-
-            <!-- common-logging 实际调用slf4j -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>jcl-over-slf4j</artifactId>
-                <version>${slf4j.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-
-            <!-- java.util.logging 实际调用slf4j -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>jul-to-slf4j</artifactId>
-                <version>${slf4j.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-
-            <!-- log4j -->
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-
-            <!-- Logging -->
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
@@ -321,6 +296,8 @@
                 <scope>runtime</scope>
             </dependency>
             <!-- LOGGING end -->
+
+
 
             <!-- Hibernate strat -->
             <dependency>
@@ -489,7 +466,7 @@
             <dependency>
                 <groupId>org.springframework.hateoas</groupId>
                 <artifactId>spring-hateoas</artifactId>
-                <version>0.7.0.RELEASE</version>
+                <version>0.8.0.BUILD-SNAPSHOT</version>
             </dependency>
 
             <dependency>
@@ -503,6 +480,18 @@
                 <artifactId>h2</artifactId>
                 <version>${h2.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <!-- Joda -->
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>0.11.8</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -562,14 +551,9 @@
                 </plugin>
 
                 <plugin>
-                    <groupId>org.mortbay.jetty</groupId>
+                    <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
                     <version>${jetty.version}</version>
-                    <configuration>
-                        <scanIntervalSeconds>10</scanIntervalSeconds>
-                        <stopKey>stopIt</stopKey>
-                        <stopPort>9191</stopPort>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
