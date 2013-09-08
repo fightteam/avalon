@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+  <definition name="dashboard" extends="layout-admin">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/dashboard.jsp" />
+  </definition>
+
+  <definition name="users" extends="layout-admin">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/users.jsp" />
+  </definition>
+
+  <definition name="roles" extends="layout-admin">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/roles.jsp" />
+  </definition>
+
+  <definition name="authorities" extends="layout-admin">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/authorities.jsp" />
+  </definition>
+
+    <definition name="resources" extends="layout-admin">
+        <put-attribute name="body" value="/WEB-INF/views/jsp/resources.jsp" />
+    </definition>
+
+    <definition name="articles" extends="layout-admin">
+        <put-attribute name="body" value="/WEB-INF/views/jsp/authorities.jsp" />
+    </definition>
+    <definition name="dataAccessFailure" extends="layout-admin">
+        <put-attribute name="body" value="/WEB-INF/views/jsp/dataAccessFailure.jsp" />
+    </definition>
+
+    <definition name="resourceNotFound" extends="layout-admin">
+        <put-attribute name="body" value="/WEB-INF/views/jsp/resourceNotFound.jsp" />
+    </definition>
+
+    <definition name="uncaughtException" extends="layout-admin">
+        <put-attribute name="body" value="/WEB-INF/views/jsp/uncaughtException.jsp" />
+    </definition>
+
+    <definition name="index" extends="layout-default">
+        <put-attribute name="body" value="/WEB-INF/views/jsp/index.jsp" />
+    </definition>
+</tiles-definitions>
