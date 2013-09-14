@@ -8,10 +8,12 @@
 [grunt]:http://gruntjs.com/
 [sublime]:http://www.sublimetext.com/
 [compass]:http://compass-style.org/install/
-# Avalon
+# Avalon  [![Build Status](https://secure.travis-ci.org/scottyapp/hook.io-amqp-listener.png)](http://travis-ci.org/scottyapp/hook.io-amqp-listener.png)
 avalon——<i>梦中的理想乡，也是让自己不忘梦想。</i><br>
 Avalon基于springmvc、hibernate、spring-data、grunt、maven、yeoman、backbone、requirejs、coffee、less、sass等的一个完整博客项目，本人采用它来练习项目管理，与知识的整理。
 
+## 提示
+基于maven管理的分支目前处于停滞状态
 
 ## 安装使用
 
