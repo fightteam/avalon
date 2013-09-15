@@ -11,7 +11,6 @@
             classpath*:spring-configuration/applicationContext.xml
         </param-value>
     </context-param>
-
     <!-- UTF-8 encoding filter -->
     <filter>
         <filter-name>encodingFilter</filter-name>
