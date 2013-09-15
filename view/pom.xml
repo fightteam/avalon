@@ -12,11 +12,7 @@
 
 
    <dependencies>
-       <dependency>
-           <groupId>org.fightteam</groupId>
-           <artifactId>avalon-web</artifactId>
-       </dependency>
-
+      
        <dependency>
            <groupId>opensymphony</groupId>
            <artifactId>sitemesh</artifactId>
