@@ -509,7 +509,7 @@
                 <plugin>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>2.3</version>
-                    <configuration>
+                   <!--  <configuration>
                         <webResources>
                             <resource>
                                 <directory>yo/dist</directory>
@@ -519,20 +519,20 @@
                                 <filtering>true</filtering>
                             </resource>
                         </webResources>
-                    </configuration>
+                    </configuration> -->
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>2.5</version>
-                    <configuration>
+                    <!-- <configuration>
                         <filesets>
                             <fileset>
                                 <directory>yo/dist</directory>
                             </fileset>
                             <fileset>
                                 <directory>yo/.tmp</directory>
-                            </fileset>
+                            </fileset> -->
                             <!--不清除插件-->
                             <!--<fileset>-->
                                 <!--<directory>yo/app/components</directory>-->
@@ -540,8 +540,8 @@
                             <!--<fileset>-->
                                 <!--<directory>yo/node_modules</directory>-->
                             <!--</fileset>-->
-                        </filesets>
-                    </configuration>
+                       <!--  </filesets>
+                    </configuration> -->
                 </plugin>
 
                 <plugin>
