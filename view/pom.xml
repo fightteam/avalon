@@ -35,10 +35,10 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>com.github.trecloux</groupId>
-                <artifactId>yeoman-maven-plugin</artifactId>
-            </plugin>
+           <!--  <plugin>
+               <groupId>com.github.trecloux</groupId>
+               <artifactId>yeoman-maven-plugin</artifactId>
+           </plugin> -->
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
             </plugin>
