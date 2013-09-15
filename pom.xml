@@ -5,8 +5,6 @@
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
-
-
     <!--项目名称、地址、描述与开始时间-->
     <name>Avalon</name>
     <url>http://fightteam.github.io/avalon</url>
