@@ -1,0 +1,368 @@
+// avalon - Avalon Exporter
+apply plugin: "base"
+
+ext {
+  gradleScriptDir = "${rootProject.projectDir}/gradle"
+}
+
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.springsource.org/plugins-release" }
+    maven { url "https://raw.github.com/excalibur/gradle-plugins/mvn-repo" }
+  }
+  dependencies {
+    classpath "org.springframework.build.gradle:docbook-reference-plugin:0.2.8-SNAPSHOT"
+    classpath 'org.gradle.api.plugins:gradle-cargo-plugin:0.6.1'
+  }
+}
+
+configure(allprojects) {
+  apply plugin: "java"
+  apply plugin: "idea"
+  apply plugin: "eclipse"
+  apply from: "${gradleScriptDir}/ide.gradle"
+  
+
+  group = "org.fightteam"
+
+  configurations.all {
+    // Hack to let Gradle pickup latest SNAPSHOTS
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+
+    // Force all core Spring Framework libraries into the same version
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+      if (details.requested.group == 'org.springframework') {
+          details.useVersion "$springVersion"
+      }
+
+    }
+    exclude module: "commons-logging"
+    exclude module: "slf4j-log4j12"
+  }
+
+  project.sourceCompatibility = 1.7
+  project.targetCompatibility = 1.7
+
+  [compileJava, compileTestJava]*.options*.compilerArgs = ["-Xlint:none", "-g"]
+  [compileJava, javadoc, compileTestJava]*.options*.encoding = 'UTF-8'
+
+  sourceSets.test.resources.srcDirs = ["src/test/resources", "src/test/java"]
+
+  repositories {
+    mavenLocal()
+    mavenCentral()
+
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.springsource.org/libs-snapshot" }
+    maven { url "http://repo.springsource.org/libs-milestone" }
+    maven { url "http://repo.springsource.org/libs-release" }
+  }
+
+  dependencies {
+
+    // Logging
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
+    runtime "ch.qos.logback:logback-classic:$logbackVersion"
+
+    // Testing
+    testCompile "junit:junit:$junitVersion"
+    testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
+    testCompile "com.jayway.jsonpath:json-path:$jsonpathVersion"
+    testCompile "org.mockito:mockito-core:$mockitoVersion"
+    testCompile "org.springframework:spring-test:$springVersion"
+    testRuntime "org.springframework:spring-context-support:$springVersion"
+    testRuntime "ch.qos.logback:logback-classic:$logbackVersion"
+
+    // common
+    compile "org.apache.commons:commons-lang3:$commonLangVersion"
+  }
+}
+
+configure(subprojects) { subproject ->
+  apply from: "${gradleScriptDir}/maven.gradle"
+  
+  javadoc {
+    options.memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
+    options.author = true
+    options.header = subproject.name
+    //options.overview = "${projectDir}/src/api/overview.html"
+  }
+
+  task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = "sources"
+    from sourceSets.main.allJava
+  }
+  task javadocJar(type: Jar) {
+    classifier = "javadoc"
+    from javadoc
+  }
+  artifacts {
+    archives sourcesJar
+    archives javadocJar
+  }
+
+  dependencies {
+      // Tool
+      compile("org.projectlombok:lombok:$lombokVersion", provided)
+
+      //test
+      testCompile "com.h2database:h2:1.3.173"
+  }
+}
+
+project("avalon-core") {
+
+    apply plugin: "maven"
+    description = "Avalon core components."
+
+
+
+    dependencies {
+
+        // Spring Data Commons
+        compile "org.springframework.data:spring-data-commons:$sdCommonsVersion"
+        compile "org.springframework.hateoas:spring-hateoas:$hateoasVersion"
+        compile "org.springframework.plugin:spring-plugin-core:$springPluginVersion"
+
+        // Spring
+        compile "org.springframework:spring-aop:$springVersion"
+        compile "org.springframework:spring-core:$springVersion"
+        compile "org.springframework:spring-beans:$springVersion"
+        compile "org.springframework:spring-tx:$springVersion"
+        runtime "cglib:cglib-nodep:$cglibVersion"
+
+        // JSR 303 Validation
+        compile("javax.validation:validation-api:1.0.0.GA", optional)
+
+        // JODA
+        compile("joda-time:joda-time:$jodaVersion", optional)
+        compile("org.jadira.usertype:usertype.core:3.0.0.GA", optional)
+
+        // optional datasource pool
+        compile("commons-dbcp:commons-dbcp:$commonsDbcpVersion", optional)
+        compile("mysql:mysql-connector-java:$mysqlVerion")
+
+        // Spring Data
+        compile("org.springframework.data:spring-data-jpa:$sdJpaVersion", optional)
+        compile "org.springframework.data:spring-data-rest-core:$sdRestVersion"
+        // Evo Inflector
+        compile "org.atteo:evo-inflector:${evoVersion}"
+        //AOP
+        compile "org.aspectj:aspectjrt:1.7.0"
+        compile "org.aspectj:aspectjweaver:1.7.0"
+
+        // jpa
+        compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+
+        // Testing
+        testCompile "org.hsqldb:hsqldb:$hsqldbVersion"
+        compile "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
+
+        // JPA
+        compile("org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final", optional)
+
+        // Spring security
+        testRuntime("org.springframework:spring-orm:$springVersion", optional)
+
+    }
+}
+
+project("avalon-rest") {
+    apply plugin: 'war'
+    apply from: "${gradleScriptDir}/cargo.gradle" 
+    description = "Avalon Rest components."
+
+    dependencies {
+
+        // Repository Exporter support
+        compile project(":avalon-core")
+
+        // Spring
+        compile "org.springframework:spring-web:$springVersion"
+        compile "org.springframework:spring-webmvc:$springVersion"
+
+        compile("org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final", optional)
+        compile("org.springframework:spring-orm:$springVersion", optional)
+
+        // Spring Data and Rest
+        compile "org.springframework:spring-core:$springVersion"
+        compile "org.springframework:spring-tx:$springVersion"
+        compile "org.springframework.data:spring-data-jpa:$sdJpaVersion"
+
+        compile "org.springframework.data:spring-data-rest-webmvc:$sdRestVersion"
+
+        compile "org.springframework.hateoas:spring-hateoas:$shVersion"
+
+
+        // Spring Security
+        compile "org.springframework.security:spring-security-config:$springSecurityVersion"
+        compile "org.springframework.security:spring-security-web:$springSecurityVersion"
+
+
+        // APIs
+        providedCompile "javax.servlet:javax.servlet-api:3.0.1"
+
+        // Jackson
+        compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
+        compile "com.fasterxml.jackson.datatype:jackson-datatype-hibernate4:$jacksonVersion"
+
+        
+
+        // Testing
+        testCompile "org.eclipse.jetty:jetty-servlet:$jettyVersion"
+        testCompile "org.eclipse.jetty:jetty-webapp:$jettyVersion"
+        testCompile "org.mozilla:rhino:1.7R4"
+
+        // JODA
+        compile "joda-time:joda-time:$jodaVersion"
+
+        // Hibernate
+        compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+        compile "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
+        // HSQL
+        compile "org.hsqldb:hsqldb:$hsqldbVersion"
+        
+        // jackson
+
+        compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+        compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+        compile "com.fasterxml.jackson.module:jackson-module-jaxb-annotations:$jacksonVersion"
+        compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
+       
+    }
+
+
+}
+
+
+project("avalon-webapp:avalon-webapp-support") {
+    apply plugin: 'war'
+    apply from: "${gradleScriptDir}/cargo.gradle"
+    description = "Avalon Webapp Support components."
+
+    dependencies {
+
+        // Repository Exporter support
+        compile project(":avalon-rest")
+        // Tool
+        compile("org.projectlombok:lombok:$lombokVersion", provided)
+    }
+
+}
+
+
+project("avalon-webapp:avalon-webapp-use") {
+    apply plugin: 'war'
+    apply from: "${gradleScriptDir}/cargo.gradle"
+    description = "Avalon Webapp Use components."
+
+    dependencies {
+
+        // Repository Exporter support
+        compile project(":avalon-rest")
+        // Tool
+        compile("org.projectlombok:lombok:$lombokVersion", provided)
+    }
+
+  
+}
+configure(rootProject){
+    apply plugin: "docbook-reference"
+    description = "Avalon Exporter"
+
+    reference {
+        sourceDir = file("src/reference/docbook")
+        pdfFilename = "avalon-reference.pdf"
+    }
+ 
+    // don"t publish the default jar for the root project
+    configurations.archives.artifacts.clear()
+
+    task api(type: Javadoc) {
+        group = "Documentation"
+        description = "Generates aggregated Javadoc API documentation."
+        title = "${rootProject.description} ${version} API"
+
+        options.memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
+        options.author = true
+        options.header = rootProject.description
+        options.overview = "src/api/overview.html"
+        options.splitIndex = true
+        options.linksOffline "http://docs.oracle.com/javase/6/docs/api/", "http://docs.oracle.com/javase/6/docs/api/"
+        options.linksOffline "http://static.springsource.org/spring/docs/3.1.x/javadoc-api/", "http://static.springsource.org/spring/docs/3.1.x/javadoc-api/"
+        options.linksOffline "http://static.springsource.org/spring-data/data-commons/docs/current/api/", "http://static.springsource.org/spring-data/data-commons/docs/current/api/"
+        options.encoding = "UTF-8"
+        source subprojects.collect { project ->
+            project.sourceSets.main.allJava
+        }
+
+        destinationDir = new File(buildDir, "api")
+        classpath = files(subprojects.collect { project ->
+            project.sourceSets.main.compileClasspath
+        })
+        maxMemory = "1024m"
+    }
+
+    task docsZip(type: Zip) {
+        group = "Distribution"
+        baseName = "avalon"
+        classifier = "docs"
+        description = "Builds -${classifier} archive containing api and reference " +
+                "for deployment to http://static.springframework.org/spring-data-rest/docs."
+
+        from("src/dist") {
+            include "changelog.txt"
+        }
+        from(api) {
+            into "api"
+        }
+        from(reference) {
+            into "reference"
+        }
+    }
+    
+
+    artifacts {
+        archives docsZip
+    }
+
+    dependencies {
+        // For integration testing
+        //testCompile project(":avalon-core")
+        //testCompile project(":avalon-rest")
+    }
+
+    idea {
+        module {
+            downloadJavadoc = false
+            downloadSources = true
+        }
+        project {
+            ipr {
+                withXml { xml ->
+                    xml.node.component.find { it.@name == "VcsDirectoryMappings" }.mapping.@vcs = "Git"
+                    xml.node.component.find { it.@name == "ProjectRootManager" }.output.@url = "file://\$PROJECT_DIR\$/build"
+                }
+            }
+        }
+    }
+}
+ 
+task wrapper(type: Wrapper) {
+    description = "Generates gradlew[.bat] scripts"
+    gradleVersion = "1.6"
+
+    doLast() {
+        def gradleOpts = "-XX:MaxPermSize=1024m -Xmx1024m"
+        def gradleBatOpts = "$gradleOpts -XX:MaxHeapSize=256m"
+        File wrapperFile = file("gradlew")
+        wrapperFile.text = wrapperFile.text.replace("DEFAULT_JVM_OPTS=",
+                "GRADLE_OPTS=\"$gradleOpts \$GRADLE_OPTS\"\nDEFAULT_JVM_OPTS=")
+        File wrapperBatFile = file("gradlew.bat")
+        wrapperBatFile.text = wrapperBatFile.text.replace("set DEFAULT_JVM_OPTS=",
+                "set GRADLE_OPTS=$gradleBatOpts %GRADLE_OPTS%\nset DEFAULT_JVM_OPTS=")
+    }
+}
+

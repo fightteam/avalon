@@ -1,0 +1,31 @@
+// cargo
+apply plugin: 'cargo'
+
+dependencies {
+   cargo "org.codehaus.cargo:cargo-core-uberjar:$cargoVersion",
+          "org.codehaus.cargo:cargo-ant:$cargoVersion",
+          "commons-logging:commons-logging-api:1.1",
+          "commons-logging:commons-logging:1.1.3"
+}
+
+cargo {
+    containerId = 'tomcat7x'
+    port = 8080
+    deployable {
+        context = "$project.name"
+    }
+
+    local {
+        homeDir = file("$rootDir/gradle/extract")
+        output = file("$rootDir/build/output.log")
+        tomcat {
+            ajpPort = 9091
+        }
+        installer {
+            installUrl = 'http://apache.osuosl.org/tomcat/tomcat-7/v7.0.42/bin/apache-tomcat-7.0.42.zip'
+            downloadDir = file("$rootDir/build/download")
+            extractDir = file("$rootDir/gradle/extract")
+        }
+
+    }
+}

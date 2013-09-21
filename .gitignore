@@ -12,8 +12,17 @@ target/
 #################
 *.iml
 .idea/
+*.ipr
+*.iws
 
-assets
+#################
+## gradle
+#################
+.gradle/
+build/
+gradle-app.setting
+gradle/extract/
+
 #################
 ## github
 #################
