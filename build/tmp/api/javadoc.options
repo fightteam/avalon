@@ -1,0 +1,15 @@
+-author 
+-classpath 'E:\\dev\\apache-maven-3.0.5\\repository\\org\\slf4j\\slf4j-api\\1.7.5\\slf4j-api-1.7.5.jar'
+-d 'E:\\IDEA13\\avalon\\build\\api'
+-doctitle 'Avalon Exporter 0.0.1.BUILD-SNAPSHOT API'
+-encoding 'UTF-8'
+-header 'Avalon Exporter'
+-linkoffline 'http://docs.oracle.com/javase/6/docs/api/' 'http://docs.oracle.com/javase/6/docs/api/'
+-linkoffline 'http://static.springsource.org/spring/docs/3.1.x/javadoc-api/' 'http://static.springsource.org/spring/docs/3.1.x/javadoc-api/'
+-linkoffline 'http://static.springsource.org/spring-data/data-commons/docs/current/api/' 'http://static.springsource.org/spring-data/data-commons/docs/current/api/'
+-protected 
+-quiet 
+-overview 'src/api/overview.html'
+-splitindex 
+-windowtitle 'Avalon Exporter 0.0.1.BUILD-SNAPSHOT API'
+'E:\\IDEA13\\avalon\\avalon-service\\src\\main\\java\\org\\fightteam\\avalon\\A.java'

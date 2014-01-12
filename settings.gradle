@@ -1,12 +1,5 @@
 rootProject.name = "avalon"
 
-include "avalon-core",
-        "avalon-front",
-        "avalon-rest",
-        "avalon-webapp",
-        "avalon-webapp:avalon-webapp-support",
-        "avalon-webapp:avalon-webapp-use",
-        "avalon-ext"
-
-
-
+include "avalon-service",
+        "avalon-management",
+        "avalon-portal"

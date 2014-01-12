@@ -29,12 +29,12 @@ def customizePom(pom, gradleProject) {
 
     // add all items necessary for maven central publication
     generatedPom.project {
-      name = "AVALON"
-      description = "The REST-full java web and html5 project."
+      name = "Avalon System"
+      description = "a sample system basic on spring framework."
       url = 'http://github.com/fightteam/avalon'
       organization {
-        name = 'fightteam'
-        url = 'http://github.com/fightteam'
+        name = 'FightTeam'
+        url = 'http://fightteam.github.io'
       }
       licenses {
         license {
@@ -48,21 +48,11 @@ def customizePom(pom, gradleProject) {
         connection = 'scm:git:git://github.com/fightteam/avalon'
         developerConnection = 'scm:git:git://github.com/fightteam/avalon'
       }
-
-      issueManagement {
-         system = 'Github'
-         url = 'https://github.com/fightteam/Avalon/issues'
-      }
-
       developers {
         developer {
           id = 'excalibur'
-          name = 'Excalibur Faith'
-          email = 'lzy7750015@qq.com'
-          url = 'http://excalibur.github.io/'
-          roles {
-            role = 'Project Leader'
-          }
+          name = 'excalibur'
+          email = 'lzy7750015@gmail.com'
         }
       }
     }

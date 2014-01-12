@@ -1,28 +1,5 @@
-#################
-## eclipse
-#################
-.classpath
-.project
-.settings/
-target/
-
-
-#################
-## idea
-#################
-*.iml
+.gradle/
 .idea/
+*.iml
 *.ipr
 *.iws
-
-#################
-## gradle
-#################
-.gradle/
-build/
-gradle-app.setting
-gradle/extract/
-
-#################
-## github
-#################
