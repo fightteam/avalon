@@ -5,10 +5,9 @@ buildscript {
  	repositories {
         mavenLocal()
         mavenCentral()
-
 	}
 	dependencies {
-
+//        classpath  'com.sahlbach.gradle:gradle-jetty-eclipse-plugin:1.9.0'
     }
 }
 // 一些简单的配置参数
@@ -16,6 +15,8 @@ buildscript {
 // jar包版本依赖在gradle.properties中管理
 ext {
     gradleScriptDir = "${rootProject.projectDir}/gradle"
+    jettyStop = '9999'
+    jettyPort = '8003'
 }
 // 所有项目共同的配置
 // -----------------------
@@ -105,15 +106,18 @@ configure(subprojects) { subproject ->
 
 
 project("avalon-service") {
-	apply plugin: "maven"
-
+	apply plugin: "war"
 	description = "Avalon core Service."
 
 	configurations {
-    	compile.extendsFrom providedCompile
+        jetty9
+        compile.extendsFrom providedCompile
 	}
 
 	dependencies {
+
+        // Logging
+        runtime "ch.qos.logback:logback-classic:$logbackVersion"
 		// Spring
 	    compile "org.springframework:spring-aop:$springVersion"
 	    compile "org.springframework:spring-core:$springVersion"
@@ -122,7 +126,7 @@ project("avalon-service") {
 	    runtime "cglib:cglib-nodep:$cglibVersion"
 
 	    // JODA
-		compile("joda-time:joda-time:$jodaVersion", optional)
+		compile("joda-time:joda-time:$jodaVersion")
 
 		// Testing
 	    testCompile "org.hsqldb:hsqldb:$hsqldbVersion"
@@ -133,7 +137,44 @@ project("avalon-service") {
 
     	testRuntime("org.springframework:spring-orm:$springVersion", optional)
 
+
+        jetty9 'org.eclipse.jetty:jetty-ant:9.0.2.v20130417'
 	}
+
+    ant {
+        taskdef(name: 'jettyRun', classname: 'org.eclipse.jetty.ant.JettyRunTask', classpath: configurations.jetty9.asPath)
+        taskdef(name: 'jettyStop', classname: 'org.eclipse.jetty.ant.JettyStopTask', classpath: configurations.jetty9.asPath)
+    }
+    project.ext {
+        contextPath = '/'
+        port = 8080
+        stopPort = stopKey = 9999
+    }
+    task jettyRun << {
+        ant.jettyRun(jettyPort: project.ext.port, scanIntervalSeconds: 3) {
+            webApp(war: webAppDir,
+                    contextPath: project.ext.contextPath,
+                    extraClasspath: configurations.compile.asPath)
+        }
+    }
+
+    task jettyRunWar(dependsOn: war){
+        logging.level = LogLevel.INFO
+    } << {
+        ant.jettyRun(jettyPort: project.ext.port) {
+            webApp(war: war.archivePath, contextPath: project.ext.contextPath)
+        }
+    }
+
+    task jettyStart(dependsOn: war) << {
+        ant.jettyRun(daemon: true, jettyPort: project.ext.port, stopPort: project.ext.stopPort, stopKey: project.ext.stopKey) {
+            webApp(war: war.archivePath, contextPath: project.ext.contextPath)
+        }
+    }
+
+    task jettyStop << {
+        ant.jettyStop(stopWait: 1, stopPort: project.ext.stopPort, stopKey: project.ext.stopKey)
+    }
 }
 
 project("avalon-management") {
@@ -142,7 +183,8 @@ project("avalon-management") {
   	description = "Avalon manage system site module."
 
   	dependencies {
-  		compile project(":avalon-service")
+
+    //  		compile project(":avalon-service")
 
   		// Spring mvc
 	    compile "org.springframework:spring-web:$springVersion"
@@ -159,7 +201,7 @@ project("avalon-portal"){
   	description = "Avalon portal site module."
 
   	dependencies {
-  		compile project(":avalon-service")
+    //  		compile project(":avalon-service")
 
   		// Spring mvc
 	    compile "org.springframework:spring-web:$springVersion"
