@@ -163,7 +163,7 @@ project("avalon-service") {
         compile "org.springframework.security:spring-security-config:$springSecurityVersion"
 
         // spring mobile
-        compile "org.springframework.mobile:spring-mobile-device:$springMobileVersion1"
+        compile "org.springframework.mobile:spring-mobile-device:$springMobileVersion"
 
 	    // JODA
 		compile("joda-time:joda-time:$jodaVersion")
