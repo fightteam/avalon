@@ -1,5 +1,6 @@
 rootProject.name = "avalon"
 
-include "avalon-service",
+include "avalon-base",
+        "avalon-service",
         "avalon-management",
         "avalon-portal"

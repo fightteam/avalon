@@ -57,6 +57,9 @@ configure(allprojects) {
         mavenLocal()
         mavenCentral()
         maven { url "http://repo.springsource.org/libs-snapshot" }
+        maven {
+            url 'http://repo.spring.io/milestone'
+        }
     }
 
     dependencies {
@@ -105,6 +108,22 @@ configure(subprojects) { subproject ->
 }
 
 
+project("avalon-base") {
+    apply plugin: "maven"
+
+    description = "Avalon manage system base module."
+
+    dependencies {
+
+        // Spring mvc
+        compile "org.springframework:spring-web:$springVersion"
+        compile "org.springframework:spring-webmvc:$springVersion"
+
+        // Logging
+        runtime "ch.qos.logback:logback-classic:$logbackVersion"
+    }
+}
+
 project("avalon-service") {
 	apply plugin: "war"
 	description = "Avalon core Service."
@@ -116,14 +135,35 @@ project("avalon-service") {
 
 	dependencies {
 
+        compile project(":avalon-base")
         // Logging
         runtime "ch.qos.logback:logback-classic:$logbackVersion"
+
 		// Spring
 	    compile "org.springframework:spring-aop:$springVersion"
 	    compile "org.springframework:spring-core:$springVersion"
 	    compile "org.springframework:spring-beans:$springVersion"
 	    compile "org.springframework:spring-tx:$springVersion"
 	    runtime "cglib:cglib-nodep:$cglibVersion"
+
+        // spring data rest
+        compile "org.springframework.data:spring-data-rest-webmvc:$springDataRestVersion"
+
+        // spring hateoas
+        compile "org.springframework.hateoas:spring-hateoas:$springHateoasVersion"
+
+        // spring data redis
+        compile "org.springframework.data:spring-data-redis:$springDataRedisVersion"
+
+        // spring data jpa
+        compile "org.springframework.data:spring-data-jpa:$springDataJpaVersion"
+
+        // spring security
+        compile "org.springframework.security:spring-security-web:$springSecurityVersion"
+        compile "org.springframework.security:spring-security-config:$springSecurityVersion"
+
+        // spring mobile
+        compile "org.springframework.mobile:spring-mobile-device:$springMobileVersion1"
 
 	    // JODA
 		compile("joda-time:joda-time:$jodaVersion")
