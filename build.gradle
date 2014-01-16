@@ -15,8 +15,6 @@ buildscript {
 // jar包版本依赖在gradle.properties中管理
 ext {
     gradleScriptDir = "${rootProject.projectDir}/gradle"
-    jettyStop = '9999'
-    jettyPort = '8003'
 }
 // 所有项目共同的配置
 // -----------------------
@@ -60,6 +58,10 @@ configure(allprojects) {
         maven {
             url 'http://repo.spring.io/milestone'
         }
+        maven {
+            url 'https://raw.github.com/fightteam/Join/mvn-repo'
+        }
+
     }
 
     dependencies {
@@ -108,22 +110,6 @@ configure(subprojects) { subproject ->
 }
 
 
-project("avalon-base") {
-    apply plugin: "maven"
-
-    description = "Avalon manage system base module."
-
-    dependencies {
-
-        // Spring mvc
-        compile "org.springframework:spring-web:$springVersion"
-        compile "org.springframework:spring-webmvc:$springVersion"
-
-        // Logging
-        runtime "ch.qos.logback:logback-classic:$logbackVersion"
-    }
-}
-
 project("avalon-service") {
 	apply plugin: "war"
 	description = "Avalon core Service."
@@ -135,9 +121,7 @@ project("avalon-service") {
 
 	dependencies {
 
-        compile project(":avalon-base")
-        // Logging
-        runtime "ch.qos.logback:logback-classic:$logbackVersion"
+        compile "org.fightteam.join:join-log:$joinVerison"
 
 		// Spring
 	    compile "org.springframework:spring-aop:$springVersion"
