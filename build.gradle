@@ -7,7 +7,6 @@ buildscript {
         mavenCentral()
 	}
 	dependencies {
-//        classpath  'com.sahlbach.gradle:gradle-jetty-eclipse-plugin:1.9.0'
     }
 }
 // 一些简单的配置参数
@@ -31,15 +30,15 @@ configure(allprojects) {
         // 不缓存模块的改动
         resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 
-        // 使所有的spring framework 库依赖版本统一
-        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-            if (details.requested.group == 'org.springframework') {
-                details.useVersion "$springVersion"
-            }
-        }
+//        // 使所有的spring framework 库依赖版本统一
+//        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+//            if (details.requested.group == 'org.springframework') {
+//                details.useVersion "$springVersion"
+//            }
+//        }
         // 排除spring库中使用的common log api
-        exclude group: "commons-logging"
-        exclude module: "slf4j-log4j12"
+//        exclude group: "commons-logging"
+//        exclude module: "slf4j-log4j12"
     }
 
     // 项目构建JDK版本
@@ -65,18 +64,7 @@ configure(allprojects) {
     }
 
     dependencies {
-        // Logging
-        compile "org.slf4j:slf4j-api:$slf4jVersion"
-        runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
 
-        // Testing
-        testCompile "junit:junit:$junitVersion"
-        testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
-        testCompile "com.jayway.jsonpath:json-path:$jsonpathVersion"
-        testCompile "org.mockito:mockito-core:$mockitoVersion"
-        testCompile "org.springframework:spring-test:$springVersion"
-        testRuntime "org.springframework:spring-context-support:$springVersion"
-        testRuntime "ch.qos.logback:logback-classic:$logbackVersion"
     }
 }
 
@@ -112,10 +100,10 @@ configure(subprojects) { subproject ->
 
 project("avalon-service") {
 	apply plugin: "war"
+    apply from: "${gradleScriptDir}/jetty9.gradle"
 	description = "Avalon core Service."
 
 	configurations {
-        jetty9
         compile.extendsFrom providedCompile
 	}
 
@@ -123,99 +111,30 @@ project("avalon-service") {
 
         compile "org.fightteam.join:join-log:$joinVerison"
 
-		// Spring
-	    compile "org.springframework:spring-aop:$springVersion"
-	    compile "org.springframework:spring-core:$springVersion"
-	    compile "org.springframework:spring-beans:$springVersion"
-	    compile "org.springframework:spring-tx:$springVersion"
-	    runtime "cglib:cglib-nodep:$cglibVersion"
+        compile "org.fightteam.join:join-core:$joinVerison"
 
-        // spring data rest
-        compile "org.springframework.data:spring-data-rest-webmvc:$springDataRestVersion"
+        compile "org.fightteam.join:join-auth:$joinVerison"
 
-        // spring hateoas
-        compile "org.springframework.hateoas:spring-hateoas:$springHateoasVersion"
+        compile "org.fightteam.join:join-dao:$joinVerison"
 
-        // spring data redis
-        compile "org.springframework.data:spring-data-redis:$springDataRedisVersion"
+        compile "org.fightteam.join:join-web:$joinVerison"
 
-        // spring data jpa
-        compile "org.springframework.data:spring-data-jpa:$springDataJpaVersion"
+        testCompile "org.fightteam.join:join-test:$joinVerison"
 
-        // spring security
-        compile "org.springframework.security:spring-security-web:$springSecurityVersion"
-        compile "org.springframework.security:spring-security-config:$springSecurityVersion"
-
-        // spring mobile
-        compile "org.springframework.mobile:spring-mobile-device:$springMobileVersion"
-
-	    // JODA
-		compile("joda-time:joda-time:$jodaVersion")
-
-		// Testing
-	    testCompile "org.hsqldb:hsqldb:$hsqldbVersion"
-	    testCompile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
-	    testRuntime "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
-	    // JPA
-    	testRuntime("org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final", optional)
-
-    	testRuntime("org.springframework:spring-orm:$springVersion", optional)
-
-
-        jetty9 'org.eclipse.jetty:jetty-ant:9.0.2.v20130417'
 	}
 
-    ant {
-        taskdef(name: 'jettyRun', classname: 'org.eclipse.jetty.ant.JettyRunTask', classpath: configurations.jetty9.asPath)
-        taskdef(name: 'jettyStop', classname: 'org.eclipse.jetty.ant.JettyStopTask', classpath: configurations.jetty9.asPath)
-    }
-    project.ext {
-        contextPath = '/'
-        port = 8080
-        stopPort = stopKey = 9999
-    }
-    task jettyRun << {
-        ant.jettyRun(jettyPort: project.ext.port, scanIntervalSeconds: 3) {
-            webApp(war: webAppDir,
-                    contextPath: project.ext.contextPath,
-                    extraClasspath: configurations.compile.asPath)
-        }
-    }
 
-    task jettyRunWar(dependsOn: war){
-        logging.level = LogLevel.INFO
-    } << {
-        ant.jettyRun(jettyPort: project.ext.port) {
-            webApp(war: war.archivePath, contextPath: project.ext.contextPath)
-        }
-    }
-
-    task jettyStart(dependsOn: war) << {
-        ant.jettyRun(daemon: true, jettyPort: project.ext.port, stopPort: project.ext.stopPort, stopKey: project.ext.stopKey) {
-            webApp(war: war.archivePath, contextPath: project.ext.contextPath)
-        }
-    }
-
-    task jettyStop << {
-        ant.jettyStop(stopWait: 1, stopPort: project.ext.stopPort, stopKey: project.ext.stopKey)
-    }
 }
 
 project("avalon-management") {
 	apply plugin: "war"
+    apply from: "${gradleScriptDir}/jetty9.gradle"
 
   	description = "Avalon manage system site module."
 
   	dependencies {
 
-    //  		compile project(":avalon-service")
 
-  		// Spring mvc
-	    compile "org.springframework:spring-web:$springVersion"
-	    compile "org.springframework:spring-webmvc:$springVersion"
-
-	    // Logging
-    	runtime "ch.qos.logback:logback-classic:$logbackVersion"
   	}
 }
 
@@ -225,21 +144,7 @@ project("avalon-portal"){
   	description = "Avalon portal site module."
 
   	dependencies {
-    //  		compile project(":avalon-service")
 
-  		// Spring mvc
-	    compile "org.springframework:spring-web:$springVersion"
-	    compile "org.springframework:spring-webmvc:$springVersion"
-
-	    compile("org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final", optional)
-    	compile("org.springframework:spring-orm:$springVersion", optional)
-
-    	// APIs
-    	compile("javax.servlet:javax.servlet-api:3.0.1", provided)
-
-    	// Jackson
-	    compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
-	    compile "com.fasterxml.jackson.datatype:jackson-datatype-hibernate4:$jacksonVersion"
   	}
 }
 
@@ -248,7 +153,7 @@ project("avalon-portal"){
 // 主要是文档等的生成。
 configure(rootProject) {
 
-
+    //apply from: "${gradleScriptDir}/jetty9.gradle"
   	description = "Avalon Exporter"
 
 
@@ -304,9 +209,7 @@ configure(rootProject) {
 	}
 
 	dependencies {
-		// For integration testing
-		// testCompile project(":spring-data-rest-core")
-		// testCompile project(":spring-data-rest-webmvc")
+
 	}
 
 	idea {
