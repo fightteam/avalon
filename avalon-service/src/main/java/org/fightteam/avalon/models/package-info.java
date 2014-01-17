@@ -19,4 +19,4 @@
  *
  * 提供与数据库交换的对象模型
  */
-package org.fightteam.avalon.core;
+package org.fightteam.avalon.models;
