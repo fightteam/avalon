@@ -7,4 +7,7 @@ branches:
   - master
 before_install:
   - chmod a+x gradlew
-script: ./gradlew clean
+script: ./gradlew build
+notifications:
+  email:
+    - lzy7750015@qq.com
