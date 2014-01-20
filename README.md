@@ -1,4 +1,4 @@
-# Avalon
+# Avalon [![Build Status](https://travis-ci.org/fightteam/avalon.png)](https://travis-ci.org/fightteam/avalon)
 
 一个简单的阅读系统，支持JSON风格的api调用。
 
