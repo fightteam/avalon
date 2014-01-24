@@ -1,5 +1,14 @@
 rootProject.name = "avalon"
 
-include "avalon-service",
-        "avalon-management",
-        "avalon-portal"
+def String[] projects = [
+        "service",
+        "management",
+        "portal"
+]
+include projects
+
+projects.each {name ->
+    def p = findProject(":${name}")
+    p.name = "avalon-${name}"
+    p.buildFileName = "${name}.gradle"
+}

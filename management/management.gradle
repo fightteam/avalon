@@ -1,0 +1,9 @@
+apply plugin: "war"
+    apply from: "${gradleScriptDir}/tomcat.gradle"
+
+    description = "Avalon manage system site module."
+
+    dependencies {
+
+
+    }

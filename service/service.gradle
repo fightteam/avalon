@@ -1,0 +1,33 @@
+apply plugin: "war"
+apply from: "${gradleScriptDir}/tomcat.gradle"
+
+description = "Avalon core Service."
+
+    configurations {
+        compile.extendsFrom providedCompile
+    }
+
+    dependencies {
+
+
+        compile "org.fightteam.join:join-log:$joinVerison",
+                "org.fightteam.join:join-core:$joinVerison",
+                "org.fightteam.join:join-auth:$joinVerison",
+                "org.fightteam.join:join-dao:$joinVerison",
+                "org.fightteam.join:join-web:$joinVerison",
+                "javax.servlet:jstl:1.2",
+                "org.springframework.data:spring-data-rest-webmvc:$springDataRestVersion",
+                "org.springframework.data:spring-data-redis:$springDataRedisVersion",
+                "org.springframework.data:spring-data-jpa:$springDataJpaVersion",
+                "org.springframework.hateoas:spring-hateoas:$springHateoasVersion",
+                "org.hibernate:hibernate-entitymanager:$hibernateVersion",
+                "joda-time:joda-time:$jodaVersion",
+                "org.apache.commons:commons-lang3:3.2.1"
+
+        testCompile "org.fightteam.join:join-test:$joinVerison"
+
+        providedCompile "org.projectlombok:lombok:1.12.4"
+
+        providedCompile "javax.servlet:javax.servlet-api:3.0.1",
+                'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
+    }

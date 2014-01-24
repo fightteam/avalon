@@ -23,8 +23,6 @@ ext {
 // 项目编译参数设置、依赖等等
 configure(allprojects) {
     apply plugin: "java"
-    apply plugin: "idea"
-    apply plugin: "eclipse"
     apply from: "${gradleScriptDir}/ide.gradle"
 
     group "org.fightteam.avlon"
@@ -33,15 +31,15 @@ configure(allprojects) {
         // 不缓存模块的改动
         resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 
-//        // 使所有的spring framework 库依赖版本统一
-//        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-//            if (details.requested.group == 'org.springframework') {
-//                details.useVersion "$springVersion"
-//            }
-//        }
-        // 排除spring库中使用的common log api
-//        exclude group: "commons-logging"
-//        exclude module: "slf4j-log4j12"
+        // 使所有的spring framework 库依赖版本统一
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.springframework') {
+                details.useVersion "$springVersion"
+            }
+        }
+        //排除spring库中使用的common log api
+        exclude group: "commons-logging"
+        exclude module: "slf4j-log4j12"
     }
 
     // 项目构建JDK版本
@@ -56,7 +54,7 @@ configure(allprojects) {
     repositories {
         mavenLocal()
         mavenCentral()
-        maven { url "http://repo.springsource.org/libs-snapshot" }
+        maven { url "http://repo.spring.io/libs-snapshot" }
         maven {
             url 'http://repo.spring.io/milestone'
         }
@@ -75,7 +73,6 @@ configure(allprojects) {
 // ----------------------
 // 主要是javadoc的生成
 configure(subprojects) { subproject ->
-    apply from: "${gradleScriptDir}/maven.gradle"
 
     javadoc {
         options.memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
@@ -101,66 +98,10 @@ configure(subprojects) { subproject ->
 }
 
 
-project("avalon-service") {
-	apply plugin: "war"
-    apply from: "${gradleScriptDir}/tomcat.gradle"
-	description = "Avalon core Service."
-
-	configurations {
-        compile.extendsFrom providedCompile
-	}
-
-	dependencies {
-
-
-        compile "org.fightteam.join:join-log:$joinVerison"
-
-        compile "org.fightteam.join:join-core:$joinVerison"
-
-        compile "org.fightteam.join:join-auth:$joinVerison"
-
-        compile "org.fightteam.join:join-dao:$joinVerison"
-
-        compile "org.fightteam.join:join-web:$joinVerison"
-
-        testCompile "org.fightteam.join:join-test:$joinVerison"
-
-        providedCompile "org.projectlombok:lombok:1.12.4"
-
-	}
-
-
-
-}
-
-project("avalon-management") {
-	apply plugin: "war"
-    apply from: "${gradleScriptDir}/tomcat.gradle"
-
-  	description = "Avalon manage system site module."
-
-  	dependencies {
-
-
-  	}
-}
-
-project("avalon-portal"){
-	apply plugin: "war"
-
-  	description = "Avalon portal site module."
-
-  	dependencies {
-
-  	}
-}
-
 // 根项目配置
 // ---------------------
 // 主要是文档等的生成。
 configure(rootProject) {
-
-    //apply from: "${gradleScriptDir}/jetty9.gradle"
   	description = "Avalon Exporter"
 
 
@@ -179,7 +120,7 @@ configure(rootProject) {
 	    options.overview = "src/api/overview.html"
 	    options.splitIndex = true
 	    options.encoding = "UTF-8"
-	    options.linksOffline "http://docs.oracle.com/javase/6/docs/api/", "http://docs.oracle.com/javase/6/docs/api/"
+	    options.linksOffline "http://docs.oracle.com/javase/7/docs/api/", "http://docs.oracle.com/javase/7/docs/api/"
 	    options.linksOffline "http://static.springsource.org/spring/docs/3.1.x/javadoc-api/", "http://static.springsource.org/spring/docs/3.1.x/javadoc-api/"
 	    options.linksOffline "http://static.springsource.org/spring-data/data-commons/docs/current/api/", "http://static.springsource.org/spring-data/data-commons/docs/current/api/"
 
@@ -219,20 +160,7 @@ configure(rootProject) {
 
 	}
 
-	idea {
-	    module {
-	      downloadJavadoc = false
-	      downloadSources = true
-	    }
-	    project {
-			ipr {
-		        withXml { xml ->
-		          xml.node.component.find { it.@name == "VcsDirectoryMappings" }.mapping.@vcs = "Git"
-		          xml.node.component.find { it.@name == "ProjectRootManager" }.output.@url = "file://\$PROJECT_DIR\$/build"
-		        }
-			}
-    	}
-	}
+	
 }
 
 task wrapper(type:Wrapper){
