@@ -7,7 +7,7 @@ package org.fightteam.avalon.data.models;
  * @since 0.0.1
  */
 public enum ResourceType {
-    
+
     URL, METHOD, ACL, MODULE;
     public String toString() {
         if (this == URL) return "URL限制";
