@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{DataConfig.class};
+        return new Class<?>[]{AppConfig.class, DataConfig.class};
     }
 
     @Override

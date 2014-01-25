@@ -23,12 +23,12 @@ public abstract class AbstractEntity<T extends Serializable> {
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
-    private DateTime createDate;
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime createDate = new DateTime();
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
-    private DateTime updateDate;
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime updateDate = new DateTime();
 
     public Long getId() {
         return id;
