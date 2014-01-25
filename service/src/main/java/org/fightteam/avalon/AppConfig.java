@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
  * @author faith
  * @since 0.0.1
  */
-@Configuration
+
 public class AppConfig extends AbstractAppConfig {
 }

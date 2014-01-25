@@ -14,12 +14,12 @@ import javax.servlet.ServletException;
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{AppConfig.class,DataConfig.class,SecurityConfig.class};
+        return new Class<?>[]{DataConfig.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{MVCConfig.class};
+        return new Class<?>[]{RESETConfig.class};
     }
 
     @Override
@@ -27,11 +27,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new String[]{"/"};
     }
 
-    @Override
-    public void onStartup(javax.servlet.ServletContext servletContext) throws ServletException {
-        super.onStartup(servletContext);
 
-    }
 
 
 }
