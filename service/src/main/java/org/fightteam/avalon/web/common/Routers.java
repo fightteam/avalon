@@ -9,4 +9,5 @@ package org.fightteam.avalon.web.common;
 public final class Routers {
 
     public static final String login = "/login";
+    public static final String register = "/register";
 }

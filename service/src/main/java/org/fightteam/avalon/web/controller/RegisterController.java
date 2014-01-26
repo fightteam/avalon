@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.data.rest.webmvc.RepositoryLinksResource;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceProcessor;
-import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,16 +22,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class LoginController implements ResourceProcessor<RepositoryLinksResource> {
+public class RegisterController implements ResourceProcessor<RepositoryLinksResource> {
 
 
-    @RequestMapping(value = Routers.login, method = RequestMethod.POST)
-    public HttpEntity<Resource<User>> index(User user){
-        HttpEntity<Resource<User>> httpEntity = new ResponseEntity<Resource<User>>(HttpStatus.NOT_FOUND);
-        return httpEntity;
-    }
-    @RequestMapping(value = Routers.login, method = RequestMethod.POST)
-    public HttpEntity<Resource<User>> login(User user){
+
+    @RequestMapping(value = Routers.register, method = RequestMethod.POST)
+    public HttpEntity<Resource<User>> register(User user){
         HttpEntity<Resource<User>> httpEntity = new ResponseEntity<Resource<User>>(HttpStatus.NOT_FOUND);
         return httpEntity;
     }

@@ -24,11 +24,11 @@ public abstract class AbstractEntity<T extends Serializable> {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private DateTime createDate = new DateTime();
+    private DateTime createDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private DateTime updateDate = new DateTime();
+    private DateTime updateDate;
 
     public Long getId() {
         return id;
@@ -54,6 +54,10 @@ public abstract class AbstractEntity<T extends Serializable> {
         this.updateDate = updateDate;
     }
 
+    {
+        createDate = new DateTime();
+        updateDate = new DateTime();
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

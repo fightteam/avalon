@@ -15,11 +15,8 @@
  */
 
 /**
- * DTO 类模块
+ * VO对象
  *
- * 提供与数据库交换的对象模型
- * 主要负责与数据库数据交互，不参与数据组合。
- * 为DAO层提供基础数据对象。
- * 本模块中的对象基本可以看做一个对象对应一个表。
+ * 表现层数据对象，与BO分离
  */
-package org.fightteam.avalon.data.models;
+package org.fightteam.avalon.web.vo;
