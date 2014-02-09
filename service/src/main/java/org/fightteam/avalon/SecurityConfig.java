@@ -1,5 +1,6 @@
 package org.fightteam.avalon;
 
+import org.fightteam.avalon.security.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,10 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // 在内存中创建一个用户
 //        常用数据库来保持用户
-        auth
-                .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
-        //auth.userDetailsService(new UserService());
+//        auth
+//                .inMemoryAuthentication()
+//                .withUser("user").password("password").roles("USER");
+        auth.userDetailsService(new UserDetailsServiceImpl());
     }
 
 
@@ -41,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http
                 .formLogin()
                 .loginPage("/login")
@@ -49,4 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll();
     }
+
+
 }
