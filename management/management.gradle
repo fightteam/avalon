@@ -3,7 +3,29 @@ apply plugin: "war"
 
     description = "Avalon manage system site module."
 
-    dependencies {
+configurations {
+    compile.extendsFrom providedCompile
+}
+
+dependencies {
 
 
+    compile "org.fightteam.join:join-log:$joinVerison",
+            "org.fightteam.join:join-core:$joinVerison",
+            "org.fightteam.join:join-dao:$joinVerison",
+            "org.fightteam.join:join-web:$joinVerison",
+            "javax.servlet:jstl:1.2",
+
+            "org.hibernate:hibernate-entitymanager:$hibernateVersion",
+            "joda-time:joda-time:$jodaVersion",
+            "org.apache.commons:commons-lang3:3.2.1",
+            'org.jadira.usertype:usertype.core:3.1.0.CR10',
+            'mysql:mysql-connector-java:5.1.28'
+
+    testCompile "org.fightteam.join:join-test:$joinVerison"
+
+    providedCompile "org.projectlombok:lombok:1.12.4"
+
+    providedCompile "javax.servlet:javax.servlet-api:3.0.1",
+            'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
     }

@@ -24,11 +24,11 @@ description = "Avalon core Service."
                 "org.hibernate:hibernate-entitymanager:$hibernateVersion",
                 "joda-time:joda-time:$jodaVersion",
                 "org.apache.commons:commons-lang3:3.2.1",
-                "org.hsqldb:hsqldb:2.2.8",
                 'org.jadira.usertype:usertype.core:3.1.0.CR10',
                 'mysql:mysql-connector-java:5.1.28'
 
-        testCompile "org.fightteam.join:join-test:$joinVerison"
+        testCompile "org.fightteam.join:join-test:$joinVerison",
+                "org.hsqldb:hsqldb:2.2.8"
 
         providedCompile "org.projectlombok:lombok:1.12.4"
 

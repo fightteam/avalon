@@ -22,8 +22,8 @@ public class AppController implements ResourceProcessor<RepositoryLinksResource>
     @Override
     public RepositoryLinksResource process(RepositoryLinksResource linksResource) {
         //Link link = new Link("login","login");
-        linksResource.add(linkTo(LoginController.class).slash("login").withRel("login"));
-        linksResource.add(linkTo(RegisterController.class).slash("register").withRel("register"));
+//        linksResource.add(linkTo(LoginController.class).slash("login").withRel("login"));
+//        linksResource.add(linkTo(RegisterController.class).slash("register").withRel("register"));
         return linksResource;
     }
 }

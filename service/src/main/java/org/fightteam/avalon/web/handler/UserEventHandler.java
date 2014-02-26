@@ -1,6 +1,5 @@
 package org.fightteam.avalon.web.handler;
 
-import org.fightteam.avalon.data.models.User;
 import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.stereotype.Component;
@@ -14,9 +13,9 @@ import org.springframework.stereotype.Component;
 @Component
 @RepositoryEventHandler
 public class UserEventHandler {
-   @HandleBeforeCreate(User.class)
-    public void handlePersonSave(User user){
-        System.out.println("--------------------");
-       user.setUsername("excalibur");
-    }
+//   @HandleBeforeCreate(User.class)
+//    public void handlePersonSave(User user){
+//        System.out.println("--------------------");
+//       user.setUsername("excalibur");
+//    }
 }

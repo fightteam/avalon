@@ -3,9 +3,12 @@ package org.fightteam.avalon;
 import org.fightteam.join.AbstractAppConfig;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
 /**
  * 项目配置
@@ -16,6 +19,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
  * @since 0.0.1
  */
 @Configuration
+@ComponentScan(basePackages = "org.fightteam", excludeFilters = {@ComponentScan.Filter({Controller.class}), @ComponentScan.Filter({ControllerAdvice.class})})
 @PropertySource(value = "classpath:app.properties")
 public class AppConfig extends AbstractAppConfig {
 

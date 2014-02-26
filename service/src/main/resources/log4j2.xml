@@ -22,5 +22,8 @@
         <logger name="org.fightteam.join" level="all" additivity="false">
             <appender-ref ref="Files"/>
         </logger>
+        <logger name="org.fightteam.avalon" level="all" additivity="false">
+            <appender-ref ref="Files"/>
+        </logger>
     </Loggers>
 </Configuration>

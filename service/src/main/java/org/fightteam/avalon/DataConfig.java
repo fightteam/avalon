@@ -17,6 +17,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -33,8 +34,8 @@ import javax.sql.DataSource;
  * @since 0.0.1
  */
 @Configuration
-@ComponentScan(basePackageClasses = DataConfig.class)
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = "org.fightteam")
+@EnableAsync
 @EnableTransactionManagement
 public class DataConfig extends AbstractDataConfig {
     private final static Logger log = LoggerFactory.getLogger(DataConfig.class);

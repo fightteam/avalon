@@ -2,9 +2,6 @@ package org.fightteam.avalon;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-
 /**
  * [description]
  *
@@ -14,12 +11,12 @@ import javax.servlet.ServletException;
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{AppConfig.class, DataConfig.class};
+        return new Class<?>[]{AppConfig.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{RESETConfig.class};
+        return new Class<?>[]{RestConfig.class};
     }
 
     @Override

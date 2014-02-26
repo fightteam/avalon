@@ -1,5 +1,7 @@
 package org.fightteam.avalon.data.models;
 
+import org.fightteam.join.dao.entity.AbstractEntity;
+
 import javax.persistence.Entity;
 
 /**
@@ -9,7 +11,7 @@ import javax.persistence.Entity;
  * @since 0.0.1
  */
 @Entity
-public class Category extends AbstractEntity<Long>{
+public class Category extends AbstractEntity<Long> {
     private String name;
 
     public String getName() {
