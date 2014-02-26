@@ -19,16 +19,5 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 @PropertySource(value = "classpath:app.properties")
 public class AppConfig extends AbstractAppConfig {
 
-    /**
-     * 载入信息提示消息
-     * @return
-     */
-    @Bean
-    public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("/WEB-INF/i18n/message");
-        // 不使用国际化
-        messageSource.setFallbackToSystemLocale(false);
-        return messageSource;
-    }
+
 }
