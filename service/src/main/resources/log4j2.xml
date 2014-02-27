@@ -6,9 +6,11 @@
         <property name="BACKUP_HOME">{LOG_HOME}/backup</property>
     </properties>
     <Appenders>
+        <!-- 控制台输出日志 -->
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
+        <!-- 按照时间产生日志文件 -->
         <File name="Files" fileName="${LOG_HOME}/${date:yyyy-MM}.log">
             <PatternLayout>
                 <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
@@ -16,6 +18,7 @@
         </File>
     </Appenders>
     <Loggers>
+        <!--全部日志-->
         <Root level="all">
             <AppenderRef ref="Console"/>
         </Root>
