@@ -2,8 +2,7 @@ rootProject.name = "avalon"
 
 def String[] projects = [
         "service",
-        "management",
-        "portal"
+        "management"
 ]
 include projects
 
