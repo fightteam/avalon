@@ -152,13 +152,17 @@ module.exports = (grunt)->
 	        server: 
 	            path: 'http://localhost:<%= connect.options.port %>'
 		        
-        copy:
-        	dist:
+		copy:
+			dist:
 		        expand: true
 		        cwd: '<%= config.assets %>/views/'
 		        src: '**/*.jade'
 		        dest: '<%= config.app %>/views/'
-			    
+			json:
+				expand: true
+				cwd: '<%= config.assets %>/'
+				src: '*.json'
+				dest: '<%= config.app %>/'
 
 	})
 
