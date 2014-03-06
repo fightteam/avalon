@@ -1,4 +1,25 @@
 extends ../layout
 
 block content
-  h1 I'm using generator-express MVC!
+	div(role="navigation").navbar.navbar-default.navbar-static-top
+		div.container
+			div.navbar-header
+				button(type="button", data-toggle="collapse", data-target=".navbar-collapse").navbar-toggle
+					span.sr-only 切换显示
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a(href="#").navbar-brand Avalon
+			div.navbar-collapse.collapse
+				ul.nav.navbar-nav
+					li.active
+						a(href="#") 主页
+					li
+						a(href="#") 关于
+					li
+						a(href="#") 联系
+				ul.nav.navbar-nav.navbar-right
+					li
+						a(href="#") 注册
+					li
+						a(href="#") 登陆

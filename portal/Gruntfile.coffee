@@ -57,25 +57,59 @@ module.exports = (grunt)->
 					'<%= config.assets %>/views/**/*.jade'
 				]
 				tasks: ['copy:dist']
-
+			compass:
+				files:[
+					'<%= config.assets %>/public/styleshees/{,*/}*.{scss,sass}'
+				]
+				tasks:[
+					'compass:dev'
+					'autoprefixer'
+					'cssmin'
+				]
+			less:
+				files:[
+					'<%= config.assets %>/public/styleshees/{,*/}*.less'
+				]
+				tasks:['less']
 		clean:
-			dev:{}
-
-
-
+			dist:['<%= concat.bootstrap.dest %>']
+				
+		modernizr:{}
+		imagemin:{}
+		svgmin:{}
+		cssmin:
+			dist:
+				files:[{
+					expand: true
+					cwd: '.tmp/styles/'
+					src: '{,*/}*.css'
+					dest: '<%= config.app %>/public/styleshees'
+					ext: '.min.css'
+					}]
+		# css自动前缀
+		autoprefixer:
+			options:
+				browsers:['last 1 version']
+			dist:
+				files:[{
+					expand: true
+					cwd: '.tmp/styles/'
+					src: '{,*/}*.css'
+					dest: '.tmp/styles/'
+					}]
 		# 采用ruby支持的 sass编译插件
 		compass:
 			options: 
-		            sassDir: '<%= config.assets %>/styles'
+		            sassDir: '<%= config.assets %>/public/styleshees'
 		            cssDir: '.tmp/styles'
 		            generatedImagesDir: '.tmp/images/generated'
-		            imagesDir: '<%= config.assets %>/images'
-		            javascriptsDir: '<%= config.assets %>/scripts'
-		            fontsDir: '<%= config.assets %>/styles/fonts'
+		            imagesDir: '<%= config.assets %>/public/images'
+		            javascriptsDir: '<%= config.assets %>/public/javascripts'
+		            fontsDir: '<%= config.assets %>/public/fonts'
 		            importPath: '<%= config.assets %>/bower_components'
-		            httpImagesPath: '/images'
-		            httpGeneratedImagesPath: '/images/generated'
-		            httpFontsPath: '/styles/fonts'
+		            # httpImagesPath: '/images'
+		            # httpGeneratedImagesPath: '/images/generated'
+		            # httpFontsPath: '/styles/fonts'
 		            relativeAssets: false
 
 		        dist: {}
@@ -108,49 +142,60 @@ module.exports = (grunt)->
 		        options: 
 		            jshintrc: '.jshintrc',
 		            reporter: require('jshint-stylish')
-		        all: [
-		            '<%= config.assets %>/scripts/{,*/}*.js'
-		            '!<%= config.assets %>/scripts/vendor/*'
-		            'test/spec/{,*/}*.js'
-		        ]
-		
+				all: [
+					'<%= config.assets %>/scripts/{,*/}*.js'
+					'!<%= config.assets %>/scripts/vendor/*'
+					'test/spec/{,*/}*.js'
+				]
 
-		useminPrepare:
-		        options: 
-		            dest: '<%= config.dist %>'
-		        html: '<%= config.assets %>/index.html'
-
-		usemin: 
-		        options: 
-		            dirs: ['<%= config.dist %>']
-		        html: ['<%= config.dist %>/{,*/}*.html']
-		        css: ['<%= config.dist %>/styles/{,*/}*.css']
-
+		# less 编译
+		less:
+			dist:
+				options:
+					cleancss: true
+					report: 'min'
+					paths:['<%= config.assets %>/bower_components']
+				files:[{
+					expand: true
+					cwd: '<%= config.assets %>/public/styleshees'
+					src: '*.less'
+					dest: '<%= config.app %>/public/styleshees'
+					ext: '.min.css'
+					}]
+		concat:
+			bootstrap:
+				src: [
+					'<%= config.assets %>/bower_components/bootstrap/js/transition.js'
+					'<%= config.assets %>/bower_components/bootstrap/js/alert.js'
+					'<%= config.assets %>/bower_components/bootstrap/js/button.js'
+					'<%= config.assets %>/bower_components/bootstrap/js/carousel.js'
+					'<%= config.assets %>/bower_components/bootstrap/js/collapse.js'
+					'<%= config.assets %>/bower_components/bootstrap/js/dropdown.js'
+					'<%= config.assets %>/bower_components/bootstrap/js/modal.js'
+					'<%= config.assets %>/bower_components/bootstrap/js/tooltip.js'
+					'<%= config.assets %>/bower_components/bootstrap/js/popover.js'
+					'<%= config.assets %>/bower_components/bootstrap/js/scrollspy.js'
+					'<%= config.assets %>/bower_components/bootstrap/js/tab.js'
+					'<%= config.assets %>/bower_components/bootstrap/js/affix.js'
+				]
+				dest: '<%= config.app %>/public/javascripts/bootstrap.js'
+		# js压缩
+		uglify:
+			bootstrap:
+				src: '<%= concat.bootstrap.dest %>',
+				dest: '<%= config.app %>/public/javascripts/bootstrap.min.js'
+			jquery:
+				src: '<%= config.assets %>/bower_components/jquery/dist/jquery.js',
+				dest: '<%= config.app %>/public/javascripts/jquery.min.js'
 		develop: 
 		  server: 
 		    file: '<%= config.app %>/app.js'
 		    # cmd: 'coffee'
 
-		concurrent: 
-		        dev: [
-		            'coffee:dist'
-		            'compass:dev'
-		        ]
-		        test: [
-		            'coffee'
-		            'compass'
-		        ]
-		        dist: [
-		            'coffee'
-		            'compass:dist'
-		            'imagemin'
-		            'svgmin'
-		            'htmlmin'
-		        ]
 
 		open: 
 	        server: 
-	            path: 'http://localhost:<%= connect.options.port %>'
+	            path: 'http://localhost:3000'
 		        
 		copy:
 			dist:
@@ -163,6 +208,11 @@ module.exports = (grunt)->
 				cwd: '<%= config.assets %>/'
 				src: '*.json'
 				dest: '<%= config.app %>/'
+			bootstrap:
+				expand: true
+				cwd: '<%= config.assets %>/bower_components/bootstrap/fonts'
+				src: '**'
+				dest: '<%= config.app %>/public/fonts'
 
 	})
 
@@ -182,24 +232,21 @@ module.exports = (grunt)->
 				done(reloaded)
 		, 500
 
-	grunt.registerTask "server",(target)->
-		if target is "dist"
-		  return grunt.task.run(['build', 'open', 'connect:dist:keepalive'])
-		grunt.task.run([
-			'clean:dev'
-		    'concurrent:dev'
-		    'connect:livereload'
-		    'open:server'
-		    'watch'
-			])
-
 
 	grunt.registerTask 'complie', [
 		'coffee:dist'
-		'copy:dist'
+		'less'
+		'copy'
+		'concat'
+		'uglify'
+		'clean:dist'
+		'compass:dist'
+		'autoprefixer'
+		'cssmin'
 	]
 	grunt.registerTask 'default', [
 		'complie'
 		'develop'
+		'open:server'
 		'watch'
 	]
