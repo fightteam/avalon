@@ -72,10 +72,23 @@ module.exports = (grunt)->
 				]
 				tasks:['less']
 		clean:
+			app:['<%= config.app %>']
 			dist:['<%= concat.bootstrap.dest %>']
 				
 		modernizr:{}
-		imagemin:{}
+		# 无损图片压缩
+		imagemin:
+			dist:
+				options:
+					optimizationLevel: 3
+				files: [
+					{
+						expand: true
+						cwd: '<%= config.assets %>/public/images'
+						src: ['**/*.{png,jpg,gif}']
+						dest: '<%= config.app %>/public/images'
+					}
+				]
 		svgmin:{}
 		cssmin:
 			dist:
@@ -234,6 +247,7 @@ module.exports = (grunt)->
 
 
 	grunt.registerTask 'complie', [
+		'clean:app'
 		'coffee:dist'
 		'less'
 		'copy'
@@ -243,6 +257,7 @@ module.exports = (grunt)->
 		'compass:dist'
 		'autoprefixer'
 		'cssmin'
+		'imagemin'
 	]
 	grunt.registerTask 'default', [
 		'complie'

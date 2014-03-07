@@ -1,13 +1,11 @@
 doctype html
-html(lang='en')
+html(lang='#{ lang }')
   head
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width')
     title= title
-    block css
-      link(rel='stylesheet', href='/styleshees/bootstrap.min.css')
-      link(rel='stylesheet', href='/styleshees/bootstrap-theme-metro.min.css')
-    block js
-      script(src='http://localhost:35729/livereload.js')
+    include common/head
   body
     block content
+    include common/helper/javascripts
+      
