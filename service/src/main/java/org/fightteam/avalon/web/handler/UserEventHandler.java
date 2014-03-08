@@ -5,7 +5,7 @@ import org.springframework.data.rest.core.annotation.*;
 import org.springframework.stereotype.Component;
 
 /**
- * [description]
+ * User的event测试
  *
  * @author faith
  * @since 0.0.1
@@ -14,11 +14,62 @@ import org.springframework.stereotype.Component;
 @RepositoryEventHandler(User.class)
 public class UserEventHandler {
 
+    /**
+     * POST前调用
+     *
+     * @param user
+     */
+    @HandleBeforeCreate
+    public void HandleBeforeCreate(User user) {
+        System.out.println("==========HandleBeforeCreate===========");
+    }
+
+    /**
+     * PUT之前调用
+     *
+     * @param user
+     */
+    @HandleBeforeSave
+    public void HandleBeforeSave(User user) {
+        System.out.println("==========HandleBeforeSave===========");
+    }
+
+    /**
+     * DELETE之前调用
+     *
+     * @param user
+     */
+    @HandleBeforeDelete
+    public void HandleBeforeDelete(User user) {
+        System.out.println("==========HandleBeforeDelete===========");
+    }
+
+    /**
+     * POST后调用
+     *
+     * @param user
+     */
     @HandleAfterCreate
     public void HandleAfterCreate(User user) {
         System.out.println("==========HandleAfterCreate===========");
     }
 
+    /**
+     * PUT之后调用
+     *
+     * @param user
+     */
+    @HandleAfterSave
+    public void HandleAfterSave(User user) {
+        System.out.println("==========HandleAfterSave===========");
+    }
+
+
+    /**
+     * DELETE后调用
+     *
+     * @param user
+     */
     @HandleAfterDelete
     public void HandleAfterDelete(User user) {
         System.out.println("==========HandleAfterDelete===========");
@@ -34,20 +85,6 @@ public class UserEventHandler {
         System.out.println("==========HandleAfterLinkSave===========");
     }
 
-    @HandleAfterSave
-    public void HandleAfterSave(User user) {
-        System.out.println("==========HandleAfterSave===========");
-    }
-
-    @HandleBeforeCreate
-    public void HandleBeforeCreate(User user) {
-        System.out.println("==========HandleBeforeCreate===========");
-    }
-
-    @HandleBeforeDelete
-    public void HandleBeforeDelete(User user) {
-        System.out.println("==========HandleBeforeDelete===========");
-    }
 
     @HandleBeforeLinkDelete
     public void HandleBeforeLinkDelete(User user) {
@@ -57,11 +94,6 @@ public class UserEventHandler {
     @HandleBeforeLinkSave
     public void HandleBeforeLinkSave(User user) {
         System.out.println("==========HandleBeforeLinkSave===========");
-    }
-
-    @HandleBeforeSave
-    public void HandleBeforeSave(User user) {
-        System.out.println("==========HandleBeforeSave===========");
     }
 
 
