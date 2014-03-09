@@ -12,7 +12,6 @@ dependencies {
 
     compile "org.fightteam.join:join-log:$joinVerison",
             "org.fightteam.join:join-core:$joinVerison",
-            "org.fightteam.join:join-dao:$joinVerison",
             "org.fightteam.join:join-web:$joinVerison",
             "javax.servlet:jstl:1.2",
 
