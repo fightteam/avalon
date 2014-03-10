@@ -1,7 +1,7 @@
 apply plugin: "war"
-    apply from: "${gradleScriptDir}/tomcat.gradle"
+apply from: "${gradleScriptDir}/tomcat.gradle"
 
-    description = "Avalon manage system site module."
+description = "Avalon manage system site module."
 
 configurations {
     compile.extendsFrom providedCompile
@@ -12,7 +12,6 @@ dependencies {
 
     compile "org.fightteam.join:join-log:$joinVerison",
             "org.fightteam.join:join-core:$joinVerison",
-            "org.fightteam.join:join-dao:$joinVerison",
             "org.fightteam.join:join-web:$joinVerison",
             "javax.servlet:jstl:1.2",
 
@@ -21,6 +20,11 @@ dependencies {
             "org.apache.commons:commons-lang3:3.2.1",
             'org.jadira.usertype:usertype.core:3.1.0.CR10',
             'mysql:mysql-connector-java:5.1.28'
+
+//    预留jsp框架不一定采用
+//            'org.apache.tiles:tiles-extras:3.0.3',
+//            'org.apache.tiles:tiles-servlet:3.0.3',
+//            'org.apache.tiles:tiles-jsp:3.0.3'
 
     testCompile "org.fightteam.join:join-test:$joinVerison"
 
