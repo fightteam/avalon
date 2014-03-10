@@ -1,0 +1,5 @@
+each stylesheet in stylesheets
+	if stylesheet.absolute 
+		link(rel='stylesheet', href='#{ stylesheet.url }')
+	else
+		link(rel='stylesheet', href='/styleshees/#{ stylesheet.url }')
