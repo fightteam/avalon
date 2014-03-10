@@ -4,6 +4,6 @@ apply plugin: "eclipse"
 idea {
 	    module {
 	      downloadJavadoc = false
-	      downloadSources = false
+	      downloadSources = true
 	    }
 	}
