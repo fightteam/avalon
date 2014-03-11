@@ -1,5 +1,7 @@
 package org.fightteam.avalon.web.controller;
 
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.rest.webmvc.RepositoryLinksResource;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.ResourceProcessor;
@@ -15,6 +17,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  * @since 0.0.1
  */
 @Controller
+@Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class AppController implements ResourceProcessor<RepositoryLinksResource> {
 
 

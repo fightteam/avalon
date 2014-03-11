@@ -5,7 +5,4 @@
 *.iws
 build/
 *.bat
-.sass-cache/
-.tmp/
-app/
-node_modules/
+*.log

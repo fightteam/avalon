@@ -16,18 +16,16 @@ description = "Avalon core Service."
                 "org.fightteam.join:join-dao:$joinVerison",
                 "org.fightteam.join:join-web:$joinVerison",
                 "org.fightteam.join:join-rest:$joinVerison",
-                "javax.servlet:jstl:1.2",
-                "org.springframework.data:spring-data-rest-webmvc:$springDataRestVersion",
-                "org.springframework.data:spring-data-rest-core:$springDataRestVersion",
+                "javax.servlet:jstl:$jstl",
                 "org.springframework.data:spring-data-redis:$springDataRedisVersion",
                 "org.springframework.data:spring-data-jpa:$springDataJpaVersion",
                 "org.springframework.data:spring-data-commons:$springDataCommonVersion",
                 "org.springframework.hateoas:spring-hateoas:$springHateoasVersion",
                 "org.hibernate:hibernate-entitymanager:$hibernateVersion",
                 "joda-time:joda-time:$jodaVersion",
-                "org.apache.commons:commons-lang3:3.2.1",
-                'org.jadira.usertype:usertype.core:3.1.0.CR10',
-                'mysql:mysql-connector-java:5.1.28'
+                "org.apache.commons:commons-lang3:$commonLang",
+                "org.jadira.usertype:usertype.core:$userType",
+                "mysql:mysql-connector-java:$mysqlVersion"
 
         testCompile "org.fightteam.join:join-test:$joinVerison",
                 "org.hsqldb:hsqldb:2.2.8"

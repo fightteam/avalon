@@ -1,6 +1,6 @@
-node_modules
-dist
+node_modules/
+dist/
 app/
-.tmp
-.sass-cache
+.tmp/
+.sass-cache/
 assets/bower_components/
