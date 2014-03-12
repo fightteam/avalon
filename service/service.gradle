@@ -19,13 +19,17 @@ description = "Avalon core Service."
                 "javax.servlet:jstl:$jstl",
                 "org.springframework.data:spring-data-redis:$springDataRedisVersion",
                 "org.springframework.data:spring-data-jpa:$springDataJpaVersion",
-                "org.springframework.data:spring-data-commons:$springDataCommonVersion",
+                "org.springframework.data:spring-data-commons:$springDataCommonsVersion",
                 "org.springframework.hateoas:spring-hateoas:$springHateoasVersion",
                 "org.hibernate:hibernate-entitymanager:$hibernateVersion",
                 "joda-time:joda-time:$jodaVersion",
                 "org.apache.commons:commons-lang3:$commonLang",
                 "org.jadira.usertype:usertype.core:$userType",
                 "mysql:mysql-connector-java:$mysqlVersion"
+
+        // logging
+        compile "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"
+        runtime "org.apache.logging.log4j:log4j-core:$log4jVersion"
 
         testCompile "org.fightteam.join:join-test:$joinVerison",
                 "org.hsqldb:hsqldb:2.2.8"
