@@ -11,5 +11,7 @@ import org.fightteam.avalon.mgt.vo.UserVO;
  */
 public interface UserService {
 
-    public MessageVO createUser(UserVO userVO);
+    MessageVO createUser(UserVO userVO);
+
+    UserVO findUser(Long id);
 }

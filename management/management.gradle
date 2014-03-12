@@ -14,17 +14,15 @@ dependencies {
             "org.fightteam.join:join-core:$joinVerison",
             "org.fightteam.join:join-web:$joinVerison",
             "javax.servlet:jstl:1.2",
-
-            "org.hibernate:hibernate-entitymanager:$hibernateVersion",
             "joda-time:joda-time:$jodaVersion",
-            "org.apache.commons:commons-lang3:3.2.1",
-            'org.jadira.usertype:usertype.core:3.1.0.CR10',
-            'mysql:mysql-connector-java:5.1.28'
+            "org.apache.commons:commons-lang3:3.2.1"
+
 
 
     // logging
     compile "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"
     runtime "org.apache.logging.log4j:log4j-core:$log4jVersion"
+
 
     //    预留jsp框架不一定采用
     //            'org.apache.tiles:tiles-extras:3.0.3',

@@ -1,5 +1,6 @@
 package org.fightteam.avalon.data.models;
 
+import org.fightteam.join.auth.data.models.ResourceType;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,6 +1,7 @@
 package org.fightteam.avalon.mgt.service;
 
 import org.fightteam.avalon.mgt.SpringTest;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -15,4 +16,8 @@ public class UserServiceTest extends SpringTest{
     private UserService userService;
 
 
+    @Test
+    public void testFindUser() throws Exception {
+        //userService.findUser(1l);
+    }
 }
