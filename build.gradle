@@ -120,17 +120,18 @@ configure(rootProject) {
 	    options.overview = "src/api/overview.html"
 	    options.splitIndex = true
 	    options.encoding = "UTF-8"
-	    options.linksOffline "http://docs.oracle.com/javase/7/docs/api/", "http://docs.oracle.com/javase/7/docs/api/"
+        options.locale = "en_US"
+        options.linksOffline "http://docs.oracle.com/javase/7/docs/api/", "http://docs.oracle.com/javase/7/docs/api/"
 	    options.linksOffline "http://static.springsource.org/spring/docs/3.1.x/javadoc-api/", "http://static.springsource.org/spring/docs/3.1.x/javadoc-api/"
 	    options.linksOffline "http://static.springsource.org/spring-data/data-commons/docs/current/api/", "http://static.springsource.org/spring-data/data-commons/docs/current/api/"
-
-	    source subprojects.collect { project ->
+        source subprojects.collect { project ->
 	      project.sourceSets.main.allJava
 	    }
 
 	    destinationDir = new File(buildDir, "api")
 	    classpath = files(subprojects.collect { project ->
 	      project.sourceSets.main.compileClasspath
+
 	    })
 	    maxMemory = "1024m"
 	}
