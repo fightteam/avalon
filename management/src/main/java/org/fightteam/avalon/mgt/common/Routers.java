@@ -14,29 +14,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
-@PropertySource("classpath:app.properties")
+@Getter
+@Setter
 public class Routers {
-
 
     @Value("${rest.users}")
     private String users;
 
     @Value("${rest.roles}")
     private String roles;
-
-    public String getUsers() {
-        return users;
-    }
-
-    public void setUsers(String users) {
-        this.users = users;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
 }

@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
  * [description]
@@ -13,10 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @since 0.0.1
  */
 @ContextConfiguration(classes = {AppConfig.class, WebConfig.class})
+@WebAppConfiguration
 public class SpringTest extends AbstractRestIntegrationTest {
 
-    @Test
-    public void testInit() throws Exception {
-        System.out.println("init");
-    }
 }

@@ -1,4 +1,4 @@
-package org.fightteam.avalon.mgt.service;
+package org.fightteam.avalon.mgt.common;
 
 import org.fightteam.avalon.mgt.SpringTest;
 import org.junit.Test;
@@ -10,14 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author faith
  * @since 0.0.1
  */
-public class UserServiceTest extends SpringTest{
+public class RoutersTest extends SpringTest{
 
     @Autowired
-    private UserService userService;
-
+    private Routers routers;
 
     @Test
-    public void testFindUser() throws Exception {
-        userService.findUser(1l);
+    public void testUsers() throws Exception {
+        System.out.println(routers.getUsers());
     }
 }

@@ -32,8 +32,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO findUser(Long id) {
-        ResponseEntity<UserVO> responseEntity = restTemplate.getForEntity(routers.getUsers(), UserVO.class);
-        System.out.println(responseEntity);
+        System.out.println(routers.getUsers());
+        UserVO userVO = restTemplate.getForObject(routers.getUsers(), UserVO.class);
+
+        System.out.println(userVO);
         return null;
     }
 }

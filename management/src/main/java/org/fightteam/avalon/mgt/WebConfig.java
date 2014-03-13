@@ -1,10 +1,15 @@
 package org.fightteam.avalon.mgt;
 
+import org.fightteam.avalon.mgt.vo.UserVO;
 import org.fightteam.join.AbstractAppConfig;
+import org.fightteam.join.web.AbstractWebConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.client.RestTemplate;
@@ -19,6 +24,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author excalibur
  * @since 0.0.1
@@ -29,7 +37,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
         includeFilters = {@ComponentScan.Filter(Controller.class),
                 @ComponentScan.Filter(ControllerAdvice.class)},
         useDefaultFilters = false)
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig extends AbstractWebConfig {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -58,14 +66,19 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public SimpleClientHttpRequestFactory simpleClientHttpRequestFactory(){
         SimpleClientHttpRequestFactory scrf = new SimpleClientHttpRequestFactory();
-        scrf.setReadTimeout(60);
-        scrf.setConnectTimeout(60);
+        scrf.setReadTimeout(3000);
+        scrf.setConnectTimeout(3000);
         return scrf;
     }
 
     @Bean
     public RestTemplate restTemplate(){
         RestTemplate restTemplate = new RestTemplate(simpleClientHttpRequestFactory());
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        //converter.canRead(UserVO.class, MediaType.APPLICATION_JSON);
+        List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
+        messageConverters.add(converter);
+        restTemplate.setMessageConverters(messageConverters);
         return restTemplate;
     }
 }
