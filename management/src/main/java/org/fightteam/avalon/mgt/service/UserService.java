@@ -1,5 +1,6 @@
 package org.fightteam.avalon.mgt.service;
 
+import org.fightteam.avalon.mgt.bo.UserBO;
 import org.fightteam.avalon.mgt.vo.MessageVO;
 import org.fightteam.avalon.mgt.vo.UserVO;
 
@@ -11,7 +12,7 @@ import org.fightteam.avalon.mgt.vo.UserVO;
  */
 public interface UserService {
 
-    MessageVO createUser(UserVO userVO);
+    MessageVO createUser(UserBO userBO);
 
-    UserVO findUser(Long id);
+    UserBO findUser(Long id);
 }

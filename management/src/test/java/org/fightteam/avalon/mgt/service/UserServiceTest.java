@@ -18,6 +18,6 @@ public class UserServiceTest extends SpringTest{
 
     @Test
     public void testFindUser() throws Exception {
-        userService.findUser(1l);
+        userService.findUser(2l);
     }
 }
