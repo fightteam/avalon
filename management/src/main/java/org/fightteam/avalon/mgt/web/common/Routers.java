@@ -7,6 +7,7 @@ package org.fightteam.avalon.mgt.web.common;
  * @since 0.0.1
  */
 public interface Routers {
+    String index = "/";
     String login = "/login";
     String dashboard = "/dashboard";
 

@@ -9,17 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- *
- * 默认控制器
- *
  * @author excalibur
  * @since 0.0.1
  */
 @Controller
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class AppController {
+public class DashboardController {
 
-    @RequestMapping(value = Routers.index, method = RequestMethod.GET)
+    @RequestMapping(value = Routers.dashboard, method = RequestMethod.GET)
     public String index(){
 
         return Views.dashboard;

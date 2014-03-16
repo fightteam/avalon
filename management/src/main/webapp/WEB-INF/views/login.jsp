@@ -1,16 +1,15 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: excalibur
-  Date: 14-3-16
-  Time: 下午2:40
-  To change this template use File | Settings | File Templates.
+    登录页面
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true" %>
+<jsp:include page="../layouts/namespace.jsp"/>
 <html>
 <head>
-    <title></title>
+    <meta charset="UTF-8">
+    <title>登录</title>
 </head>
 <body>
 
+<jsp:include page="../layouts/footer.jsp"/>
 </body>
 </html>

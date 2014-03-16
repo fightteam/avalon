@@ -10,7 +10,7 @@
 
 </head>
 <body>
-${ctx} 
+${ctx}
 <jsp:include page="../layouts/footer.jsp"/>
 </body>
 </html>

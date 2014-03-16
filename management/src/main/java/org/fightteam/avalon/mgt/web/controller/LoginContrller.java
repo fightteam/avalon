@@ -9,19 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- *
- * 默认控制器
+ * 登录控制类
  *
  * @author excalibur
  * @since 0.0.1
  */
 @Controller
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class AppController {
+public class LoginContrller {
 
-    @RequestMapping(value = Routers.index, method = RequestMethod.GET)
+    @RequestMapping(value = Routers.login, method = RequestMethod.GET)
     public String index(){
 
-        return Views.dashboard;
+        return Views.login;
     }
 }
