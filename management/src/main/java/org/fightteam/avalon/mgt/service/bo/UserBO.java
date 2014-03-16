@@ -1,15 +1,10 @@
-package org.fightteam.avalon.mgt.bo;
+package org.fightteam.avalon.mgt.service.bo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
-import org.fightteam.avalon.mgt.bo.link.UserLinks;
-import org.fightteam.avalon.mgt.rest.BasicRestEntity;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.ResourceSupport;
-
-import java.util.List;
+import org.fightteam.avalon.mgt.service.bo.link.UserLinks;
 
 /**
  * [description]

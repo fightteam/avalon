@@ -1,13 +1,11 @@
 package org.fightteam.avalon.mgt.service.impl;
 
-import org.fightteam.avalon.mgt.bo.UserBO;
-import org.fightteam.avalon.mgt.common.Routers;
+import org.fightteam.avalon.mgt.service.bo.UserBO;
+import org.fightteam.avalon.mgt.rest.common.RestRouters;
 import org.fightteam.avalon.mgt.service.UserService;
-import org.fightteam.avalon.mgt.vo.MessageVO;
-import org.fightteam.avalon.mgt.vo.UserVO;
+import org.fightteam.avalon.mgt.web.vo.MessageVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.hateoas.Resource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -26,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Autowired
-    private Routers routers;
+    private RestRouters restRouters;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -41,17 +39,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserBO findUser(Long id) {
-
-//        UserBO userBO = restTemplate.getForObject(routers.getUsers(), UserBO.class);
-
         Map<String, String> vars = new HashMap<>();
         vars.put("id", id.toString());
-        Resource<UserBO> userBOResource = null;
 
-        ResponseEntity<UserBO> resourceResponseEntity = restTemplate.getForEntity(routers.getUsers(), UserBO.class, vars);
-        System.out.println(resourceResponseEntity);
-        System.out.println(resourceResponseEntity.getBody().getUserLinks().getSelf());
-        return null;
+        ResponseEntity<UserBO> resourceResponseEntity = restTemplate.getForEntity(restRouters.getUsers(), UserBO.class, vars);
+
+        if (resourceResponseEntity.getStatusCode() != HttpStatus.OK){
+
+        }
+        return resourceResponseEntity.getBody();
     }
 
 }

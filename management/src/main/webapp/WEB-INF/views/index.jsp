@@ -1,16 +1,16 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: excalibur
-  Date: 14-3-9
-  Time: 下午10:40
-  To change this template use File | Settings | File Templates.
+    默认页面
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true" %>
+<jsp:include page="../layouts/namespace.jsp"/>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title></title>
+
 </head>
 <body>
-index
+${ctx} 
+<jsp:include page="../layouts/footer.jsp"/>
 </body>
 </html>

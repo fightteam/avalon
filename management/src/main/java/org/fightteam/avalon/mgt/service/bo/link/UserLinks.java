@@ -1,4 +1,4 @@
-package org.fightteam.avalon.mgt.bo.link;
+package org.fightteam.avalon.mgt.service.bo.link;
 
 import lombok.Getter;
 import lombok.Setter;

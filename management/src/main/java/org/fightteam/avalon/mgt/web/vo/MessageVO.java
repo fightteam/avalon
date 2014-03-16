@@ -1,4 +1,4 @@
-package org.fightteam.avalon.mgt.vo;
+package org.fightteam.avalon.mgt.web.vo;
 
 /**
  * [description]
