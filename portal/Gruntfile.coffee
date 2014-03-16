@@ -170,9 +170,9 @@ module.exports = (grunt)->
 					paths:['<%= config.assets %>/bower_components']
 				files:[{
 					expand: true
-					cwd: '<%= config.assets %>/public/styleshees'
+					cwd: '<%= config.assets %>/public/stylesheets'
 					src: '*.less'
-					dest: '<%= config.app %>/public/styleshees'
+					dest: '<%= config.app %>/public/stylesheets'
 					ext: '.min.css'
 					}]
 		concat:
