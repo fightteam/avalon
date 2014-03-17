@@ -1,7 +1,7 @@
 package org.fightteam.avalon.mgt.service;
 
-import org.fightteam.avalon.mgt.vo.MessageVO;
-import org.fightteam.avalon.mgt.vo.UserVO;
+import org.fightteam.avalon.mgt.service.bo.UserBO;
+import org.fightteam.avalon.mgt.web.vo.MessageVO;
 
 /**
  * [description]
@@ -11,7 +11,13 @@ import org.fightteam.avalon.mgt.vo.UserVO;
  */
 public interface UserService {
 
-    MessageVO createUser(UserVO userVO);
+    MessageVO createUser(UserBO userBO);
 
-    UserVO findUser(Long id);
+    /**
+     * 根据id获取对象信息
+     *
+     * @param id
+     * @return 业务对象
+     */
+    UserBO findUser(Long id);
 }
