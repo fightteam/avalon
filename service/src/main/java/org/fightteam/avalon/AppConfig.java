@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 @Configuration
 @ComponentScan(basePackages = "org.fightteam", excludeFilters = {@ComponentScan.Filter({Controller.class}), @ComponentScan.Filter({ControllerAdvice.class})})
 @PropertySource(value = "classpath:app.properties")
+@EnableAsync
 public class AppConfig extends AbstractAppConfig {
 
 
