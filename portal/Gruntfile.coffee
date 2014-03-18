@@ -96,7 +96,7 @@ module.exports = (grunt)->
 					expand: true
 					cwd: '.tmp/styles/'
 					src: '{,*/}*.css'
-					dest: '<%= config.app %>/public/styleshees'
+					dest: '<%= config.app %>/public/stylesheets'
 					ext: '.min.css'
 					}]
 		# css自动前缀
