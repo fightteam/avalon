@@ -96,7 +96,7 @@ module.exports = (grunt)->
 					expand: true
 					cwd: '.tmp/styles/'
 					src: '{,*/}*.css'
-					dest: '<%= config.app %>/public/styleshees'
+					dest: '<%= config.app %>/public/stylesheets'
 					ext: '.min.css'
 					}]
 		# css自动前缀
@@ -113,7 +113,7 @@ module.exports = (grunt)->
 		# 采用ruby支持的 sass编译插件
 		compass:
 			options: 
-		            sassDir: '<%= config.assets %>/public/styleshees'
+		            sassDir: '<%= config.assets %>/public/stylesheets'
 		            cssDir: '.tmp/styles'
 		            generatedImagesDir: '.tmp/images/generated'
 		            imagesDir: '<%= config.assets %>/public/images'
