@@ -35,7 +35,6 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableJpaRepositories(basePackages = "org.fightteam")
-@EnableAsync
 @EnableTransactionManagement
 public class DataConfig extends AbstractDataConfig {
     private final static Logger log = LoggerFactory.getLogger(DataConfig.class);
