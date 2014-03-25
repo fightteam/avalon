@@ -3,6 +3,7 @@
 	margin-bottom: 0;
 }
 .intro-header{
+	// background: #b94a48;
 	background: #b94a48 url(/images/bg.jpg) 0% 0% fixed;
 	min-height: 650px;
 	width: 100%;
@@ -11,4 +12,79 @@
 	padding: 0px;
 	background-size: cover;
 	position: relative;
+	text-align: center;
+	color: #f8f8f8;
+}
+
+.intro-message{
+	position: relative;
+	padding-top: 20%;
+	padding-bottom: 20%;
+
+	& > h1{
+		margin: 0;
+		font-size: 5em;
+		text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+	}
+
+	& > h3{
+		text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+	}
+}
+.intro-divider{
+	width: 400px;
+	border-top: 1px solid #f8f8f8;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.section-a{
+	background-color: #f8f8f8;
+	padding: 50px 0;
+}
+.section-b{
+	padding: 50px 0;
+}
+.section-colored{
+	background-color: #e1e1e1;
+	padding: 50px 0;
+}
+.banner{
+	padding: 100px 0;
+	color: #f8f8f8;
+	background: url(../images/banner-bg.jpg) no-repeat center center;
+	background-size: cover;
+
+	h2{
+		margin: 0;
+		text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+		font-size: 3em;
+
+		a{
+			text-decoration: none;
+		}
+	}
+}
+.section-heading-spacer {
+	border-top: 3px solid #e7e7e7;
+	width: 200px;
+	float: left;
+}
+.section-heading {
+	margin-bottom: 30px;
+}
+footer{
+	padding: 50px 0;
+}
+@media(min-width:767px) {
+    .navbar.affix-top{
+        padding: 20px 0;
+        
+    }
+    .navbar.navbar-ease{
+    	transition: background .5s ease-in-out,padding .5s ease-in-out;
+    }
+
+    .navbar.affix {
+        /* Customize the look and feel of the collapsed top nav here */
+        padding: 0;
+    }
 }

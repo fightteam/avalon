@@ -1,14 +1,14 @@
 exports.index = (req, res)->
 	res.render 'home/index', 
-		title: 'Express1'
+		title: 'avalon书城'
 		lang: 'zh_CN'
 		stylesheets: [
 			{
 				url:'bootstrap.min.css'
 			}
-			{
-				url:'bootstrap-theme-metro.min.css'
-			}
+			# {
+			# 	url:'bootstrap-theme-metro.min.css'
+			# }
 			{
 				url:'index.min.css'
 			}

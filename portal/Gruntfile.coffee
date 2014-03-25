@@ -59,7 +59,7 @@ module.exports = (grunt)->
 				tasks: ['copy:dist']
 			compass:
 				files:[
-					'<%= config.assets %>/public/styleshees/{,*/}*.{scss,sass}'
+					'<%= config.assets %>/public/stylesheets/{,*/}*.{scss,sass}'
 				]
 				tasks:[
 					'compass:dev'
@@ -68,9 +68,14 @@ module.exports = (grunt)->
 				]
 			less:
 				files:[
-					'<%= config.assets %>/public/styleshees/{,*/}*.less'
+					'<%= config.assets %>/public/stylesheets/{,*/}*.less'
 				]
 				tasks:['less']
+			img:
+				files:[
+					'<%= config.assets %>/public/images/**/*.{png,jpg,gif}'
+				]
+				tasks:['imagemin']
 		clean:
 			app:['<%= config.app %>']
 			dist:['<%= concat.bootstrap.dest %>']
