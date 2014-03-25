@@ -27,6 +27,8 @@
     <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
     <ul>
         <li><a href="${ctx}/dashborad" class="fa fa-tachometer" title="控制面板">控制面板</a></li>
+        <li><a href="${ctx}/books" class="fa fa-book" title="书籍管理">书籍管理</a></li>
+        <li><a href="${ctx}/chats" class="fa fa-comments-o" title="聊天室管理">聊天室管理</a></li>
         <li><a href="${ctx}/users" class="fa fa-user" title="用户管理">用户管理</a></li>
         <li><a href="${ctx}/permissions" class="fa fa-gavel" title="权限管理">权限管理</a></li>
     </ul>

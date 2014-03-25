@@ -25,16 +25,36 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-md-12 main">
-            <h1 class="page-header">Dashboard</h1>
+            <h1 class="page-header">权限管理</h1>
 
-            <div class="row placeholders">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">权限列表</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="users-table">
+                                    <thead>
+                                    <tr>
+                                        <th>账号</th>
+                                        <th>email</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
-            <h2 class="sub-header">Section title</h2>
-            <div class="table-responsive">
-
-            </div>
         </div>
     </div>
 </div><!--./container-fluid-->

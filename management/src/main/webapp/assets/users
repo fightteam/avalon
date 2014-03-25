@@ -1,0 +1,125 @@
+{
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/avalon-service/users{?page,size,sort}",
+      "templated" : true
+    },
+    "search" : {
+      "href" : "http://localhost:8080/avalon-service/users/search"
+    }
+  },
+  "_embedded" : {
+    "users" : [ {
+      "username" : "faith",
+      "password" : "123456",
+      "email" : null,
+      "name" : "刘真源",
+      "accountNonExpired" : true,
+      "accountNonLocked" : true,
+      "credentialsNonExpired" : true,
+      "enabled" : true,
+      "registeTime" : null,
+      "ip" : null,
+      "loginTime" : null,
+      "logoutTime" : null,
+      "loginIp" : null,
+      "lastLogoutTime" : null,
+      "passwordExpiredDays" : -1,
+      "passwordChangeTime" : null,
+      "loginAtSameTime" : false,
+      "loginAttempt" : 0,
+      "status" : 0,
+      "problem" : null,
+      "solution" : null,
+      "createDate" : 1395300298000,
+      "updateDate" : 1395300298000,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/avalon-service/users/1"
+        },
+        "roles" : {
+          "href" : "http://localhost:8080/avalon-service/users/1/roles"
+        },
+        "permissions" : {
+          "href" : "http://localhost:8080/avalon-service/users/1/permissions"
+        }
+      }
+    },{
+            "username" : "faith",
+            "password" : "123456",
+            "email" : null,
+            "name" : "刘真源",
+            "accountNonExpired" : true,
+            "accountNonLocked" : true,
+            "credentialsNonExpired" : true,
+            "enabled" : true,
+            "registeTime" : null,
+            "ip" : null,
+            "loginTime" : null,
+            "logoutTime" : null,
+            "loginIp" : null,
+            "lastLogoutTime" : null,
+            "passwordExpiredDays" : -1,
+            "passwordChangeTime" : null,
+            "loginAtSameTime" : false,
+            "loginAttempt" : 0,
+            "status" : 0,
+            "problem" : null,
+            "solution" : null,
+            "createDate" : 1395300298000,
+            "updateDate" : 1395300298000,
+            "_links" : {
+              "self" : {
+                "href" : "http://localhost:8080/avalon-service/users/1"
+              },
+              "roles" : {
+                "href" : "http://localhost:8080/avalon-service/users/1/roles"
+              },
+              "permissions" : {
+                "href" : "http://localhost:8080/avalon-service/users/1/permissions"
+              }
+            }
+          },{
+                  "username" : "faith",
+                  "password" : "123456",
+                  "email" : null,
+                  "name" : "刘真源",
+                  "accountNonExpired" : true,
+                  "accountNonLocked" : true,
+                  "credentialsNonExpired" : true,
+                  "enabled" : true,
+                  "registeTime" : null,
+                  "ip" : null,
+                  "loginTime" : null,
+                  "logoutTime" : null,
+                  "loginIp" : null,
+                  "lastLogoutTime" : null,
+                  "passwordExpiredDays" : -1,
+                  "passwordChangeTime" : null,
+                  "loginAtSameTime" : false,
+                  "loginAttempt" : 0,
+                  "status" : 0,
+                  "problem" : null,
+                  "solution" : null,
+                  "createDate" : 1395300298000,
+                  "updateDate" : 1395300298000,
+                  "_links" : {
+                    "self" : {
+                      "href" : "http://localhost:8080/avalon-service/users/1"
+                    },
+                    "roles" : {
+                      "href" : "http://localhost:8080/avalon-service/users/1/roles"
+                    },
+                    "permissions" : {
+                      "href" : "http://localhost:8080/avalon-service/users/1/permissions"
+                    }
+                  }
+                } ]
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 3,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
