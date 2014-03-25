@@ -50,10 +50,7 @@ public class WebConfig extends AbstractWebConfig {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/stylesheets").addResourceLocations("/assets/stylesheets").setCachePeriod(0);
-        registry.addResourceHandler("/javascripts").addResourceLocations("/assets/javascripts").setCachePeriod(0);
-        registry.addResourceHandler("/fonts").addResourceLocations("/assets/fonts").setCachePeriod(0);
-        registry.addResourceHandler("/images").addResourceLocations("/assets/images").setCachePeriod(0);
+        registry.addResourceHandler("/assets/**").addResourceLocations("/assets/");
     }
 
     @Bean

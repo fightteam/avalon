@@ -10,5 +10,10 @@ public interface Routers {
     String index = "/";
     String login = "/login";
     String dashboard = "/dashboard";
+    String opterations = "/opterations";
+    String resources = "/resources";
+    String permissions = "/permissions";
+    String roles = "/roles";
+    String users = "/users";
 
 }

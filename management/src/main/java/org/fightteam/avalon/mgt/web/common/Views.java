@@ -8,6 +8,11 @@ package org.fightteam.avalon.mgt.web.common;
  * @since 0.0.1
  */
 public interface Views {
-    String login = "/login";
-    String dashboard = "/dashboard";
+    String login = "login";
+    String dashboard = "dashboard";
+    String opterations = "opterations";
+    String resources = "resources";
+    String permissions = "permissions";
+    String roles = "roles";
+    String users = "users";
 }

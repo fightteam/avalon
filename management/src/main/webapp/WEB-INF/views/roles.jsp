@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>控制面板</title>
+    <title>角色管理</title>
     <!-- Core CSS - Include with every page -->
     <link href="${ctx}/assets/stylesheets/bootstrap.min.css" rel="stylesheet">
 

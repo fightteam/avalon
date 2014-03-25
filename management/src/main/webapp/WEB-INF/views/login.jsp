@@ -9,7 +9,7 @@
     <title>登录</title>
 </head>
 <body>
-
+登陆
 <jsp:include page="../layouts/footer.jsp"/>
 </body>
 </html>
