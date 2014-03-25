@@ -43,7 +43,7 @@ module.exports = (grunt)->
 					'<%= config.assets %>/**/*.coffee'
 					'!<%= config.assets %>/bower_components/**'
 				]
-				tasks: ['coffee:dist','develop','delayed-livereload']
+				tasks: ['coffee:dist', 'uglify:dist','develop','delayed-livereload']
 
 			jade:
 				files:[
@@ -138,7 +138,7 @@ module.exports = (grunt)->
 			    files: [{
 			        expand: true,
 			        cwd: '<%= config.assets %>'
-			        src: '{,*/}*.coffee'
+			        src: ['**/*.coffee', '!<%= config.assets %>/bower_components/**']
 			        dest: '<%= config.app %>'
 			        ext: '.js'
 			    }]
@@ -200,6 +200,17 @@ module.exports = (grunt)->
 			jquery:
 				src: '<%= config.assets %>/bower_components/jquery/dist/jquery.js',
 				dest: '<%= config.app %>/public/javascripts/jquery.min.js'
+			dist:
+				files:[
+					{
+						expand: true
+						cwd: '<%= config.app %>/public/javascripts'
+						src: ['!{,*/}*.min.js', '{,*/}*.js']
+						dest: '<%= config.app %>/public/javascripts'
+						ext: '.min.js'
+					}
+				]
+				
 		develop: 
 		  server: 
 		    file: '<%= config.app %>/app.js'
@@ -249,6 +260,7 @@ module.exports = (grunt)->
 	grunt.registerTask 'complie', [
 		'clean:app'
 		'coffee:dist'
+		'uglify:dist'
 		'less'
 		'copy'
 		'concat'

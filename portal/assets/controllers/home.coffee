@@ -25,4 +25,7 @@ exports.index = (req, res)->
 			{
 				url:'bootstrap.min.js'
 			}
+			{
+				url:'home.min.js'
+			}
 		]

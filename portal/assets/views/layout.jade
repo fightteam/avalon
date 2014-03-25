@@ -5,7 +5,7 @@ html(lang='#{ lang }')
     meta(name='viewport', content='width=device-width')
     title= title
     include common/head
-  body
+  body(data-spy="scroll", data-target=".navbar-fixed-top")
     block content
     include common/helper/javascripts
       
