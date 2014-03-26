@@ -1,0 +1,27 @@
+extends layouts/default
+
+block content
+	section.section-a
+		div.container
+			div.row
+				div.col-lg-6.col-md-4.col-sm-6.col-sm-offset-3.col-md-offset-4.col-lg-4
+					div.login-form-section.clearfix.animated.flipInY
+						div.animated.bounceInDown
+							i.fa.fa-rocket.fa-5x
+					form(id="", method="", action="").animated.fadeInUp
+						div.form-group
+							div.input-group.input-group-lg
+								span.input-group-addon
+									i.fa.fa-user
+								input(type="text", placeholder="账号", name="username").form-control
+						div.form-group
+							div.input-group.input-group-lg
+								span.input-group-addon
+									i.fa.fa-key
+								input(type="password", placeholder="密码", name="password").form-control
+						div.checkbox
+							label
+								input(type="checkbox")
+								|记住我
+						button(type="submit").btn.btn-default 登陆
+						a(href="#") 忘记密码？

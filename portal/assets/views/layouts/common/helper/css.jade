@@ -1,0 +1,11 @@
+each stylesheet in stylesheets
+	if stylesheet.absolute 
+		if stylesheet.media == null
+			link(rel='stylesheet', href='#{ stylesheet.url }')
+		else
+			link(rel='stylesheet', href='#{ stylesheet.url }', media='#{ stylesheet.media }')
+	else
+		if stylesheet.media == null
+			link(rel='stylesheet', href='/stylesheets/#{ stylesheet.url }')
+		else
+			link(rel='stylesheet', href='/stylesheets/#{ stylesheet.url }', media='#{ stylesheet.media }')

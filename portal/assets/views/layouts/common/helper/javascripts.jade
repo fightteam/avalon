@@ -1,0 +1,6 @@
+each javascript in javascripts
+        unless javascript.head
+          if javascript.absolute
+            script(src='#{ javascript.url }')
+          else
+            script(src='/javascripts/#{ javascript.url }')

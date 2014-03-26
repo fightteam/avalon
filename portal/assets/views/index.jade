@@ -1,0 +1,62 @@
+extends layouts/default
+
+block content
+	div.intro-header
+		div.intro-message
+			h1 Avalon开放图书馆
+			h3 这里是书的世界
+			hr.intro-divider
+			ul.list-inline.intro-social-buttons
+				li
+					a(href="library").btn.btn-info.btn-lg
+						span.glyphicon.glyphicon-home 
+						|进入图书馆
+				li
+					a(href="online").btn.btn-info.btn-lg
+						span.glyphicon.glyphicon-book
+						|进入书堂
+				li
+					a(href="#").btn.btn-info.btn-lg
+						span.glyphicon.glyphicon-cog 
+						|进入管理页面
+	section.section-a
+		div.container
+			div.row
+				div.col-lg-5.col-sm-6
+					hr.section-heading-spacer
+					div.clearfix
+					h2.section-heading 书说:
+						br
+						|我的世界原来可以这么强大
+					p.lead 决绝单调的读书生涯，祛疑、求精、辩论.....，
+						|我们是一群活泼的小精灵。
+						a(target="_blank") 网络在线书堂
+						|简单轻松实现在线交流。
+				div.col-lg-5.col-lg-offset-2.col-sm-6
+					img(src="images/ipad.png", alt="书堂图片").img-responsive
+	section.section-colored.text-center
+		div.container
+			div.row
+				div.col-lg-12
+					h2 精美的页面: 简洁 & 易用的功能
+					p 兼容了主流浏览器的使用效果，针对有的浏览器深度优化了显示效果。
+					hr
+	section.section-b
+		div.container
+			div.row
+				div.col-lg-6.col-md-6.col-sm-6
+					img(src="images/books.jpg").img-responsive
+				div.col-lg-6.col-md-6.col-sm-6
+					h2 目前提供的功能:
+					ul
+						li 精美的页面
+						li 多终端支持
+						li 跨平台支持
+						li 支持API调用
+	section.banner
+		div.container
+			div.row
+				div.col-lg-12.text-center
+					h2 进入书堂分享我的学习成果:
+						a(href="online") 网络在线书堂
+
