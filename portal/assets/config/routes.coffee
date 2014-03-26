@@ -7,6 +7,19 @@ module.exports = (app)->
 	home = require('../controllers/home')
 	app.get '/', home.index
 
-	# user route
-	user = require '../controllers/user'
-	app.get '/user', user.index
+	# register route
+	register = require '../controllers/register'
+	app.get '/register', register.index
+
+	# login route
+	login = require '../controllers/login'
+	app.get '/login', login.index
+
+	# online route
+	online = require '../controllers/online'
+	app.get '/online', online.index
+
+	# books route
+	library = require '../controllers/library'
+	app.get '/library', library.index
+	app.get '/library/books/:id', library.book

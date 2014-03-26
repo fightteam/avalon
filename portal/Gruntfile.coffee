@@ -62,10 +62,15 @@ module.exports = (grunt)->
 					'<%= config.assets %>/public/stylesheets/{,*/}*.{scss,sass}'
 				]
 				tasks:[
-					'compass:dev'
+					'compass:dist'
 					'autoprefixer'
 					'cssmin'
 				]
+			css:
+				files:[
+					'<%= config.assets %>/public/stylesheets/{,*/}*.css'
+				]
+				tasks: ['copy:css']
 			less:
 				files:[
 					'<%= config.assets %>/public/stylesheets/{,*/}*.less'
@@ -77,7 +82,7 @@ module.exports = (grunt)->
 				]
 				tasks:['imagemin']
 		clean:
-			app:['<%= config.app %>']
+			app:['<%= config.app %>','.tmp']
 			dist:['<%= concat.bootstrap.dest %>']
 				
 		modernizr:{}
@@ -241,6 +246,26 @@ module.exports = (grunt)->
 				expand: true
 				cwd: '<%= config.assets %>/bower_components/bootstrap/fonts'
 				src: '**'
+				dest: '<%= config.app %>/public/fonts'
+			css:
+				expand: true
+				cwd: '<%= config.assets %>/public/stylesheets'
+				src: '{,*/}*.css'
+				dest: '.tmp/styles'
+			animate:
+				expand: true
+				cwd: '<%= config.assets %>/bower_components/animate.css'
+				src: 'animate.min.css'
+				dest: '<%= config.app %>/public/stylesheets'
+			font_awesome_css:
+				expand: true
+				cwd: '<%= config.assets %>/bower_components/font-awesome/css'
+				src: ['font-awesome.min.css']
+				dest: '<%= config.app %>/public/stylesheets'
+			font_awesome_fonts:
+				expand: true
+				cwd: '<%= config.assets %>/bower_components/font-awesome/fonts'
+				src: ['**']
 				dest: '<%= config.app %>/public/fonts'
 
 	})

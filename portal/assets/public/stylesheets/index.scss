@@ -74,17 +74,3 @@
 footer{
 	padding: 50px 0;
 }
-@media(min-width:767px) {
-    .navbar.affix-top{
-        padding: 20px 0;
-        
-    }
-    .navbar.navbar-ease{
-    	transition: background .5s ease-in-out,padding .5s ease-in-out;
-    }
-
-    .navbar.affix {
-        /* Customize the look and feel of the collapsed top nav here */
-        padding: 0;
-    }
-}

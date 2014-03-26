@@ -1,31 +1,14 @@
+model = require '../models/model'
+clone = require '../helper/clone'
+model = clone model
+model.stylesheets.push 
+	url:'index.min.css'
+model.stylesheets.push 
+	url: 'animate.min.css'
+model.stylesheets.push 
+	url: 'responsive-over-767.min.css'
+	media: 'screen and (min-width: 767px)'
+model.javascripts.push
+	url:'home.min.js'
 exports.index = (req, res)->
-	res.render 'home/index', 
-		title: 'avalon书城'
-		lang: 'zh_CN'
-		stylesheets: [
-			{
-				url:'bootstrap.min.css'
-			}
-			# {
-			# 	url:'bootstrap-theme-metro.min.css'
-			# }
-			{
-				url:'index.min.css'
-			}
-		]
-		javascripts:[
-			{
-				head: true
-				absolute: true
-				url:'http://localhost:35729/livereload.js'
-			}
-			{
-				url:'jquery.min.js'
-			}
-			{
-				url:'bootstrap.min.js'
-			}
-			{
-				url:'home.min.js'
-			}
-		]
+	res.render 'index', model

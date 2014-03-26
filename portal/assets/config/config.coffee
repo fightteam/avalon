@@ -8,6 +8,7 @@ env = process.env.NODE_ENV || 'development'
 config = 
   development: 
     root: rootPath
+    livereload:true
     app: 
       name: 'n'
     port: 3000
