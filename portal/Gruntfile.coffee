@@ -57,6 +57,11 @@ module.exports = (grunt)->
 					'<%= config.assets %>/views/**/*.jade'
 				]
 				tasks: ['copy:dist']
+			copy_js:
+				files:[
+					'<%= config.assets %>/public/javascripts/{,*/}*.js'
+				]
+				tasks: ['copy:js','uglify:dist']
 			compass:
 				files:[
 					'<%= config.assets %>/public/stylesheets/{,*/}*.{scss,sass}'
@@ -267,6 +272,11 @@ module.exports = (grunt)->
 				cwd: '<%= config.assets %>/bower_components/font-awesome/fonts'
 				src: ['**']
 				dest: '<%= config.app %>/public/fonts'
+			js:
+				expand: true
+				cwd: '<%= config.assets %>/public/javascripts'
+				src: ['{,*/}*.js']
+				dest: '<%= config.app %>/public/javascripts'
 
 	})
 

@@ -4,11 +4,18 @@ model = clone model
 model.stylesheets.push 
 	url: 'animate.min.css'
 model.stylesheets.push 
+	url: 'font-awesome.min.css'
+model.stylesheets.push 
 	url: 'responsive-over-767.min.css'
 	media: 'screen and (min-width: 767px)'
 model.stylesheets.push 
 	url:'online.min.css'
 
+
+model.javascripts.push
+	url:'RTCMultiConnection.min.js'
+model.javascripts.push
+	url:'getMediaElement.min.js'
 model.javascripts.push
 	url:'online.min.js'
 exports.index = (req, res)->
