@@ -43,7 +43,7 @@ module.exports = (grunt)->
 					'<%= config.assets %>/**/*.coffee'
 					'!<%= config.assets %>/bower_components/**'
 				]
-				tasks: ['coffee:dev']
+				tasks: ['coffee:dist', "copy:js_min"]
 
 			jade:
 				files:[
@@ -156,14 +156,6 @@ module.exports = (grunt)->
 			        src: ['**/*.coffee', '!<%= config.assets %>/bower_components/**']
 			        dest: '<%= config.app %>'
 			        ext: '.js'
-			    }]
-		    dev: 
-			    files: [{
-			        expand: true,
-			        cwd: '<%= config.assets %>'
-			        src: ['**/*.coffee', '!<%= config.assets %>/bower_components/**']
-			        dest: '<%= config.app %>'
-			        ext: '.min.js'
 			    }]
 			test: 
 			    files: [{
@@ -285,6 +277,12 @@ module.exports = (grunt)->
 				cwd: '<%= config.assets %>/public/javascripts'
 				src: ['{,*/}*.js']
 				dest: '<%= config.app %>/public/javascripts'
+			js_min:
+				expand: true
+				cwd: '<%= config.app %>/public/javascripts'
+				src: ['{,*/}*.js']
+				dest: '<%= config.app %>/public/javascripts'
+				ext: '.min.js'
 			font:
 				expand: true
 				cwd: '<%= config.assets %>/public/fonts'
@@ -313,10 +311,10 @@ module.exports = (grunt)->
 	grunt.registerTask 'complie', [
 		'clean:app'
 		'coffee:dist'
-		'uglify:bootstrap'
 		'less'
 		'copy'
 		'concat'
+		'uglify:bootstrap'
 		'uglify:jquery'
 		'clean:dist'
 		'compass:dist'
