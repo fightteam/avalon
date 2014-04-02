@@ -1,10 +1,25 @@
 extends ../layouts/online
 
 block content
-	video#screen
-	canvas#blackboard
-	div.chat-btn
-		span 33
-		i.fa.fa-comment.fa-5x
+	div.container-fluid
+		div.row
+			div.col-lg-12
+				div#blackboard.panel.panel-default
+					div.panel-heading
+						button(type="button", id="brush").btn.btn-default
+							i.typcn.typcn-brush
+						button(type="button", id="pencil").btn.btn-default 
+							i.fa.fa-pencil
+						button(type="button", id="arrows").btn.btn-default
+							i.fa.fa-arrows
+						button(type="button", id="eraser").btn.btn-default
+							i.fa.fa-eraser
+						button(type="button", id="eraser").btn.btn-default
+							i.fa.fa-tachometer
+						button(type="button", id="picture").btn.btn-default
+							i.fa.fa-picture-o
+					div.panel-body 
+						canvas(width="1584", height="719")#blackboard-body
+
 		
 	

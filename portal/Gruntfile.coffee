@@ -43,7 +43,7 @@ module.exports = (grunt)->
 					'<%= config.assets %>/**/*.coffee'
 					'!<%= config.assets %>/bower_components/**'
 				]
-				tasks: ['coffee:dist', 'uglify:dist','develop','delayed-livereload']
+				tasks: ['coffee:dev']
 
 			jade:
 				files:[
@@ -61,7 +61,7 @@ module.exports = (grunt)->
 				files:[
 					'<%= config.assets %>/public/javascripts/{,*/}*.js'
 				]
-				tasks: ['copy:js','uglify:dist']
+				tasks: ['copy:js']
 			compass:
 				files:[
 					'<%= config.assets %>/public/stylesheets/{,*/}*.{scss,sass}'
@@ -156,6 +156,14 @@ module.exports = (grunt)->
 			        src: ['**/*.coffee', '!<%= config.assets %>/bower_components/**']
 			        dest: '<%= config.app %>'
 			        ext: '.js'
+			    }]
+		    dev: 
+			    files: [{
+			        expand: true,
+			        cwd: '<%= config.assets %>'
+			        src: ['**/*.coffee', '!<%= config.assets %>/bower_components/**']
+			        dest: '<%= config.app %>'
+			        ext: '.min.js'
 			    }]
 			test: 
 			    files: [{
@@ -277,6 +285,11 @@ module.exports = (grunt)->
 				cwd: '<%= config.assets %>/public/javascripts'
 				src: ['{,*/}*.js']
 				dest: '<%= config.app %>/public/javascripts'
+			font:
+				expand: true
+				cwd: '<%= config.assets %>/public/fonts'
+				src: ['**']
+				dest: '<%= config.app %>/public/fonts'
 
 	})
 
@@ -300,11 +313,11 @@ module.exports = (grunt)->
 	grunt.registerTask 'complie', [
 		'clean:app'
 		'coffee:dist'
-		'uglify:dist'
+		'uglify:bootstrap'
 		'less'
 		'copy'
 		'concat'
-		'uglify'
+		'uglify:jquery'
 		'clean:dist'
 		'compass:dist'
 		'autoprefixer'
