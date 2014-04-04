@@ -7,7 +7,7 @@ import org.fightteam.join.dao.entity.AbstractEntity;
 import javax.persistence.Entity;
 
 /**
- * 分类
+ * [description]
  *
  * @author faith
  * @since 0.0.1
@@ -15,14 +15,5 @@ import javax.persistence.Entity;
 @Entity
 @Getter
 @Setter
-public class Category extends AbstractEntity<Long> {
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+public class Room extends AbstractEntity<Long> {
 }

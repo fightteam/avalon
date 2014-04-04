@@ -48,18 +48,18 @@
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>名称</th>
-                                    <th>权限定义</th>
-                                    <th>是否可用</th>
-                                    <th>资源类型</th>
-                                </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>名称</th>
+                                        <th>权限定义</th>
+                                        <th>是否可用</th>
+                                        <th>资源类型</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${page}" varStatus="status" var="a">
+                                     <c:forEach items="${page}" varStatus="status" var="a">
 
-                                </c:forEach>
+                                     </c:forEach>
                                 </tbody>
                             </table>
                         </div>

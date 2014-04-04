@@ -3,37 +3,117 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true" %>
 <!-- Static navbar -->
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">切换显示</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">avalon 管理系统</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="../navbar/">设置</a></li>
-                <li><a href="../navbar-fixed-top/">管理员</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</div><!--./navbar-->
 
-<nav id="bt-menu" class="bt-menu">
-    <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
-    <ul>
-        <li><a href="${ctx}/dashborad" class="fa fa-tachometer" title="控制面板">控制面板</a></li>
-        <li><a href="${ctx}/books" class="fa fa-book" title="书籍管理">书籍管理</a></li>
-        <li><a href="${ctx}/chats" class="fa fa-comments-o" title="聊天室管理">聊天室管理</a></li>
-        <li><a href="${ctx}/users" class="fa fa-user" title="用户管理">用户管理</a></li>
-        <li><a href="${ctx}/permissions" class="fa fa-gavel" title="权限管理">权限管理</a></li>
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+            <span class="sr-only">显示切换</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">avalon 管理系统</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-messages">
+            <li>
+                <a href="#">
+                    <div>
+                        <strong>系统消息</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>昨天</em>
+                                    </span>
+                    </div>
+                    <div>你提交的数据已经更新</div>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#">
+                    <div>
+                        <strong>管理员</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>前天</em>
+                                    </span>
+                    </div>
+                    <div>你申请的权限已经通过</div>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a class="text-center" href="#">
+                    <strong>跟多消息</strong>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul><!-- /.dropdown-messages -->
+    </li><!-- /.dropdown -->
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-alerts">
+            <li>
+                <a href="#">
+                    <div>
+                        <i class="fa fa-comment fa-fw"></i> 评论
+                        <span class="pull-right text-muted small">4分钟前</span>
+                    </div>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#">
+                    <div>
+                        <i class="fa fa-envelope fa-fw"></i> 消息
+                        <span class="pull-right text-muted small">4分钟前</span>
+                    </div>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#">
+                    <div>
+                        <i class="fa fa-tasks fa-fw"></i> 任务
+                        <span class="pull-right text-muted small">4分钟前</span>
+                    </div>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a class="text-center" href="#">
+                    <strong>更多提示</strong>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+        <!-- /.dropdown-alerts -->
+    </li>
+    <!-- /.dropdown -->
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+            <li><a href="#"><i class="fa fa-user fa-fw"></i> 用户信息</a>
+            </li>
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
+            </li>
+            <li class="divider"></li>
+            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
+            </li>
+        </ul>
+        <!-- /.dropdown-user -->
+    </li>
+    <!-- /.dropdown -->
     </ul>
-    <ul>
-        <li><a href="${ctx}/resoures" class="fa fa-clipboard" title="资源管理">资源管理</a></li>
-        <li><a href="${ctx}/roles" class="fa fa-users" title="角色管理">角色管理</a></li>
-    </ul>
-</nav><!--./bt-menu-->
+    <!-- /.navbar-top-links -->
+
+</nav>
+<!-- /.navbar-static-top -->

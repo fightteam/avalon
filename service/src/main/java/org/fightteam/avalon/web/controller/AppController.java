@@ -7,11 +7,17 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.ResourceProcessor;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 /**
- * [description]
+ * 首页开放链接
+ *
+ * 会根据用户权限列出
+ *
+ * 也会给予游客对应的链接
  *
  * @author faith
  * @since 0.0.1
@@ -24,9 +30,7 @@ public class AppController implements ResourceProcessor<RepositoryLinksResource>
 
     @Override
     public RepositoryLinksResource process(RepositoryLinksResource linksResource) {
-        //Link link = new Link("login","login");
-//        linksResource.add(linkTo(LoginController.class).slash("login").withRel("login"));
-//        linksResource.add(linkTo(RegisterController.class).slash("register").withRel("register"));
+
         return linksResource;
     }
 }
