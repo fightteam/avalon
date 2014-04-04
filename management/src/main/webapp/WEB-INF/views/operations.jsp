@@ -1,5 +1,5 @@
 <%--
-    角色管理
+    操作管理
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true" %>
 <jsp:include page="../layouts/namespace.jsp"/>
@@ -29,7 +29,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">角色管理</h1>
+                <h1 class="page-header">操作管理</h1>
             </div> <!-- /.col-lg-12 -->
         </div><!-- /.row -->
         <div class="row">
@@ -50,9 +50,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th>名称</th>
-                                    <th>权限定义</th>
+                                    <th>操作定义</th>
                                     <th>是否可用</th>
-                                    <th>资源类型</th>
                                 </tr>
                                 </thead>
                                 <tbody>

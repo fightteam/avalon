@@ -15,4 +15,6 @@ public interface Views {
     String permissions = "permissions";
     String roles = "roles";
     String users = "users";
+    String books = "books";
+    String rooms = "rooms";
 }

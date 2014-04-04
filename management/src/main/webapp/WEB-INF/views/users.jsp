@@ -1,6 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
-    控制面板
+    用户管理
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true" %>
 <jsp:include page="../layouts/namespace.jsp"/>
@@ -8,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>用户管理</title>
+    <title>avalon 管理系统</title>
     <!-- Core CSS - Include with every page -->
     <link href="${ctx}/assets/stylesheets/bootstrap.min.css" rel="stylesheet">
 
@@ -30,7 +29,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">资源管理</h1>
+                <h1 class="page-header">用户管理</h1>
             </div> <!-- /.col-lg-12 -->
         </div><!-- /.row -->
         <div class="row">
