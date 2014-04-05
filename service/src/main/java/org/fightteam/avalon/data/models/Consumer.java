@@ -4,8 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.fightteam.join.auth.data.models.User;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * portal用户
@@ -18,4 +19,16 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 public class Consumer extends User {
+
+    private String name;
+    private String nickname;
+
+    @ManyToMany
+    private List<Book> books = new ArrayList<>();
+
+    @OneToMany(mappedBy = "sender")
+    private List<Message> sendMessages = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "recipients")
+    private List<Message> receiveMessages = new ArrayList<>();
 }

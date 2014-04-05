@@ -10,17 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 分类
  *
- * @author faith
+ * 作者
+ *
+ * @author excalibur
  * @since 0.0.1
  */
 @Entity
 @Getter
 @Setter
-public class Category extends AbstractEntity<Long> {
+public class Author extends AbstractEntity<Long> {
     private String name;
-
-    @ManyToMany(mappedBy = "categories")
+    private String email;
+    private String url;
+    private String nationality;
+    @ManyToMany(mappedBy = "authors")
     private List<Book> books = new ArrayList<>();
 }

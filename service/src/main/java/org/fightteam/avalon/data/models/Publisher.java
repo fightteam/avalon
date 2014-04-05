@@ -6,21 +6,23 @@ import org.fightteam.join.dao.entity.AbstractEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 分类
  *
- * @author faith
+ * 出版社
+ *
+ * @author excalibur
  * @since 0.0.1
  */
 @Entity
 @Getter
 @Setter
-public class Category extends AbstractEntity<Long> {
+public class Publisher extends AbstractEntity<Long> {
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
+    @OneToMany(mappedBy = "publisher")
     private List<Book> books = new ArrayList<>();
 }
