@@ -77,13 +77,16 @@
 
 
 <!-- Core Scripts - Include with every page -->
-<script src="${ctx}/assets/javascripts/jquery-2.1.0.min.js"></script>
-<script src="${ctx}/assets/javascripts/bootstrap.min.js"></script>
+<script src="${ctx}/assets/plugins/jquery/jquery-2.1.0.min.js"></script>
+<script src="${ctx}/assets/plugins/bootstrap/bootstrap.min.js"></script>
 
-<!-- Page-Level Plugin Scripts - Dashboard -->
-<script src="${ctx}/assets/plugins/metis-menu/jquery.metisMenu.js"></script>
 <!-- Theme Scripts - Include with every page -->
 <script src="${ctx}/assets/javascripts/admin-base.js"></script>
+<script src="${ctx}/assets/plugins/metis-menu/jquery.metisMenu.js"></script>
+
+<!-- Page-Level Plugin Scripts - operation -->
+<script src="${ctx}/assets/javascripts/operations.js"></script>
+
 
 <script>
 

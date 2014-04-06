@@ -33,6 +33,9 @@ public class RestRouters {
     @Value("${rest.roles}")
     private String roles;
 
+    @Value("${rest.roles}")
+    private String opterations;
+
     /**
      * 拼接URL
      *
@@ -63,5 +66,9 @@ public class RestRouters {
 
     public String getUsersModel() {
         return connection(usersModel);
+    }
+
+    public String getOpterations() {
+        return connection(opterations);
     }
 }

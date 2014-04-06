@@ -10,7 +10,7 @@ package org.fightteam.avalon.mgt.web.common;
 public interface Views {
     String login = "login";
     String dashboard = "dashboard";
-    String opterations = "opterations";
+    String opterations = "operations";
     String resources = "resources";
     String permissions = "permissions";
     String roles = "roles";

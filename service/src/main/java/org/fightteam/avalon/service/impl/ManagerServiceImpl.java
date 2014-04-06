@@ -9,4 +9,5 @@ import org.fightteam.avalon.service.ManagerService;
  * @since 0.0.1
  */
 public class ManagerServiceImpl implements ManagerService {
+
 }

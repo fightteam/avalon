@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baseUrl" content="${ctx}">
     <title>avalon 管理系统</title>
     <!-- Core CSS - Include with every page -->
     <link href="${ctx}/assets/stylesheets/bootstrap.min.css" rel="stylesheet">
@@ -78,18 +79,8 @@
 
 
 <!-- Core Scripts - Include with every page -->
-<script src="${ctx}/assets/javascripts/jquery-2.1.0.min.js"></script>
-<script src="${ctx}/assets/javascripts/bootstrap.min.js"></script>
+<script src="${ctx}/assets/plugins/requirejs/require.js" data-main="${ctx}/assets/javascripts/application"></script>
 
-<!-- Page-Level Plugin Scripts - Dashboard -->
-<script src="${ctx}/assets/plugins/metis-menu/jquery.metisMenu.js"></script>
-<!-- Theme Scripts - Include with every page -->
-<script src="${ctx}/assets/javascripts/admin-base.js"></script>
-
-<script>
-
-
-</script>
 </body>
 </html>
 

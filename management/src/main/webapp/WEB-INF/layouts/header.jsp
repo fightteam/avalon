@@ -12,7 +12,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">avalon 管理系统</a>
+        <a class="navbar-brand" href="${ctx}">avalon 管理系统</a>
     </div>
     <!-- /.navbar-header -->
 
