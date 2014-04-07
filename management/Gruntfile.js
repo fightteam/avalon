@@ -212,7 +212,7 @@ module.exports = function (grunt) {
                         'underscore': '../../app/bower_components/underscore/underscore',
                         'backbone': '../../app/bower_components/backbone/backbone'
                     },
-                    // TODO: Figure out how to make sourcemaps work with grunt-usemin
+
                     // https://github.com/yeoman/grunt-usemin/issues/30
                     //generateSourceMaps: true,
                     // required to support SourceMaps
