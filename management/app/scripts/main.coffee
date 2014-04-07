@@ -18,8 +18,8 @@ require.config
     jquery: '../bower_components/jquery/dist/jquery'
     backbone: '../bower_components/backbone/backbone'
     underscore: '../bower_components/underscore/underscore'
-    bootstrap: '../bower_components/sass-bootstrap/dist/js/bootstrap'
-
+    bootstrap: '../bower_components/bootstrap/dist/js/bootstrap'
+    moment: '../bower_components/momentjs/min/moment-with-langs'
 require [
   'backbone'
   'routes/router'

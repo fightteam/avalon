@@ -15,11 +15,11 @@ import org.springframework.http.MediaType;
 @Configuration
 public class RestConfig extends AbstractRestConfiguration {
 
-    @Override
-    protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-//        config.setDefaultMediaType(MediaType.APPLICATION_JSON);
+//     @Override
+//     protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+// //        config.setDefaultMediaType(MediaType.APPLICATION_JSON);
 
-    }
+//     }
 
 
 }

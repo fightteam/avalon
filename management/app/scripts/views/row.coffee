@@ -2,12 +2,10 @@ define [
   'jquery'
   'underscore'
   'backbone'
-  'templates'
-], ($, _, Backbone, JST) ->
+], ($, _, Backbone) ->
   class RowView extends Backbone.View
-    template: JST['app/scripts/templates/row.ejs']
 
-    tagName: 'div'
+    tagName: 'tr'
 
     id: ''
 
@@ -16,7 +14,13 @@ define [
     events: {}
 
     initialize: () ->
+        console.log 'row' 
         @listenTo @model, 'change', @render
 
     render: () ->
-        @$el.html @template(@model.toJSON())
+        for k, v of @model.toJSON()
+          td = $("<td/>")
+          td.text v
+          @$el.append td
+
+

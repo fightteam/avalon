@@ -3,6 +3,7 @@
 ###
 define [
   'backbone'
+  'bootstrap'
 ], (Backbone) ->
 	class Workspace extends Backbone.Router
 		routes: 
