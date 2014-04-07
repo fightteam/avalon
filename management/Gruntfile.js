@@ -48,6 +48,10 @@ module.exports = function (grunt) {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
                 tasks: ['less']
             },
+            autoprefixer: {
+                files: ['.tmp/styles/{,*/}*.css'],
+                tasks: ['autoprefixer']
+            },
             livereload: {
                 options: {
                     livereload: LIVERELOAD_PORT
@@ -193,10 +197,20 @@ module.exports = function (grunt) {
                 files:[{
                     expand: true,
                     cwd: '<%= yeoman.app %>/styles',
-                    src: '*.less',
+                    src: '{,*/}*.less',
                     dest: '.tmp/styles',
                     ext: '.css'
                     }]
+            }
+        },
+        autoprefixer: {
+            options: {},
+            server: {
+                expand: true,
+                cwd: '.tmp/styles',
+                src: '{,*/}*.css',
+                dest: '.tmp/styles',
+                ext: '.css'
             }
         },
         requirejs: {
@@ -359,6 +373,7 @@ module.exports = function (grunt) {
             'jst',
             'less',
             'compass:server',
+            'autoprefixer',
             'connect:livereload',
             'open:server',
             'watch'
