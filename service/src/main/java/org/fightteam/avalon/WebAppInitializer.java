@@ -1,6 +1,9 @@
 package org.fightteam.avalon;
 
+import org.fightteam.avalon.web.CORSFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 /**
  * [description]
@@ -25,6 +28,8 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     }
 
 
-
-
+    @Override
+    protected Filter[] getServletFilters() {
+        return new Filter[]{ new CORSFilter()};
+    }
 }
