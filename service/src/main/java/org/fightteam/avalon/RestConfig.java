@@ -46,19 +46,5 @@ public class RestConfig extends AbstractRestConfiguration {
 
         return jacksonConverter;
     }
-    @Bean
-    public MappingJackson2HttpMessageConverter halJacksonHttpMessageConverter() {
-
-        ArrayList<MediaType> mediaTypes = new ArrayList<MediaType>();
-
-
-        mediaTypes.add(MediaType.APPLICATION_JSON);
-        mediaTypes.add(MediaTypes.HAL_JSON);
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        converter.setObjectMapper(halObjectMapper());
-        converter.setSupportedMediaTypes(mediaTypes);
-
-        return converter;
-    }
 
 }
