@@ -10,8 +10,10 @@ define [
 
   class TableModel extends Backbone.Model
 
-    initialize: () ->
-
+    initialize: (options) ->
+    	# if options.url
+    	# 	@url = options.url
+    	
     defaults: {
 
     }

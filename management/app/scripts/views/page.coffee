@@ -7,6 +7,7 @@ define [
   'backbone'
   'templates'
 ], ($, _, Backbone, JST) ->
+
   class PageView extends Backbone.View
     template: JST['app/scripts/templates/page.ejs']
 
@@ -18,11 +19,17 @@ define [
 
     events: {}
 
-    initialize: () ->
-        @listenTo @model, 'change', @render
-        
+    view: null
+
+    initialize: (options) ->
+      @view = options.view
+      @listenTo @model, 'change', @render
+
     render: () ->
-        @$el.html @template @model.toJSON()
-        @renderView @model.toJSON().view
+      
+      # 为了dom性能 最后渲染
+      @$el.append @template @model.toJSON()
+      @$el.append @view.render()
+
     renderView: (view)->
-        @$el.append view.render()
+      @$el.append view.render()

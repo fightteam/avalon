@@ -3,7 +3,8 @@ define [
   'backbone'
   'models/operation'
   'common'
-], (_, Backbone, Operation, config) ->
+  'models/pagination'
+], (_, Backbone, Operation, config, PaginationModel) ->
 
 	class OperationCollection extends Backbone.Collection
 		model: Operation
@@ -11,7 +12,7 @@ define [
 		parse: (response)->
 			response._embedded.operations
 		initialize: ()->
-
+			@listenTo @, "sync", @renderCall
 			# $.ajax 
 			# 	url: config.rest.operations
 			# .done (data)->
@@ -38,7 +39,10 @@ define [
 
 			(@sync || Backbone.sync).call @, 'read', @, options
 				
-				
-					
+		renderCall:(collection, resp)->
+			# 分页渲染
+            @pagination = new PaginationModel resp.page
+            @pagination.set resp._links
+			
 
 	new OperationCollection()

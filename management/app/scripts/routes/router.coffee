@@ -29,17 +29,17 @@ define [
 				$('#page-wrapper').html view.render()
 
 		resources: ()->
-			require ['views/page', 'models/page'], (pageView, pageModel)->
+			require ['views/page', 'models/page', 'views/resource'], (pageView, pageModel, ResourceView)->
 				view = new pageView
 					model: new pageModel
 						title: '资源管理'
+					view: new ResourceView()
 				$('#page-wrapper').html view.render()
 
 		permissions: ()->
-			require ['views/page', 'models/page'], (pageView, pageModel)->
-				view = new pageView
-					model: new pageModel
-						title: '权限管理'
+			require ['views/permission', 'models/page'], (PermissionView)->
+				view = new PermissionView()
+
 				$('#page-wrapper').html view.render()
 
 		roles: ()->

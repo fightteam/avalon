@@ -1,0 +1,24 @@
+<ul class="pager">
+ <% if(page.number <= page.totalPages ){%>
+<li class="previous disabled"><span href="">&larr; 上一页</span></li>
+<% }else{ %>
+<li class="previous"><a href="#">&larr; 上一页</a></li>
+<% } %>
+
+<% for(var i = 0 ; i < page.totalPages ; i++){%>
+	<% if(i == page.number) {%>
+	<li class="active"><span><%= i+1 %><span class="sr-only">(本页)</span></span></li>
+	<%}else{%>
+	<li><a href="#"><%= i+1 %></a></li>
+	<%}%>
+
+<% } %>
+
+
+<% if(page.number+1 >= page.totalPages ){%>
+<li class="next disabled"><span>下一页 &rarr;</span></li>
+<% }else{ %>
+<li class="next"><a href="#">下一页 &rarr;</a></li>
+<% } %>
+
+</ul>
