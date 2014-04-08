@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ *
+ * 提供跨域
+ *
  * @author excalibur
  * @since 0.0.1
  */

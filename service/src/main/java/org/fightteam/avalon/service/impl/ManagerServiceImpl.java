@@ -10,4 +10,8 @@ import org.fightteam.avalon.service.ManagerService;
  */
 public class ManagerServiceImpl implements ManagerService {
 
+    @Override
+    public void add() {
+
+    }
 }

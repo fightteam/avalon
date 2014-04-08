@@ -1,6 +1,6 @@
 package org.fightteam.avalon.web.handler;
 
-import org.fightteam.join.auth.data.models.User;
+import org.fightteam.avalon.security.data.models.User;
 import org.springframework.data.rest.core.annotation.*;
 import org.springframework.stereotype.Component;
 

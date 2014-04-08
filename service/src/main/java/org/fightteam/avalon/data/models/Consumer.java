@@ -2,7 +2,7 @@ package org.fightteam.avalon.data.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.fightteam.join.auth.data.models.User;
+import org.fightteam.avalon.security.data.models.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;

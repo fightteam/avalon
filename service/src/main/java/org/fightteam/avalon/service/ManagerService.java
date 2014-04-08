@@ -7,4 +7,5 @@ package org.fightteam.avalon.service;
  * @since 0.0.1
  */
 public interface ManagerService {
+    void add();
 }
