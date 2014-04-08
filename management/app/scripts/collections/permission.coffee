@@ -15,4 +15,7 @@ define [
 
 			
 		initialize: ()->
-			
+			@listenTo @, "remove", @removeOne
+
+		removeOne: (model)->
+			model.destroy()

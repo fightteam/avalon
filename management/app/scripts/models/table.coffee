@@ -10,14 +10,28 @@ define [
 
   class TableModel extends Backbone.Model
 
-    initialize: (options) ->
-    	# if options.url
-    	# 	@url = options.url
-    	
     defaults: {
 
     }
 
     validate: (attrs, options) ->
+
+    idAttribute: 'id'
+
+    initialize: (options) ->
+      # 没有id 重新获取
+      if options and options._links
+        self = options._links.self.href
+        @set 'id': self.substring self.lastIndexOf('/') + 1
+
+      
+    defaults: {}
+
+    validate: (attrs, options) ->
+
+    parse: (response, options) ->
+      self = response._links.self.href
+      @set 'id': self.substring self.lastIndexOf('/') + 1
+      response
 
 

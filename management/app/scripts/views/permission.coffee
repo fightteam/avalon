@@ -5,7 +5,45 @@ define [
   'templates'
   'collections/permission'
   'common'
-], ($, _, Backbone, JST, Permissions, config) ->
+  'moment'
+  'helpers/formHelper'
+  'models/table'
+], ($, _, Backbone, JST, Permissions, config, moment, FormHelper, TableModel) ->
+
+	permissions = new Permissions()
+
+	class RowView extends Backbone.View
+
+		template: JST['app/scripts/templates/permission-row.ejs']
+
+		tagName: 'tr'
+
+		id: ''
+
+		className: ''
+
+		events: 
+			'click #delete': 'delete'
+			'click #update': 'update'
+
+		initialize: () ->
+			@listenTo @model, 'change', @render
+
+		render: () ->
+			@$el.html @template @model.toJSON()
+
+		delete: (e)->
+			permissions.remove @model
+			@remove()
+		update: (e)->
+			# 提供修页面
+			
+			# 获取修改数据
+	        console.log @model
+
+
+#=================================================================================== 
+
 
 	class PermissionView extends Backbone.View
 		template: JST['app/scripts/templates/permission.ejs']
@@ -19,22 +57,39 @@ define [
 		# className: ''
 
 		events: 
-			'click #addOperation': 'addOperation'
+			'click #add': 'add'
 
 		initialize: () ->
-			permissions = new Permissions()
+			
 			@listenTo permissions, 'sync', @renderPagination
 			@listenTo permissions, 'add', @addOne
 			@listenTo permissions, 'remove', @removeOne
 			# 默认 初始化获取数据
 			permissions.fetch()
+
 		render: ()->
 			@$el.html @template {}
+			@tbody = @$ 'tbody'
+			@tableResponsive = @$ '.table-responsive'
+			@model = @$ '#editModel'
+			@el
 
 		addOne: (model)->
-			console.log 'addOne'
+			moment.lang 'zh-CN'
+			model.set 
+			  'createDate': (moment model.get 'createDate').format('YYYY-MM-DD HH:mm:ss')
+			rowView = new RowView
+			  model: model
+			@tbody.append rowView.render()
+
+		# 钩子操作  提示需要等等
 		removeOne: (model)->
-			console.log model
+			
 			console.log 'removeOne'
+
 		renderPagination: (collections, response)->
-			@$el.append @paginationTemplate response
+			@tableResponsive.append @paginationTemplate response
+
+		add: (e)->
+			@model.model 'show'
+

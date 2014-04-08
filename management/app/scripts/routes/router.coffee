@@ -39,7 +39,6 @@ define [
 		permissions: ()->
 			require ['views/permission', 'models/page'], (PermissionView)->
 				view = new PermissionView()
-
 				$('#page-wrapper').html view.render()
 
 		roles: ()->
