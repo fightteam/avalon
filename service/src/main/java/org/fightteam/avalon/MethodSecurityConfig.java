@@ -1,13 +1,10 @@
 package org.fightteam.avalon;
 
 
-import org.fightteam.avalon.security.data.PermissionRepository;
-import org.fightteam.avalon.security.data.ResourceRepository;
-import org.fightteam.avalon.security.data.models.Permission;
+import org.fightteam.avalon.security.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.ConfigAttribute;
-import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.access.method.MapBasedMethodSecurityMetadataSource;
 import org.springframework.security.access.method.MethodSecurityMetadataSource;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,7 +12,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,10 +27,8 @@ import java.util.Map;
 public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
 
     @Autowired
-    private PermissionRepository permissionRepository;
+    private ResourceService resourceService;
 
-    @Autowired
-    private ResourceRepository resourceRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -59,11 +53,26 @@ public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
     protected MethodSecurityMetadataSource customMethodSecurityMetadataSource() {
         Map<String, List<ConfigAttribute>> methodMap = new HashMap<>();
 
-        permissionRepository.findAll();
+        // 方法权限载入
+//        for(Resource resource : resources){
+//            if (resource.getResourceType() != ResourceType.METHOD && !resource.isEnable()){
+//                continue;
+//            }
+//
+//            List<Permission> permissions = resource.getPermissions();
+//            if (permissions.size() == 0){
+//                continue;
+//            }
+//            List<ConfigAttribute> configAttributes = new ArrayList<>();
+//            for(Permission permission : permissions){
+//                if (!permission.isEnable()){
+//                    continue;
+//                }
+//                configAttributes.add(new SecurityConfig(permission.getName()));
+//            }
+//            methodMap.put(resource.getName(), configAttributes);
+//        }
 
-        List<ConfigAttribute> configAttributes = new ArrayList<>();
-        configAttributes.add(new SecurityConfig("ROLE_VIEWUSERS2"));
-        methodMap.put("org.fightteam.avalon.service.ManagerService.add",configAttributes);
         MethodSecurityMetadataSource metadataSource = new MapBasedMethodSecurityMetadataSource(methodMap);
 
         return metadataSource;

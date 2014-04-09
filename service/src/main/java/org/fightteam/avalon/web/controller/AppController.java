@@ -1,5 +1,7 @@
 package org.fightteam.avalon.web.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.rest.webmvc.RepositoryLinksResource;
@@ -25,12 +27,14 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @Controller
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class AppController implements ResourceProcessor<RepositoryLinksResource> {
-
+    private static Logger logger = LoggerFactory.getLogger(AppController.class);
 
 
     @Override
     public RepositoryLinksResource process(RepositoryLinksResource linksResource) {
-
+        System.out.println("================================");
+        System.out.println("******************************");
+        logger.info("-----------------------------");
         return linksResource;
     }
 }

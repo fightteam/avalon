@@ -1,6 +1,6 @@
 package org.fightteam.avalon.data.models;
 
-import org.fightteam.join.auth.data.models.ResourceType;
+import org.fightteam.avalon.security.data.models.ResourceType;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,6 +14,6 @@ public class ResourceTypeTest {
 
     @Test
     public void testToString(){
-        Assert.assertEquals("ACL限制", ResourceType.ACL.toString());
+        System.out.println(ResourceType.METHOD != ResourceType.METHOD);
     }
 }

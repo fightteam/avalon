@@ -25,7 +25,10 @@ description = "Avalon core Service."
                 "joda-time:joda-time:$jodaVersion",
                 "org.apache.commons:commons-lang3:$commonLang",
                 "org.jadira.usertype:usertype.core:$userType",
-                "mysql:mysql-connector-java:$mysqlVersion"
+                "mysql:mysql-connector-java:$mysqlVersion",
+                'org.aspectj:aspectjrt:1.7.4',
+                'org.aspectj:aspectjweaver:1.7.4'
+
 
         // logging
         compile "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"

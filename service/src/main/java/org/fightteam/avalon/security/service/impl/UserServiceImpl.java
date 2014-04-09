@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
@@ -34,6 +35,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
      * @return
      * @throws UsernameNotFoundException 没有该用户
      */
+    @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("==========loadUserByUsername============");

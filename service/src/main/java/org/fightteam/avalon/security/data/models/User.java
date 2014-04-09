@@ -1,5 +1,7 @@
 package org.fightteam.avalon.security.data.models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.fightteam.join.dao.entity.AbstractEntity;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
@@ -18,6 +20,8 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "userType")
 @DiscriminatorValue("user")
+@Setter
+@Getter
 public class User extends AbstractEntity<Long> {
 
     private String username;
@@ -75,179 +79,5 @@ public class User extends AbstractEntity<Long> {
     @ManyToMany
     private List<Permission> permissions = new ArrayList<>();
 
-    public String getUsername() {
-        return username;
-    }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public boolean isAccountNonExpired() {
-        return accountNonExpired;
-    }
-
-    public void setAccountNonExpired(boolean accountNonExpired) {
-        this.accountNonExpired = accountNonExpired;
-    }
-
-    public boolean isAccountNonLocked() {
-        return accountNonLocked;
-    }
-
-    public void setAccountNonLocked(boolean accountNonLocked) {
-        this.accountNonLocked = accountNonLocked;
-    }
-
-    public boolean isCredentialsNonExpired() {
-        return credentialsNonExpired;
-    }
-
-    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-        this.credentialsNonExpired = credentialsNonExpired;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public DateTime getRegisteTime() {
-        return registeTime;
-    }
-
-    public void setRegisteTime(DateTime registeTime) {
-        this.registeTime = registeTime;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public DateTime getLoginTime() {
-        return loginTime;
-    }
-
-    public void setLoginTime(DateTime loginTime) {
-        this.loginTime = loginTime;
-    }
-
-    public DateTime getLogoutTime() {
-        return logoutTime;
-    }
-
-    public void setLogoutTime(DateTime logoutTime) {
-        this.logoutTime = logoutTime;
-    }
-
-    public String getLoginIp() {
-        return loginIp;
-    }
-
-    public void setLoginIp(String loginIp) {
-        this.loginIp = loginIp;
-    }
-
-    public DateTime getLastLogoutTime() {
-        return lastLogoutTime;
-    }
-
-    public void setLastLogoutTime(DateTime lastLogoutTime) {
-        this.lastLogoutTime = lastLogoutTime;
-    }
-
-    public Integer getPasswordExpiredDays() {
-        return passwordExpiredDays;
-    }
-
-    public void setPasswordExpiredDays(Integer passwordExpiredDays) {
-        this.passwordExpiredDays = passwordExpiredDays;
-    }
-
-    public DateTime getPasswordChangeTime() {
-        return passwordChangeTime;
-    }
-
-    public void setPasswordChangeTime(DateTime passwordChangeTime) {
-        this.passwordChangeTime = passwordChangeTime;
-    }
-
-    public boolean isLoginAtSameTime() {
-        return loginAtSameTime;
-    }
-
-    public void setLoginAtSameTime(boolean loginAtSameTime) {
-        this.loginAtSameTime = loginAtSameTime;
-    }
-
-    public int getLoginAttempt() {
-        return loginAttempt;
-    }
-
-    public void setLoginAttempt(int loginAttempt) {
-        this.loginAttempt = loginAttempt;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getProblem() {
-        return problem;
-    }
-
-    public void setProblem(String problem) {
-        this.problem = problem;
-    }
-
-    public String getSolution() {
-        return solution;
-    }
-
-    public void setSolution(String solution) {
-        this.solution = solution;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
-    public List<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
-    }
 }

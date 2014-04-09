@@ -19,7 +19,7 @@
     </Appenders>
     <Loggers>
         <!--全部日志-->
-        <Root level="all">
+        <Root level="none">
             <AppenderRef ref="Console"/>
         </Root>
         <logger name="org.fightteam.join" level="all" additivity="false">
@@ -27,6 +27,9 @@
         </logger>
         <logger name="org.fightteam.avalon" level="all" additivity="false">
             <appender-ref ref="Files"/>
+        </logger>
+        <logger name="org.fightteam.avalon" level="all" additivity="false">
+            <appender-ref ref="Console"/>
         </logger>
     </Loggers>
 </Configuration>

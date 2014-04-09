@@ -1,5 +1,7 @@
 package org.fightteam.avalon.security.data.models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.fightteam.join.dao.entity.AbstractEntity;
 
 import javax.persistence.Entity;
@@ -15,6 +17,8 @@ import java.util.List;
  * @since 0.0.1
  */
 @Entity
+@Setter
+@Getter
 public class RoleGroup extends AbstractEntity<Long> {
     private String name;
     private String title;
@@ -33,67 +37,5 @@ public class RoleGroup extends AbstractEntity<Long> {
     @OneToMany(mappedBy = "roleGroup")
     private List<Role> roles = new ArrayList<>();
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Integer getSequence() {
-        return sequence;
-    }
-
-    public void setSequence(Integer sequence) {
-        this.sequence = sequence;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean isEnable() {
-        return enable;
-    }
-
-    public void setEnable(boolean enable) {
-        this.enable = enable;
-    }
-
-    public RoleGroup getParent() {
-        return parent;
-    }
-
-    public void setParent(RoleGroup parent) {
-        this.parent = parent;
-    }
-
-    public List<RoleGroup> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<RoleGroup> children) {
-        this.children = children;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
 }

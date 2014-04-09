@@ -2,12 +2,15 @@ package org.fightteam.avalon;
 
 import org.fightteam.join.rest.web.config.AbstractRestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,5 +49,6 @@ public class RestConfig extends AbstractRestConfiguration {
 
         return jacksonConverter;
     }
+
 
 }
