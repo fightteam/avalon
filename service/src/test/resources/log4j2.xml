@@ -16,10 +16,10 @@
         </File>
     </Appenders>
     <Loggers>
-        <Root level="all">
+        <Root level="none">
             <AppenderRef ref="Console"/>
         </Root>
-        <logger name="org.fightteam.join" level="all" additivity="false">
+        <logger name="org.fightteam" level="all" additivity="false">
             <appender-ref ref="Console"/>
         </logger>
     </Loggers>

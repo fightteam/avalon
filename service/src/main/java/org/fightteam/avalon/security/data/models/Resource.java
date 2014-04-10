@@ -31,7 +31,7 @@ public class Resource extends AbstractEntity<Long> {
     private ResourceType resourceType;
 
     // 本资源中的权限
-    @OneToMany(mappedBy = "resource", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "resource")
     private List<Permission> permissions = new ArrayList<>();
 
 

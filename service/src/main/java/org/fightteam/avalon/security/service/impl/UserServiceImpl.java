@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
      * @return
      * @throws UsernameNotFoundException 没有该用户
      */
-    @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
+    @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("==========loadUserByUsername============");
@@ -50,34 +50,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         List<Permission> permissions = user.getPermissions();
         List<Role> roles = user.getRoles();
 
-        Set<Permission> permissionSet = new HashSet<>();
-        Set<Role> roleSet = new HashSet<>();
 
         for(Permission permission:permissions){
-            permissionSet.add(permission);
-            PermissionGroup permissionGroup = permission.getPermissionGroup();
-            getPermissions(permissionGroup, permissionSet);
+            grantedAuthorities.addAll(AuthorityUtils.commaSeparatedStringToAuthorityList(permission.getName()));
 
+            PermissionGroup permissionGroup = permission.getPermissionGroup();
+            if (permissionGroup != null){
+                grantedAuthorities.addAll(AuthorityUtils.commaSeparatedStringToAuthorityList(permissionGroup.getName()));
+            }
         }
         for (Role role:roles){
-            roleSet.add(role);
-            RoleGroup roleGroup = role.getRoleGroup();
-            getRoles(roleGroup, roleSet);
-        }
-
-        for(Permission permission:permissionSet){
-            AuthorityUtils.commaSeparatedStringToAuthorityList(permission.getName());
-        }
-
-        for(Role role:roleSet){
             grantedAuthorities.addAll(AuthorityUtils.commaSeparatedStringToAuthorityList(role.getName()));
+
+            RoleGroup roleGroup = role.getRoleGroup();
+            if (roleGroup != null){
+                grantedAuthorities.addAll(AuthorityUtils.commaSeparatedStringToAuthorityList(roleGroup.getName()));
+            }
         }
-
-        for(Permission permission:permissionSet){
-            grantedAuthorities.addAll(AuthorityUtils.commaSeparatedStringToAuthorityList(permission.getName()));
-        }
-
-
 
         /**
          *    * @param username the username presented to the
@@ -104,25 +93,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userDetails;
     }
 
-    private Set<Permission> getPermissions(PermissionGroup permissionGroup, Set<Permission> permissionSet){
-
-        if (permissionGroup != null){
-            permissionSet.addAll(permissionGroup.getPermissions());
-            PermissionGroup parent = permissionGroup.getParent();
-            permissionSet.addAll(getPermissions(parent, permissionSet));
-        }
-        return permissionSet;
-    }
-
-    private Set<Role> getRoles(RoleGroup roleGroup, Set<Role> roleSet){
-
-        if (roleGroup != null){
-            roleSet.addAll(roleGroup.getRoles());
-            RoleGroup parent = roleGroup.getParent();
-            roleSet.addAll(getRoles(parent, roleSet));
-        }
-        return roleSet;
-    }
 
     @Override
     public boolean isUsernameExists(String username) {

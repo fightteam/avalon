@@ -27,7 +27,9 @@ description = "Avalon core Service."
                 "org.jadira.usertype:usertype.core:$userType",
                 "mysql:mysql-connector-java:$mysqlVersion",
                 'org.aspectj:aspectjrt:1.7.4',
-                'org.aspectj:aspectjweaver:1.7.4'
+                'org.aspectj:aspectjweaver:1.7.4',
+                "org.springframework:spring-tx:$springVersion",
+                "org.springframework:spring-aop:$springVersion"
 
 
         // logging

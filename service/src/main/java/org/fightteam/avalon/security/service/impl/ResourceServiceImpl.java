@@ -53,8 +53,8 @@ public class ResourceServiceImpl implements ResourceService {
         return resourceRepository.findByTitle(title);
     }
 
-    @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
     @Override
+    @Transactional(readOnly = true)
     public Map<String, String> findAllURL() {
         Map<String, String> map = new HashMap<>();
         List<Resource> resources = resourceRepository.findAll();
@@ -66,7 +66,7 @@ public class ResourceServiceImpl implements ResourceService {
             StringBuffer configAttributes = null;
 
             List<Permission> permissions = resource.getPermissions();
-            System.out.println(permissions.size());
+            System.out.println(permissions);
             for(Permission permission : permissions){
                 if (!permission.isEnable()){
                     continue;
