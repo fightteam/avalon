@@ -17,6 +17,6 @@ public class AvalonSecurityMetadataSourceTest extends SpringTest {
 
     @Test
     public void test01() throws Exception {
-        avalonSecurityMetadataSource.load();
+        System.out.println("9999");
     }
 }

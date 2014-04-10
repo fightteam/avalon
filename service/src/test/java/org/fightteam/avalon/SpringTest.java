@@ -23,7 +23,7 @@ import javax.sql.DataSource;
  * @author faith
  * @since 0.0.1
  */
-@ContextConfiguration(classes = {AppConfig.class, SpringTest.TestDataConfig.class, SecurityConfig.WebSecurityConfig.class, RestConfig.class})
+@ContextConfiguration(classes = {AppConfig.class, SpringTest.TestDataConfig.class, SecurityConfig.WebSecurityConfig.class, RestConfig.class, WebConfig.class})
 public class SpringTest extends AbstractWebIntegrationTest {
 
 

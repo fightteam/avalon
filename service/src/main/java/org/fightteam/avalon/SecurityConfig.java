@@ -2,6 +2,7 @@ package org.fightteam.avalon;
 
 
 import org.fightteam.avalon.security.AvalonSecurityMetadataSource;
+import org.fightteam.avalon.security.data.ResourceRepository;
 import org.fightteam.avalon.security.service.ResourceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.method.MapBasedMethodSecurityMetadataSource;
 import org.springframework.security.access.method.MethodSecurityMetadataSource;
@@ -45,14 +47,16 @@ public class SecurityConfig {
 
     @Configuration
     @EnableWebSecurity
+    @Lazy
     public static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Autowired
         private UserDetailsService userDetailsService;
 
-        @Autowired
-
-        private AvalonSecurityMetadataSource avalonSecurityMetadataSource;
+//        @Autowired
+//        private AvalonSecurityMetadataSource avalonSecurityMetadataSource;
+//        @Autowired
+//        private ResourceService resourceService;
 
         /**
          * 主要配置哪里载入用户信息
@@ -72,6 +76,12 @@ public class SecurityConfig {
         }
 
 
+//        @Bean
+//        @Lazy
+//        public AvalonSecurityMetadataSource avalonSecurityMetadataSource(){
+//
+//            return new AvalonSecurityMetadataSource(resourceService);
+//        }
 
 
         /**
@@ -118,21 +128,21 @@ public class SecurityConfig {
 //            }
 //            web.ignoring().antMatchers(resource.getName());
 //        }
-//            final HttpSecurity http = getHttp();
-//            web.postBuildAction(new Runnable() {
-//                @Override
-//                public void run() {
-//                    logger.debug("set security avalonSecurityMetadataSource");
-//                    System.out.println("-----------------------");
-//                    FilterSecurityInterceptor securityInterceptor = http.getSharedObject(FilterSecurityInterceptor.class);
-//                    FilterInvocationSecurityMetadataSource metadataSource = securityInterceptor.getSecurityMetadataSource();
-//
-//
-//                    securityInterceptor.setSecurityMetadataSource(avalonSecurityMetadataSource);
-//                    System.out.println(securityInterceptor.getAccessDecisionManager());
-//                    web.securityInterceptor(securityInterceptor);
-//                }
-//            });
+            final HttpSecurity http = getHttp();
+            web.postBuildAction(new Runnable() {
+                @Override
+                public void run() {
+                    logger.debug("set security avalonSecurityMetadataSource");
+                    System.out.println("-----------------------");
+                    FilterSecurityInterceptor securityInterceptor = http.getSharedObject(FilterSecurityInterceptor.class);
+                    FilterInvocationSecurityMetadataSource metadataSource = securityInterceptor.getSecurityMetadataSource();
+
+
+//                    securityInterceptor.setSecurityMetadataSource(avalonSecurityMetadataSource());
+                    System.out.println(securityInterceptor.getAccessDecisionManager());
+                    web.securityInterceptor(securityInterceptor);
+                }
+            });
 
         }
 

@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 0.0.1
  */
 @Component
-public class SecurityLoader implements ApplicationListener<ApplicationEvent> {
+public class SecurityLoader {
     private static Logger logger = LoggerFactory.getLogger(SecurityLoader.class);
     private static boolean isStart = false;
 
@@ -139,17 +139,5 @@ public class SecurityLoader implements ApplicationListener<ApplicationEvent> {
     }
 
 
-    @Override
-    public void onApplicationEvent(ApplicationEvent event) {
-        System.out.println("********************************");
-        if (!isStart) {
-//            if (resourceRepository.count() > 0){
-//                isStart = true;
-//            }
-//
-//            loadData();
-
-        }
-    }
 
 }

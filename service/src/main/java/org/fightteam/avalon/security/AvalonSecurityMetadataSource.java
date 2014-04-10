@@ -30,11 +30,9 @@ import java.util.*;
  * @author faith
  * @since 0.0.1
  */
-@Component
 public class AvalonSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
     private final static Logger logger = LoggerFactory.getLogger(AvalonSecurityMetadataSource.class);
 
-    @Autowired
     private ResourceService resourceService;
 
     private final LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
@@ -45,6 +43,11 @@ public class AvalonSecurityMetadataSource implements FilterInvocationSecurityMet
     // web 默认表达式
     private SecurityExpressionHandler<FilterInvocation> expressionHandler = new DefaultWebSecurityExpressionHandler();
 
+
+    public AvalonSecurityMetadataSource(ResourceService resourceService) {
+        this.resourceService = resourceService;
+        load();
+    }
 
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
@@ -65,7 +68,6 @@ public class AvalonSecurityMetadataSource implements FilterInvocationSecurityMet
         return true;
     }
 
-//    @PostConstruct
     // URL权限载入
     public void load(){
 
