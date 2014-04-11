@@ -66,6 +66,14 @@ define [
 			@listenTo permissions, 'remove', @removeOne
 			# 默认 初始化获取数据
 			permissions.fetch()
+			$.ajax
+				url:"http://localhost:8080/avalon-service/permissions"
+				username: 'faith'
+				password: '123456'
+			.done (data)->
+				console.log data
+			.always ()->
+				console.log 'aa'
 
 		render: ()->
 			@$el.html @template {}

@@ -38,4 +38,6 @@ public class RoleGroup extends AbstractEntity<Long> {
     private List<Role> roles = new ArrayList<>();
 
 
+    @OneToMany(mappedBy = "roleGroup")
+    private List<User> users = new ArrayList<>();
 }

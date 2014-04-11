@@ -24,6 +24,7 @@ public class Role extends AbstractEntity<Long> {
     private String name;
     // 用于呈现
     private String title;
+    private String definition;
     private String description;
 
     private boolean enable = true;

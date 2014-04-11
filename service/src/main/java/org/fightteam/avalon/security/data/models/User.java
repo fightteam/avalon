@@ -79,5 +79,10 @@ public class User extends AbstractEntity<Long> {
     @ManyToMany
     private List<Permission> permissions = new ArrayList<>();
 
+    @ManyToOne
+    private RoleGroup roleGroup;
+    @ManyToOne
+    private PermissionGroup permissionGroup;
+
 
 }

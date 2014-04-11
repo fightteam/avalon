@@ -4,6 +4,8 @@ import org.fightteam.avalon.security.data.UserRepository;
 import org.fightteam.avalon.security.data.models.*;
 import org.fightteam.avalon.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyAuthoritiesMapper;
+import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +26,7 @@ import java.util.Set;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
+
 
     @Autowired
     private UserRepository userRepository;
@@ -47,27 +50,58 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
-        List<Permission> permissions = user.getPermissions();
-        List<Role> roles = user.getRoles();
+        Set<Permission> permissions = new HashSet<>();
+        Set<Role> roles = new HashSet<>();
+
+        if (user.getPermissions() != null){
+            permissions.addAll(user.getPermissions());
+        }
+
+        PermissionGroup permissionGroup = user.getPermissionGroup();
+        if (permissionGroup != null){
+            if (permissionGroup.getPermissions() != null){
+                permissions.addAll(permissionGroup.getPermissions());
+            }
+            PermissionGroup parent = null;
+            do {
+                parent = permissionGroup.getParent();
+                if (parent != null && parent.getPermissions() != null){
+                    permissions.addAll(parent.getPermissions());
+                }
+            }while (parent != null);
 
 
-        for(Permission permission:permissions){
+
+        }
+
+        if (user.getRoles() != null){
+            roles.addAll(user.getRoles());
+        }
+
+        RoleGroup roleGroup = user.getRoleGroup();
+        if (roleGroup != null){
+            if (roleGroup.getRoles() != null){
+                roles.addAll(roleGroup.getRoles());
+            }
+
+            RoleGroup parent = null;
+            do {
+                parent = roleGroup.getParent();
+
+                if (parent != null && parent.getRoles() != null){
+                    roles.addAll(parent.getRoles());
+                }
+            }while (parent != null);
+        }
+
+
+        // 构造权限
+        for(Permission permission : permissions){
             grantedAuthorities.addAll(AuthorityUtils.commaSeparatedStringToAuthorityList(permission.getName()));
-
-            PermissionGroup permissionGroup = permission.getPermissionGroup();
-            if (permissionGroup != null){
-                grantedAuthorities.addAll(AuthorityUtils.commaSeparatedStringToAuthorityList(permissionGroup.getName()));
-            }
         }
-        for (Role role:roles){
-            grantedAuthorities.addAll(AuthorityUtils.commaSeparatedStringToAuthorityList(role.getName()));
-
-            RoleGroup roleGroup = role.getRoleGroup();
-            if (roleGroup != null){
-                grantedAuthorities.addAll(AuthorityUtils.commaSeparatedStringToAuthorityList(roleGroup.getName()));
-            }
+        for(Role role : roles){
+            grantedAuthorities.addAll(AuthorityUtils.createAuthorityList("ROLE_"+role.getName()));
         }
-
         /**
          *    * @param username the username presented to the
          *        <code>DaoAuthenticationProvider</code>

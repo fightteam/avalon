@@ -19,7 +19,7 @@ public class AvalonWebAppInitializer extends AbstractAnnotationConfigDispatcherS
         return new Class<?>[]{AppConfig.class,
                 DataConfig.class,
                 SecurityConfig.WebSecurityConfig.class,
-                SecurityConfig.MethodSecurityConfig.class,
+//                SecurityConfig.MethodSecurityConfig.class,
                 RestConfig.class
         };
     }

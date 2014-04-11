@@ -1,19 +1,15 @@
 package org.fightteam.avalon.security.service;
 
 import org.fightteam.avalon.SpringTest;
-import org.fightteam.avalon.security.data.OperationRepository;
-import org.fightteam.avalon.security.data.PermissionRepository;
-import org.fightteam.avalon.security.data.ResourceRepository;
-import org.fightteam.avalon.security.data.RoleRepository;
-import org.fightteam.avalon.security.data.models.Operation;
-import org.fightteam.avalon.security.data.models.Permission;
-import org.fightteam.avalon.security.data.models.Resource;
-import org.fightteam.avalon.security.data.models.ResourceType;
+import org.fightteam.avalon.security.data.*;
+import org.fightteam.avalon.security.data.models.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.util.FieldUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +27,9 @@ public class ResourceServiceTest extends SpringTest {
     private PermissionRepository permissionRepository;
 
     @Autowired
+    private PermissionGroupRepository permissionGroupRepository;
+
+    @Autowired
     private OperationRepository operationRepository;
 
     @Autowired
@@ -39,6 +38,11 @@ public class ResourceServiceTest extends SpringTest {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private RoleGroupRepository roleGroupRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Before
     public void setUp() throws Exception {
@@ -136,17 +140,68 @@ public class ResourceServiceTest extends SpringTest {
         loginResource.setDescription("登陆系统的权限，配合操作定义权限，注意只支持POST");
         resourceRepository.save(loginResource);
 
+
+        Resource indexResource = new Resource();
+        indexResource.setEnable(true);
+        indexResource.setName("/");
+        indexResource.setResourceType(ResourceType.URL);
+        indexResource.setTitle("首页");
+        indexResource.setDescription("首页的权限，配合操作定义权限，注意只支持GET");
+        resourceRepository.save(indexResource);
         // ============================================
 
         Permission getRepository = new Permission();
         getRepository.setEnable(true);
         getRepository.setName("GETRESPOSITORY");
+        getRepository.setDefinition("hasAuthority([GETRESPOSITORY])");
         getRepository.setTitle("Repository权限");
         getRepository.setDescription("获取Repository的权限");
         getRepository.setOperation(getOperation);
         getRepository.setResource(repositoryResource);
         permissionRepository.save(getRepository);
 
+        Permission getIndex = new Permission();
+        getIndex.setEnable(true);
+
+        getIndex.setDefinition("permitAll()");
+        getIndex.setTitle("首页权限");
+        getIndex.setDescription("查看首页的权限");
+        getIndex.setOperation(getOperation);
+        getIndex.setResource(indexResource);
+        permissionRepository.save(getIndex);
+
+        Role admin = new Role();
+        admin.setTitle("管理员");
+        admin.setName("ADMIN");
+        admin.setDefinition("hasRole([ADMIN])");
+        admin.setDescription("管理员可以进行登录后台进行用户、角色管理、权限管理等等");
+        List<Permission> permissions = new ArrayList<>();
+        permissions.add(getRepository);
+        admin.setPermissions(permissions);
+        roleRepository.save(admin);
+
+        Role sysAdmin = new Role();
+        sysAdmin.setTitle("系统管理员");
+        sysAdmin.setName("SYSTEM_ADMIN");
+        sysAdmin.setDefinition("hasRole([SYSTEM_ADMIN])");
+        sysAdmin.setDescription("系统管理员可以进行管理员的操作，还能进行资源，操作的管理");
+
+        RoleGroup manager = new RoleGroup();
+        manager.setTitle("管理组");
+        manager.setName("MANAGER");
+
+        roleGroupRepository.save(manager);
+
+        sysAdmin.setRoleGroup(manager);
+        roleRepository.save(sysAdmin);
+
+
+        User faith = new User();
+        faith.setPassword("123456");
+        faith.setUsername("faith");
+        faith.setRoleGroup(manager);
+
+        userRepository.save(faith);
     }
 
     @Test

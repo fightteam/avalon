@@ -30,9 +30,10 @@ import java.util.*;
  * @author faith
  * @since 0.0.1
  */
+@Component
 public class AvalonSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
     private final static Logger logger = LoggerFactory.getLogger(AvalonSecurityMetadataSource.class);
-
+    @Autowired
     private ResourceService resourceService;
 
     private final LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
@@ -43,16 +44,11 @@ public class AvalonSecurityMetadataSource implements FilterInvocationSecurityMet
     // web 默认表达式
     private SecurityExpressionHandler<FilterInvocation> expressionHandler = new DefaultWebSecurityExpressionHandler();
 
-
-    public AvalonSecurityMetadataSource(ResourceService resourceService) {
-        this.resourceService = resourceService;
-        load();
-    }
-
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
         System.out.println("===============get==============");
-
+        System.out.println("object = [" + object + "]");
+        System.out.println(metadataSource.getAttributes(object));
         return metadataSource.getAttributes(object);
     }
 
@@ -68,6 +64,7 @@ public class AvalonSecurityMetadataSource implements FilterInvocationSecurityMet
         return true;
     }
 
+    @PostConstruct
     // URL权限载入
     public void load(){
 
@@ -76,7 +73,7 @@ public class AvalonSecurityMetadataSource implements FilterInvocationSecurityMet
         for(String key : map.keySet()){
             logger.debug("load permission matcher :" + key);
             logger.debug("load permission resources :" + map.get(key));
-            String [] matcher = key.split(",");
+            String [] matcher = key.split("@");
             RequestMatcher requestMatcher = null;
             // 判断什么匹配器
             String path = matcher[0];
@@ -89,9 +86,11 @@ public class AvalonSecurityMetadataSource implements FilterInvocationSecurityMet
             }else{
                 requestMatcher = new AntPathRequestMatcher(path, method);
             }
-            Collection<ConfigAttribute> configAttributes = SecurityConfig.createListFromCommaDelimitedString(map.get(key));
+
+            Collection<ConfigAttribute> configAttributes = SecurityConfig.createList(map.get(key));
             requestMap.put(requestMatcher, configAttributes);
         }
+        System.out.println(requestMap);
         // 初始化资源
         metadataSource = new ExpressionBasedFilterInvocationSecurityMetadataSource(requestMap, expressionHandler);
     }

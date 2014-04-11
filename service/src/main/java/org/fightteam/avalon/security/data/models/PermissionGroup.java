@@ -35,4 +35,6 @@ public class PermissionGroup extends AbstractEntity<Long> {
     @OneToMany(mappedBy = "permissionGroup")
     private List<Permission> permissions = new ArrayList<>();
 
+    @OneToMany(mappedBy = "permissionGroup")
+    private List<User> users = new ArrayList<>();
 }

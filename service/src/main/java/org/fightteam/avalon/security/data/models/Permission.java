@@ -22,6 +22,7 @@ import java.util.List;
 @Setter
 public class Permission extends AbstractEntity<Long> {
     private String name;
+    private String definition;
     private String title;
     private String description;
     private boolean enable = true;

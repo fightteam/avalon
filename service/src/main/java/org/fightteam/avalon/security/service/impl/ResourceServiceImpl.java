@@ -1,10 +1,7 @@
 package org.fightteam.avalon.security.service.impl;
 
 import org.fightteam.avalon.security.data.ResourceRepository;
-import org.fightteam.avalon.security.data.models.Operation;
-import org.fightteam.avalon.security.data.models.Permission;
-import org.fightteam.avalon.security.data.models.Resource;
-import org.fightteam.avalon.security.data.models.ResourceType;
+import org.fightteam.avalon.security.data.models.*;
 import org.fightteam.avalon.security.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +19,9 @@ import java.util.*;
 @Service
 @Transactional
 public class ResourceServiceImpl implements ResourceService {
+
+    private final static String ROLE_EXPRESSION = "hasRole";
+    private final static String PERMISSION_EXPRESSION = "hasAuthority";
 
     @Autowired
     private ResourceRepository resourceRepository;
@@ -47,14 +47,14 @@ public class ResourceServiceImpl implements ResourceService {
         return resourceRepository.findOne(id);
     }
 
-    @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
+    @Transactional(readOnly = true)
     @Override
     public Resource findByTitle(String title) {
         return resourceRepository.findByTitle(title);
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public Map<String, String> findAllURL() {
         Map<String, String> map = new HashMap<>();
         List<Resource> resources = resourceRepository.findAll();
@@ -76,7 +76,7 @@ public class ResourceServiceImpl implements ResourceService {
                     continue;
                 }
                 requestMatcher.append(resource.getName());
-                requestMatcher.append(",");
+                requestMatcher.append("@");
                 requestMatcher.append(operation.getName());
 
                 String tmp = map.get(requestMatcher.toString());
@@ -85,13 +85,37 @@ public class ResourceServiceImpl implements ResourceService {
 
                 }else{
                     configAttributes = new StringBuffer(tmp);
-                    configAttributes.append(",");
+                    configAttributes.append(" or ");
                 }
-                configAttributes.append(permission.getName());
+                configAttributes.append(permission.getDefinition());
+                if (permission.getName() != null && !permission.getName().equals("")){
+                    List<Role> roles = permission.getRoles();
+                    for(Role role : roles){
+                        configAttributes.append(" or ");
+                        configAttributes.append(role.getDefinition());
+                    }
+                }
+
                 map.put(requestMatcher.toString(), configAttributes.toString());
             }
 
         }
         return map;
+    }
+
+    /**
+     * 添加值放入web表达式中
+     * @param expression
+     * @param value
+     * @return
+     */
+    private String buildWebExpression(String expression, String value){
+        StringBuffer buffer = new StringBuffer(expression);
+        buffer.append("('");
+        buffer.append(value);
+        buffer.append("'");
+        buffer.append(")");
+
+        return buffer.toString();
     }
 }
