@@ -3,55 +3,69 @@
 ###
 define [
   'backbone'
+  'jquery'
+  'common'
   'bootstrap'
-], (Backbone) ->
+], (Backbone, $, config) ->
 	class Workspace extends Backbone.Router
 		routes: 
-			'':'dashboard'
-			'operations': 'operations'
-			'resources': 'resources'
-			'permissions': 'permissions'
-			'roles': 'roles'
-			'users': 'users'
+			'login': 'login'
+			'':'page'
+			':page':'page'
+		page: (page)->
+			console.log page
+			if not config.app.token
+				@navigate 'login', true
+			if @view
+				@view.remove()
+			$("#themeCss").attr('href', 'styles/avalon-admin.css')
+			require ['views/page'], (PageView)->
+				@view = new PageView()
+				$('body').html @view.render()
+			switch page
+				when "operations"
+					@operations()
+				when "resources"
+					@resources()
+				when "permissions"
+					@permissions()
+				when "roles"
+					@roles
+				when "users"
+					@users
+				when "books"
+					@books
+				else
+					@dashboard()
+			return
+		login: ()->
+			$("#themeCss").attr('href', 'styles/login.css')
+			require ['views/login'], (LoginView)->
+				@view = new LoginView()
+				$('body').html @view.render()
+				
+
+				
 		dashboard: ()->
-			require ['views/page', 'models/page'], (pageView, pageModel)->
-				view = new pageView
-					model: new pageModel
-						title: '控制面板'
-				$('#page-wrapper').html view.render()
+			
 
 		operations: ()->
-			require ['views/page', 'models/page', 'views/operation'], (pageView, pageModel, operationView)->
-				view = new pageView
-					model: new pageModel
-						title: '操作管理'
-						view: new operationView()
-				$('#page-wrapper').html view.render()
+			
 
 		resources: ()->
-			require ['views/page', 'models/page', 'views/resource'], (pageView, pageModel, ResourceView)->
-				view = new pageView
-					model: new pageModel
-						title: '资源管理'
-					view: new ResourceView()
-				$('#page-wrapper').html view.render()
+			
 
 		permissions: ()->
-			require ['views/permission', 'models/page'], (PermissionView)->
-				view = new PermissionView()
-				$('#page-wrapper').html view.render()
+			
 
 		roles: ()->
-			require ['views/page', 'models/page'], (pageView, pageModel)->
-				view = new pageView
-					model: new pageModel
-						title: '角色管理'
-				$('#page-wrapper').html view.render()
+			
 
 		users: ()->
-			require ['views/page', 'models/page'], (pageView, pageModel)->
-				view = new pageView
-					model: new pageModel
-						title: '用户管理'
-				$('#page-wrapper').html view.render()
+			
+
+		
+		books: ()->
+			
+		
 

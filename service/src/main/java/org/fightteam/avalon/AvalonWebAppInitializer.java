@@ -35,10 +35,10 @@ public class AvalonWebAppInitializer extends AbstractAnnotationConfigDispatcherS
     }
 
 
-    @Override
-    protected Filter[] getServletFilters() {
-        return new Filter[]{ new CORSFilter()};
-    }
+//    @Override
+//    protected Filter[] getServletFilters() {
+//        return new Filter[]{ new CORSFilter()};
+//    }
 
 
 }

@@ -13,23 +13,21 @@ define [
 
     tagName: 'div'
 
-    id: ''
-
-    className: 'row'
+    id: 'wrapper'
 
     events: {}
 
     view: null
 
     initialize: (options) ->
-      @view = options.view
-      @listenTo @model, 'change', @render
+      
 
     render: () ->
       
       # 为了dom性能 最后渲染
-      @$el.append @template @model.toJSON()
-      @$el.append @view.render()
+      @$el.html @template {}
+
+      @el
 
     renderView: (view)->
-      @$el.append view.render()
+     

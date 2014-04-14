@@ -20,12 +20,22 @@ require.config
     underscore: '../bower_components/underscore/underscore'
     bootstrap: '../bower_components/bootstrap/dist/js/bootstrap'
     moment: '../bower_components/momentjs/min/moment-with-langs'
+    base64: '../bower_components/js-base64/base64.min'
 require [
   'backbone'
   'routes/router'
-], (Backbone, Workspace) ->
+  'common'
+], (Backbone, Workspace, config) ->
 
-  new Workspace()
-
+  workspace = new Workspace()
+  config.app.workspace = workspace
   Backbone.history.start()
+
+  if config.app.token
+    workspace.navigate '', true
+  else
+    workspace.navigate 'login', true
+  
+
+  
 

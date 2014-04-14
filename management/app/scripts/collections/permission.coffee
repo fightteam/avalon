@@ -11,8 +11,7 @@ define [
 		url: config.rest.permissions
 
 		parse: (response)->
-			if response._embedded then response._embedded.permissions else null
-
+			response.content
 			
 		initialize: ()->
 			@listenTo @, "remove", @removeOne

@@ -20,7 +20,7 @@ import java.util.*;
 @Transactional
 public class ResourceServiceImpl implements ResourceService {
 
-    private final static String ROLE_EXPRESSION = "hasRole";
+    private final static String ROLE_prefix = "hasRole";
     private final static String PERMISSION_EXPRESSION = "hasAuthority";
 
     @Autowired

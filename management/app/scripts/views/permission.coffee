@@ -8,6 +8,7 @@ define [
   'moment'
   'helpers/formHelper'
   'models/table'
+  'base64'
 ], ($, _, Backbone, JST, Permissions, config, moment, FormHelper, TableModel) ->
 
 	permissions = new Permissions()
@@ -65,11 +66,19 @@ define [
 			@listenTo permissions, 'add', @addOne
 			@listenTo permissions, 'remove', @removeOne
 			# 默认 初始化获取数据
-			permissions.fetch()
+			# permissions.fetch()
+
 			$.ajax
-				url:"http://localhost:8080/avalon-service/permissions"
-				username: 'faith'
-				password: '123456'
+				url:"http://A@localhost:8080/avalon-service/permissions"
+				# username: 'faith'
+				# password: '123456'
+				crossDomain: true
+				type: "GET"
+				beforeSend: (xhr)->
+					taken = Base64.encode "faith:123456"
+					xhr.setRequestHeader "Authenticate", "Basic " + taken
+				# xhrFields:
+				# 	withCredentials: true
 			.done (data)->
 				console.log data
 			.always ()->

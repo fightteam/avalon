@@ -1,27 +1,19 @@
 package org.fightteam.avalon;
 
 
-import org.aopalliance.intercept.MethodInterceptor;
 import org.fightteam.avalon.security.AvalonMethodSecurityMetadataSource;
 import org.fightteam.avalon.security.AvalonSecurityMetadataSource;
-import org.fightteam.avalon.security.data.ResourceRepository;
-import org.fightteam.avalon.security.service.ResourceService;
-import org.fightteam.avalon.security.service.impl.UserServiceImpl;
+import org.fightteam.avalon.security.AvalonUsernamePasswordAuthenticationFilter;
+import org.fightteam.avalon.security.authentication.AvalonAuthenticationSuccessHandler;
+import org.fightteam.avalon.security.authentication.AvalonBasicAuthenticationEntryPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.access.ConfigAttribute;
-import org.springframework.security.access.intercept.aopalliance.MethodSecurityMetadataSourceAdvisor;
-import org.springframework.security.access.method.MapBasedMethodSecurityMetadataSource;
 import org.springframework.security.access.method.MethodSecurityMetadataSource;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.authentication.dao.SaltSource;
-import org.springframework.security.authentication.dao.SystemWideSaltSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
@@ -30,21 +22,12 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserCache;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.cache.NullUserCache;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
-import org.springframework.security.web.authentication.www.DigestAuthenticationFilter;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
 * @author excalibur
@@ -108,12 +91,21 @@ public class SecurityConfig {
 //
 //            UserCache userCache = new NullUserCache();
 //            digestAuthenticationFilter.setUserCache(userCache);
+            AvalonBasicAuthenticationEntryPoint entryPoint = new AvalonBasicAuthenticationEntryPoint();
+            AvalonUsernamePasswordAuthenticationFilter authenticationFilter = new AvalonUsernamePasswordAuthenticationFilter();
+            authenticationFilter.setAuthenticationManager(authenticationManagerBean());
 
-            http.httpBasic()
-                    .and()
+            AvalonAuthenticationSuccessHandler successHandler = new AvalonAuthenticationSuccessHandler();
+            successHandler.setPasswordEncoder(passwordEncoder());
+
+            authenticationFilter.setAuthenticationSuccessHandler(successHandler);
+
+            http.formLogin().and().addFilterBefore(authenticationFilter,UsernamePasswordAuthenticationFilter.class)
+//                    .and()
 //                    .addFilterAfter(digestAuthenticationFilter, BasicAuthenticationFilter.class)
 //                    .exceptionHandling().authenticationEntryPoint(digestAuthenticationEntryPoint)
 //                    .and()
+                    .exceptionHandling().authenticationEntryPoint(entryPoint).and()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().csrf().disable().authorizeRequests().anyRequest().permitAll();
 
