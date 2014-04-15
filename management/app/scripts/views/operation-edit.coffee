@@ -4,9 +4,9 @@ define [
   'backbone'
   'templates'
   'helpers/formHelper'
-  'models/operation'
-  'collections/operation'
-], ($, _, Backbone, JST, FormHelper, OperationModel, operations) ->
+  'messenger'
+  'messengerTheme'
+], ($, _, Backbone, JST, FormHelper, Messenger) ->
   class OperationEditView extends Backbone.View
     template: JST['app/scripts/templates/operation-edit.ejs']
 
@@ -17,34 +17,47 @@ define [
     className: ''
 
     events: 
-      'click #operationSubmit': 'operationSubmit'
+      'click #submit': 'submit'
 
     initialize: () ->
-        @listenTo @model, 'change', @render
+      @listenTo @model, 'change', @render
 
     render: () ->
-        @$el.html @template(@model.toJSON())
+      @$el.html @template @model.toJSON()
 
-    operationSubmit: (e)->
+    submit: (e)->
+
       e.preventDefault()
-      model = new OperationModel FormHelper.toJson @$('form')
-      model.save()
 
-      # 保存之后删除 注 传输需要时间
-      @$('#operationAdd').modal('hide')
-
-      view = @     
-      setTimeout ()->
-        operations.fetchNew()
-        view.remove()
-      ,500
-      
-          
-            
-
-      
-      
+      @model.set FormHelper.toJson @$('form')
      
+     
+      @model.save null, 
+        success: (data)->
+          Messenger().post
+            message: "提交成功"
+            showCloseButton: true
+            hideAfter: 3
+        error: (data)->
+          Messenger().post
+          message: "提交失败"
+          type: 'error'
+          showCloseButton: true
+          hideAfter: 3
+      .always (res)->
+        if res && res.status == 201
+          Messenger().post
+            message: "提交成功"
+            showCloseButton: true
+            hideAfter: 3
+        else if res
+          Messenger().post
+            message: "提交失败"
+            type: 'error'
+            showCloseButton: true
+            hideAfter: 3
+      # # 保存之后删除 注 传输需要时间
+      # @$('#operationAdd').modal('hide')
 
-    show: ()->
-      @$('#operationAdd').modal {}
+ 
+

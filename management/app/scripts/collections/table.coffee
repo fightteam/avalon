@@ -12,10 +12,8 @@ define [
 		parse: (response)->
 			@page = response
 			# 预留 外部设置
-			if @options.parse
-				@options.parse.apply response, arguments
-			else
-				response
+			@options.parse.apply response, arguments
+			response.content
 		initialize: (options)->
 			if options.url
 				@url = options.url

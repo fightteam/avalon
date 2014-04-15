@@ -100,6 +100,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             grantedAuthorities.addAll(AuthorityUtils.commaSeparatedStringToAuthorityList(permission.getName()));
         }
         for(Role role : roles){
+            System.out.println(role.getName());
             grantedAuthorities.addAll(AuthorityUtils.createAuthorityList("ROLE_"+role.getName()));
         }
         /**
