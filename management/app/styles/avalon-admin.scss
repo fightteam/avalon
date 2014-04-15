@@ -36,6 +36,18 @@
 
 /* Navigation */
 
+
+.page-btn{
+    cursor: pointer;
+    color: #428bca;
+}
+.previous-btn{
+    @extend .page-btn;
+}
+.next-btn{
+    @extend .page-btn;
+}
+
 /* ------------------------------- */
 
 /* Top Right Navigation Dropdown Styles */
@@ -86,7 +98,7 @@
 }
 
 .navbar-top-links .dropdown-alerts {
-    margin-left: -123px;
+    margin-left: -40px;
 }
 
 .navbar-top-links .dropdown-user {

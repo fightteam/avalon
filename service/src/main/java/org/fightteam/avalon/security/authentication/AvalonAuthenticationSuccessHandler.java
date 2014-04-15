@@ -22,7 +22,7 @@ import java.io.IOException;
  * @since 0.0.1
  */
 public class AvalonAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-    private static final String AVALON_TOKEN = "avalon-token";
+    private static final String AVALON_TOKEN = "Access-Token";
 
 
     private PasswordEncoder passwordEncoder;

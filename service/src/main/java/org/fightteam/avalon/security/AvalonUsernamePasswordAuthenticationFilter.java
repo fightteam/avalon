@@ -93,17 +93,23 @@ public class AvalonUsernamePasswordAuthenticationFilter extends AbstractAuthenti
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         // 复杂请求的预处理  主要是跨域是否有权限
+        System.out.println(request.getMethod());
+
+        response.addHeader("Access-Control-Allow-Origin", "http://localhost:9000");
+        response.addHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, PATCH");
+        response.addHeader("Access-Control-Allow-Headers", "Content-Type, WWW-Authenticate, Origin, Accept, Authenticate, X-Requested-With, Access-Token");
+        response.addHeader("Access-Control-Max-Age", "1800");
+        response.addHeader("Access-Control-Allow-Credentials", "true");
+
+        // 针对复杂请求跨域
         if (request.getMethod().equals("OPTIONS")){
+
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
             return;
-        }else{
-            response.addHeader("Access-Control-Allow-Origin", "http://localhost:9000");
-            response.addHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, PATCH");
-            response.addHeader("Access-Control-Allow-Headers", "Content-Type, WWW-Authenticate, Origin, Accept, Authenticate, X-Requested-With");
-            response.addHeader("Access-Control-Max-Age", "1800");
-            response.addHeader("Access-Control-Allow-Credentials", "true");
         }
         String token = request.getHeader(AvalonAuthenticationSuccessHandler.getAvalonToken());
+        System.out.println("--------------token--------------");
+        System.out.println(token);
         UsernamePasswordAuthenticationToken authRequest = (UsernamePasswordAuthenticationToken) cacheUser.get(token);
 
         // 如果已经有信息了，那么设置登陆信息

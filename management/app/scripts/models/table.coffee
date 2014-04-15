@@ -30,7 +30,7 @@ define [
     validate: (attrs, options) ->
 
     parse: (response, options) ->
-      self = response._links.self.href
+      self = response.links[0].href
       @set 'id': self.substring self.lastIndexOf('/') + 1
       response
 

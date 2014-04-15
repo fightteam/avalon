@@ -6,6 +6,8 @@ define [
   'underscore'
   'backbone'
   'templates'
+  'metisMenu'
+  'bootstrap'
 ], ($, _, Backbone, JST) ->
 
   class PageView extends Backbone.View
@@ -23,10 +25,15 @@ define [
       
 
     render: () ->
-      
       # 为了dom性能 最后渲染
       @$el.html @template {}
-
+      @$('#side-menu').metisMenu()
+      # 适应手机
+      $(window).bind "load resize",()->
+        if $(@).width() < 768
+          @$('div.sidebar-collapse').addClass 'collapse'
+        else
+          @$('div.sidebar-collapse').removeClass 'collapse'  
       @el
 
     renderView: (view)->

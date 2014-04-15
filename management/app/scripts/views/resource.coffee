@@ -3,65 +3,98 @@ define [
   'underscore'
   'backbone'
   'templates'
-  'views/table'
   'collections/table'
+  'moment'
+  'models/pagination'
+  'views/pagination'
   'common'
-], ($, _, Backbone, JST, TabelView, Tables, config) ->
+  'messenger'
+  'messengerTheme'
+  ], ($, _, Backbone, JST, Tables, moment, PaginationModel, PaginationView, config, Messenger) ->
+
+	
+			
+#=================================================================================== 
+
 	class ResourceView extends Backbone.View
 		template: JST['app/scripts/templates/resource.ejs']
 
+		dataTemplate: JST['app/scripts/templates/resource-data.ejs']
+
 		tagName: 'div'
 
-		id: 'resources'
+		id: 'operations'
 
-		className: 'row'
+		className: ''
 
 		events: 
-			'click #addOperation': 'addOperation'
+			# 'click #addData': 'addData'
+			'click tbody #deleteData': 'deleteData'
+			'click tbody #updateData': 'updateData'
+
+		initialize: (options) ->
+
+			@listenTo @model, 'add', @addOne
+			@listenTo @model, 'sync', @pagination
+			@listenTo @model, 'reset', @restRow
 
 
-		initialize: () ->
-
-			@view = new TabelView
-				columns:[
-					{
-						name: 'name'
-						label: '资源定义'
-					}
-					{
-						name: 'title'
-						label: '显示名称'
-					}
-					{
-						name: 'resourceType'
-						label: '资源类型'
-					}
-					{
-						name: 'enable'
-						label: '是否可用'
-					}
-					{
-						name: 'createDate'
-						label: '创建时间'
-					}
-					{
-						name: 'controls'
-						label: '操作'
-					}
-				]
-				pagination: new Tables
-					url: config.rest.resources
-					parse: (response)->
-						response._embedded.resources
-				insertRow: (model)->
-					model.set 
-						'controls': '<button type="button" class="btn btn-danger" id="delete">删除</button><button type="button" class="btn btn-info" id="update">修改</button>'
-
+			
+			@model.fetch
+				data:
+					page: options.page.page || 0
+					size: options.page.size || 20
+		  
 
 		render: () ->
 			@$el.html @template {}
-			@$('.panel-body').append @view.render()
-			# 最后渲染
+
+		addOne: (model)->
+			moment.lang 'zh-CN'
+			model.set 
+			  'createDate': (moment model.get 'createDate').format('YYYY-MM-DD HH:mm:ss')
+
+			@$("tbody").append @dataTemplate model.toJSON()
+			# rowView = new RowView
+			#   model: model
+			# @$("tbody").append rowView.render()
+
+
+		# 分页显示渲染
+		pagination: (data, response)->
+			if @pager
+				@pager.remove()
+			@pager = new PaginationView
+				tables: data
+				model: new PaginationModel response
+			@$(".panel-body").append @pager.render()
 			
-			@el
-		parse: ()->
+		restRow: ()->
+			@$("tbody").empty()
+
+		deleteData: (e)->
+			id = $(e.target).data 'id'
+			if not id
+				return
+			$.ajax
+				url: config.rest.operations + "/" + id
+				headers:
+					'Access-Token': config.app.token
+				type: "DELETE"
+			.done (data, textStatus, jqXHR)->
+				$(e.target).parents('tr').remove()
+				Messenger().post
+					message: "删除成功"
+					showCloseButton: true
+					hideAfter: 3
+			.fail ()->
+				Messenger().post
+					message: "删除失败"
+					type: 'error'
+					showCloseButton: true
+					hideAfter: 3
+			
+		updateData: (e)->
+			id = $(e.target).data 'id'
+			if not id
+				return
