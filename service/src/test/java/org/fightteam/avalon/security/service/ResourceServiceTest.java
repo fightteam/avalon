@@ -153,7 +153,7 @@ public class ResourceServiceTest extends SpringTest {
         Permission getRepository = new Permission();
         getRepository.setEnable(true);
         getRepository.setName("GETRESPOSITORY");
-        getRepository.setDefinition("hasAuthority([GETRESPOSITORY])");
+        getRepository.setDefinition("hasAuthority('GETRESPOSITORY')");
         getRepository.setTitle("Repository权限");
         getRepository.setDescription("获取Repository的权限");
         getRepository.setOperation(getOperation);
@@ -173,7 +173,7 @@ public class ResourceServiceTest extends SpringTest {
         Role admin = new Role();
         admin.setTitle("管理员");
         admin.setName("ADMIN");
-        admin.setDefinition("hasRole([ADMIN])");
+        admin.setDefinition("hasRole('ADMIN')");
         admin.setDescription("管理员可以进行登录后台进行用户、角色管理、权限管理等等");
         List<Permission> permissions = new ArrayList<>();
         permissions.add(getRepository);
@@ -183,7 +183,7 @@ public class ResourceServiceTest extends SpringTest {
         Role sysAdmin = new Role();
         sysAdmin.setTitle("系统管理员");
         sysAdmin.setName("SYSTEM_ADMIN");
-        sysAdmin.setDefinition("hasRole([SYSTEM_ADMIN])");
+        sysAdmin.setDefinition("hasRole('SYSTEM_ADMIN')");
         sysAdmin.setDescription("系统管理员可以进行管理员的操作，还能进行资源，操作的管理");
 
         RoleGroup manager = new RoleGroup();
@@ -197,7 +197,8 @@ public class ResourceServiceTest extends SpringTest {
 
 
         User faith = new User();
-        faith.setPassword("123456");
+//        123456
+        faith.setPassword("$2a$10$IYOUapuymSwrAvyHkdD7xOGBg.k440ynJIl8iElgXGYtpJlsbQKbm");
         faith.setUsername("faith");
         faith.setRoleGroup(manager);
 
