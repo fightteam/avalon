@@ -23,7 +23,7 @@ define [
 
 		tagName: 'div'
 
-		id: 'operations'
+		id: 'resources'
 
 		className: ''
 
@@ -77,7 +77,7 @@ define [
 			if not id
 				return
 			$.ajax
-				url: config.rest.operations + "/" + id
+				url: config.rest.resources + "/" + id
 				headers:
 					'Access-Token': config.app.token
 				type: "DELETE"

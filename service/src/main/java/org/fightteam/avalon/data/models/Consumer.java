@@ -15,13 +15,14 @@ import java.util.List;
  * @since 0.0.1
  */
 @Entity
-@DiscriminatorValue("consumer")
 @Getter
 @Setter
 public class Consumer extends User {
 
     private String name;
     private String nickname;
+    private String motto;
+    private String mottoBy;
 
     @ManyToMany
     private List<Book> books = new ArrayList<>();

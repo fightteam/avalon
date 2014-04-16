@@ -1,5 +1,6 @@
 package org.fightteam.avalon.security.service;
 
+import org.fightteam.avalon.data.models.Consumer;
 import org.fightteam.avalon.security.data.models.User;
 
 /**
@@ -14,5 +15,5 @@ public interface UserService {
 
     boolean isEmailExists(String email);
 
-    User registerUser(User user);
+    Consumer registerUser(Consumer consumer);
 }

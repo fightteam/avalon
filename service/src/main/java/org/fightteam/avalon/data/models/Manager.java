@@ -14,7 +14,6 @@ import javax.persistence.Entity;
  * @since 0.0.1
  */
 @Entity
-@DiscriminatorValue("manager")
 @Getter
 @Setter
 public class Manager extends User {

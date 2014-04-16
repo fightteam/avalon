@@ -1,5 +1,8 @@
 model = require '../models/model'
 clone = require '../helper/clone'
+config = require '../config/config'
+request = require 'request'
+
 model = clone model
 
 model.stylesheets.push 
@@ -15,7 +18,14 @@ exports.index = (req, res)->
 
 	model.javascripts.push
 		url:'library.min.js'
-	res.render 'library/index', model
+
+	username = req.cookies.username
+	request.get config.rest.findByUsername + "?username=" + username
+	, (error, response, body)->
+
+		model.user = JSON.parse(body).content[0]
+		res.render 'library/index', model
+	return
 
 exports.book = (req, res)->
 	id = req.params.id

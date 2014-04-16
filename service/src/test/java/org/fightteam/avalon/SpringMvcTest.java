@@ -27,6 +27,7 @@ import javax.sql.DataSource;
 @ContextConfiguration(classes = {AppConfig.class,
         SpringMvcTest.TestDataConfig.class,
         RestConfig.class,
+        SecurityConfig.WebSecurityConfig.class,
         WebConfig.class})
 public class SpringMvcTest extends AbstractWebIntegrationTest {
 

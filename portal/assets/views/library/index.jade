@@ -9,10 +9,13 @@ block content
 						a(href="#").pull-left
 							img(src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIj48L3JlY3Q+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+", alt="")
 						div.media-body
-							h4.media-heading 刘真源
+							h4.media-heading 
+								= user.name
 							blockquote.blockquote-reverse
-								p 书籍是人类进步的阶梯
-								footer 高尔基
+								p
+									= user.motto
+								footer 
+									= user.mottoBy
 							hr
 							dl.dl-horizontal
 								dt 读书量

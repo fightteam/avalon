@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.fightteam.join.dao.entity.AbstractEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +28,7 @@ public class Resource extends AbstractEntity<Long> {
     private ResourceType resourceType;
 
     // 本资源中的权限
-    @OneToMany(mappedBy = "resource")
+    @ManyToMany(mappedBy = "resources")
     private List<Permission> permissions = new ArrayList<>();
 
 

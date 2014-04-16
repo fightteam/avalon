@@ -3,6 +3,8 @@
 ###
 module.exports = (app)->
 
+	
+
 	# home route
 	home = require('../controllers/home')
 	app.get '/', home.index
@@ -10,10 +12,12 @@ module.exports = (app)->
 	# register route
 	register = require '../controllers/register'
 	app.get '/register', register.index
+	app.post '/register', register.post
 
 	# login route
 	login = require '../controllers/login'
 	app.get '/login', login.index
+	app.post '/login', login.post
 
 	# online route
 	online = require '../controllers/online'

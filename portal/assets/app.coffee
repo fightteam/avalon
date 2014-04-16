@@ -17,5 +17,5 @@ app = express()
 
 require('./config/express')(app, config)
 require('./config/routes')(app)
-
+require('./config/socket')(app)
 app.listen(config.port)

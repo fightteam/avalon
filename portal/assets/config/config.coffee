@@ -11,6 +11,10 @@ config =
     livereload:true
     app: 
       name: 'n'
+    rest:
+      register: "http://localhost:8080/avalon-service/register"
+      login: "http://localhost:8080/avalon-service/login"
+      findByUsername: "http://localhost:8080/avalon-service/users/search/findByUsername"
     port: 3000
     db: 'mongodb://localhost/n-development'
 

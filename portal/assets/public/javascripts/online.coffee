@@ -4,6 +4,9 @@ strokeEnds = 6
 
 $(document).ready ()->
 
+
+		
+
 	paper.install window 
 	paper.setup "blackboard-body"
 	brush = new Tool()

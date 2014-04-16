@@ -18,7 +18,7 @@ public class LoginController {
     @Autowired
     private ResourceService resourceService;
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/users/")
     public String aa() {
         System.out.println("0000000000000");
         resourceService.findAllURL();
