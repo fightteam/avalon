@@ -1,11 +1,17 @@
 package org.fightteam.avalon.security.service;
 
+import org.fightteam.avalon.SpringMvcTest;
 import org.fightteam.avalon.SpringTest;
+import org.fightteam.avalon.data.ConsumerRepository;
+import org.fightteam.avalon.data.ManagerRepository;
+import org.fightteam.avalon.data.models.Consumer;
+import org.fightteam.avalon.data.models.Manager;
 import org.fightteam.avalon.security.data.*;
 import org.fightteam.avalon.security.data.models.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.util.FieldUtils;
 
 import java.util.ArrayList;
@@ -18,7 +24,7 @@ import java.util.Map;
  * @author faith
  * @since 0.0.1
  */
-public class ResourceServiceTest extends SpringTest {
+public class ResourceServiceTest extends SpringMvcTest {
 
     @Autowired
     private ResourceService resourceService;
@@ -43,6 +49,15 @@ public class ResourceServiceTest extends SpringTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ConsumerRepository consumerRepository;
+
+    @Autowired
+    private ManagerRepository managerRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Before
     public void setUp() throws Exception {
@@ -108,13 +123,63 @@ public class ResourceServiceTest extends SpringTest {
 
         // ============================================
 
-        Resource repositoryResource = new Resource();
-        repositoryResource.setEnable(true);
-        repositoryResource.setName("/*");
-        repositoryResource.setResourceType(ResourceType.URL);
-        repositoryResource.setTitle("Repository资源");
-        repositoryResource.setDescription("所有Repository资源，配合操作定义权限");
-        resourceRepository.save(repositoryResource);
+        Resource userRepositoryResource = new Resource();
+        userRepositoryResource.setEnable(true);
+        userRepositoryResource.setName("/users");
+        userRepositoryResource.setResourceType(ResourceType.URL);
+        userRepositoryResource.setTitle("用户Repository资源");
+        userRepositoryResource.setDescription("用户Repository资源，配合操作定义权限，主要是GET和POST");
+        resourceRepository.save(userRepositoryResource);
+
+        Resource roleRepositoryResource = new Resource();
+        roleRepositoryResource.setEnable(true);
+        roleRepositoryResource.setName("/roles");
+        roleRepositoryResource.setResourceType(ResourceType.URL);
+        roleRepositoryResource.setTitle("角色Repository资源");
+        roleRepositoryResource.setDescription("角色Repository资源，配合操作定义权限，主要是GET和POST");
+        resourceRepository.save(roleRepositoryResource);
+
+        Resource roleGroupRepositoryResource = new Resource();
+        roleGroupRepositoryResource.setEnable(true);
+        roleGroupRepositoryResource.setName("/rolesGroups");
+        roleGroupRepositoryResource.setResourceType(ResourceType.URL);
+        roleGroupRepositoryResource.setTitle("用户组Repository资源");
+        roleGroupRepositoryResource.setDescription("用户组Repository资源，配合操作定义权限，主要是GET和POST");
+        resourceRepository.save(roleGroupRepositoryResource);
+
+        Resource permissionRepositoryResource = new Resource();
+        permissionRepositoryResource.setEnable(true);
+        permissionRepositoryResource.setName("/permissions");
+        permissionRepositoryResource.setResourceType(ResourceType.URL);
+        permissionRepositoryResource.setTitle("权限Repository资源");
+        permissionRepositoryResource.setDescription("权限Repository资源，配合操作定义权限，主要是GET和POST");
+        resourceRepository.save(permissionRepositoryResource);
+
+        Resource permissionGroupRepositoryResource = new Resource();
+        permissionGroupRepositoryResource.setEnable(true);
+        permissionGroupRepositoryResource.setName("/permissionGroups");
+        permissionGroupRepositoryResource.setResourceType(ResourceType.URL);
+        permissionGroupRepositoryResource.setTitle("权限组Repository资源");
+        permissionGroupRepositoryResource.setDescription("权限组Repository资源，配合操作定义权限，主要是GET和POST");
+        resourceRepository.save(permissionGroupRepositoryResource);
+
+
+        Resource resourceRepositoryResource = new Resource();
+        resourceRepositoryResource.setEnable(true);
+        resourceRepositoryResource.setName("/resources");
+        resourceRepositoryResource.setResourceType(ResourceType.URL);
+        resourceRepositoryResource.setTitle("资源Repository资源");
+        resourceRepositoryResource.setDescription("资源Repository资源，配合操作定义权限，主要是GET和POST");
+        resourceRepository.save(resourceRepositoryResource);
+
+        Resource opterationRepositoryResource = new Resource();
+        opterationRepositoryResource.setEnable(true);
+        opterationRepositoryResource.setName("/operations");
+        opterationRepositoryResource.setResourceType(ResourceType.URL);
+        opterationRepositoryResource.setTitle("操作Repository资源");
+        opterationRepositoryResource.setDescription("操作Repository资源，配合操作定义权限，主要是GET和POST");
+        resourceRepository.save(opterationRepositoryResource);
+
 
         Resource schemaResource = new Resource();
         schemaResource.setEnable(true);
@@ -148,6 +213,17 @@ public class ResourceServiceTest extends SpringTest {
         indexResource.setTitle("首页");
         indexResource.setDescription("首页的权限，配合操作定义权限，注意只支持GET");
         resourceRepository.save(indexResource);
+
+
+        Resource registerResource = new Resource();
+        registerResource.setEnable(true);
+        registerResource.setName("/register");
+        registerResource.setResourceType(ResourceType.URL);
+        registerResource.setTitle("注册");
+        registerResource.setDescription("注册权限，配合操作定义权限，注意只支持POST");
+        resourceRepository.save(registerResource);
+
+
         // ============================================
 
         Permission getRepository = new Permission();
@@ -157,18 +233,48 @@ public class ResourceServiceTest extends SpringTest {
         getRepository.setTitle("Repository权限");
         getRepository.setDescription("获取Repository的权限");
         getRepository.setOperation(getOperation);
-        getRepository.setResource(repositoryResource);
+        List<Resource> resources = new ArrayList<>();
+        resources.add(userRepositoryResource);
+        resources.add(roleRepositoryResource);
+        resources.add(roleGroupRepositoryResource);
+        resources.add(permissionRepositoryResource);
+        resources.add(permissionGroupRepositoryResource);
+        resources.add(opterationRepositoryResource);
+        resources.add(resourceRepositoryResource);
+        getRepository.setResources(resources);
         permissionRepository.save(getRepository);
 
         Permission getIndex = new Permission();
-        getIndex.setEnable(true);
-
         getIndex.setDefinition("permitAll()");
         getIndex.setTitle("首页权限");
         getIndex.setDescription("查看首页的权限");
         getIndex.setOperation(getOperation);
-        getIndex.setResource(indexResource);
+        resources = new ArrayList<>();
+        resources.add(indexResource);
+        getIndex.setResources(resources);
         permissionRepository.save(getIndex);
+
+        Permission login = new Permission();
+        login.setDefinition("permitAll()");
+        login.setTitle("登陆权限");
+        login.setDescription("登陆的权限");
+        login.setOperation(postOperation);
+        resources = new ArrayList<>();
+        resources.add(loginResource);
+        login.setResources(resources);
+
+        permissionRepository.save(login);
+
+        Permission register = new Permission();
+        register.setDefinition("permitAll()");
+        register.setTitle("注册权限");
+        register.setDescription("注册的权限");
+        register.setOperation(postOperation);
+        resources = new ArrayList<>();
+        resources.add(registerResource);
+        register.setResources(resources);
+
+        permissionRepository.save(register);
 
         Role admin = new Role();
         admin.setTitle("管理员");
@@ -178,7 +284,6 @@ public class ResourceServiceTest extends SpringTest {
         List<Permission> permissions = new ArrayList<>();
         permissions.add(getRepository);
         admin.setPermissions(permissions);
-        roleRepository.save(admin);
 
         Role sysAdmin = new Role();
         sysAdmin.setTitle("系统管理员");
@@ -186,34 +291,55 @@ public class ResourceServiceTest extends SpringTest {
         sysAdmin.setDefinition("hasRole('SYSTEM_ADMIN')");
         sysAdmin.setDescription("系统管理员可以进行管理员的操作，还能进行资源，操作的管理");
 
-        RoleGroup manager = new RoleGroup();
-        manager.setTitle("管理组");
-        manager.setName("MANAGER");
 
-        roleGroupRepository.save(manager);
+        Role user = new Role();
+        user.setTitle("普通用户");
+        user.setName("USER");
+        user.setDefinition("hasRole('USER')");
+        user.setDescription("普通用户可以进行登陆");
 
-        sysAdmin.setRoleGroup(manager);
+        RoleGroup managerGroup = new RoleGroup();
+        managerGroup.setTitle("管理组");
+        managerGroup.setName("GROUP_MANAGER");
+
+        roleGroupRepository.save(managerGroup);
+
+        RoleGroup userGroup = new RoleGroup();
+        userGroup.setTitle("普通用户组");
+        userGroup.setName("GROUP_USER");
+
+        roleGroupRepository.save(userGroup);
+
+        user.setRoleGroup(userGroup);
+        roleRepository.save(user);
+        sysAdmin.setRoleGroup(managerGroup);
         roleRepository.save(sysAdmin);
+        admin.setRoleGroup(managerGroup);
+        roleRepository.save(admin);
 
 
-        User faith = new User();
-//        123456
-        faith.setPassword("$2a$10$IYOUapuymSwrAvyHkdD7xOGBg.k440ynJIl8iElgXGYtpJlsbQKbm");
+        Manager faith = new Manager();
+        faith.setPassword(passwordEncoder.encode("123456"));
         faith.setUsername("faith");
-        faith.setRoleGroup(manager);
+        faith.setRoleGroup(managerGroup);
 
         userRepository.save(faith);
+
+
+        Consumer consumer = new Consumer();
+        consumer.setUsername("user");
+        consumer.setPassword(passwordEncoder.encode("123456"));
+        consumer.setNickname("生命大树");
+        consumer.setName("刘真源");
+        consumer.setRoleGroup(userGroup);
+        consumerRepository.save(consumer);
+
+
     }
 
     @Test
     public void test01() throws Exception {
-//        resourceService.add();
-        Map<String, String> map = resourceService.findAllURL();
 
-        for(String k : map.keySet()){
-            System.out.println(k);
-            System.out.println(map.get(k));
-        }
 
     }
 }

@@ -2,6 +2,7 @@ package org.fightteam.avalon.security.data;
 
 import org.fightteam.avalon.security.data.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  * [description]
@@ -11,5 +12,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findByUsername(String name);
+    User findByUsername(@Param("username")String username);
+
+    User findByEmail(@Param("email")String email);
+
+
 }

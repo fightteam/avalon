@@ -36,11 +36,11 @@ public class Permission extends AbstractEntity<Long> {
     @ManyToOne
     private PermissionGroup permissionGroup;
 
-    // 本权限的资源
-    @ManyToOne
-    private Resource resource;
+    // 本权限的资源 n-n
+    @ManyToMany
+    private List<Resource> resources = new ArrayList<>();
 
-    // 本权限的操作
+    // 本权限的操作 0-n
     @ManyToOne
     private Operation operation;
 

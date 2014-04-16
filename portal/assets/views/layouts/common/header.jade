@@ -9,7 +9,13 @@ div(role="navigation",data-spy="affix",data-offset-top="60",data-offset-bottom="
 				a(href="/").navbar-brand Avalon开放图书馆
 			div.navbar-collapse.collapse
 				ul.nav.navbar-nav.navbar-right
-					li
-						a(href="register") 注册
-					li
-						a(href="login") 登陆
+					if user
+						li
+							a(href="register")
+								= user.nickname
+
+					else
+						li
+							a(href="register") 注册
+						li
+							a(href="login") 登陆

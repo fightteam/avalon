@@ -1,8 +1,13 @@
 package org.fightteam.avalon.security.service.impl;
 
+import org.fightteam.avalon.data.ConsumerRepository;
+import org.fightteam.avalon.data.models.Consumer;
+import org.fightteam.avalon.security.data.RoleGroupRepository;
+import org.fightteam.avalon.security.data.RoleRepository;
 import org.fightteam.avalon.security.data.UserRepository;
 import org.fightteam.avalon.security.data.models.*;
 import org.fightteam.avalon.security.service.UserService;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyAuthoritiesMapper;
 import org.springframework.security.access.vote.RoleVoter;
@@ -11,6 +16,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,10 +33,22 @@ import java.util.Set;
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
 
+    private static final String REGISTER_GROUP = "GROUP_USER";
 
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ConsumerRepository consumerRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private RoleGroupRepository roleGroupRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     /**
      * 载入用户信息
      *
@@ -140,8 +158,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User registerUser(User user) {
-
-        return userRepository.save(user);
+    public Consumer registerUser(Consumer consumer) {
+        RoleGroup userGroup = roleGroupRepository.findByName(REGISTER_GROUP);
+        consumer.setRoleGroup(userGroup);
+        consumer.setPassword(passwordEncoder.encode(consumer.getPassword()));
+        consumer.setRegisteTime(new DateTime());
+        return consumerRepository.save(consumer);
     }
 }

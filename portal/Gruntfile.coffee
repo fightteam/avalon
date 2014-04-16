@@ -43,7 +43,7 @@ module.exports = (grunt)->
 					'<%= config.assets %>/**/*.coffee'
 					'!<%= config.assets %>/bower_components/**'
 				]
-				tasks: ['coffee:dist', "copy:js_min"]
+				tasks: ['coffee:dist', "copy:js_min", 'develop','delayed-livereload']
 
 			jade:
 				files:[

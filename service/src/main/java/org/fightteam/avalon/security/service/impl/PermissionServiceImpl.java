@@ -40,7 +40,7 @@ public class PermissionServiceImpl implements PermissionService {
         Resource resource = new Resource();
         resource.setId(resourceId);
 
-        permission.setResource(resource);
+//        permission.setResource(resource);
         permissionRepository.save(permission);
     }
 

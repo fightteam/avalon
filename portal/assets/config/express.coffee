@@ -14,7 +14,19 @@ module.exports = (app, config)->
         app.use express.logger('dev')
         app.use express.bodyParser()
         app.use express.methodOverride()
+        app.use express.cookieParser()
+        app.use express.session 
+            secret: 'avlaon-portal'
+            store: new express.session.MemoryStore()
+        app.use (req, res, next)->
+            if req.path in ["/", "/login", "/register"]
+                next()
+            else
+                if not req.cookies.access_token
+                    res.redirect '/login'
+                next()
         app.use app.router
         app.use (req, res)->
+            
             res.status(404).render '404',
                 title: '404'

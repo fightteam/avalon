@@ -1,7 +1,10 @@
 package org.fightteam.avalon.security.data.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
+import org.fightteam.join.core.json.JsonDateSerializer;
 import org.fightteam.join.dao.entity.AbstractEntity;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
@@ -18,13 +21,12 @@ import java.util.List;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "userType")
-@DiscriminatorValue("user")
 @Setter
 @Getter
 public class User extends AbstractEntity<Long> {
 
     private String username;
+    @JsonIgnore
     private String password;
     private String email;
     // 账号是否过期(true 没过期 false 过期)
@@ -38,12 +40,14 @@ public class User extends AbstractEntity<Long> {
     // 用户注册时间
     @Temporal(TemporalType.TIMESTAMP)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @JsonSerialize(using = JsonDateSerializer.class)
     private DateTime registeTime;
     // 用户注册时ip
     private String ip;
     // 用户最近登录时间
     @Temporal(TemporalType.TIMESTAMP)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @JsonSerialize(using = JsonDateSerializer.class)
     private DateTime loginTime;
     // 用户最近注销时间
     @Temporal(TemporalType.TIMESTAMP)
