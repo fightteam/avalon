@@ -20,7 +20,7 @@ public class LoginControllerTest extends SpringSecurityTest {
     @Test
     public void testLogin() throws Exception {
         ResultActions ra = this.mockMvc.perform(MockMvcRequestBuilders.post("/login").accept(MediaType.ALL)
-        .param("username","faith").param("password","123456"));
+        .param("username","faith1").param("password","123456"));
 
         MvcResult mr = ra.andReturn();
         System.out.println(mr);
