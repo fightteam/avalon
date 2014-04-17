@@ -1,0 +1,76 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">操作管理</h1>
+	</div> <!-- /.col-lg-12 -->
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				增加资源
+			</div><!-- /.panel-heading -->
+
+			<div class="panel-body">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="username" class="col-sm-2 control-label">账号</label>
+					<div class="col-sm-10">
+					  <input type="text" class="form-control" name="username" id="username" value="<%if(typeof username != 'undefined'){ %><%=username%><%}%>" placeholder="账号">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="email" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-10">
+					  <input type="text" class="form-control" name="email" value="<%if(typeof email != 'undefined'){ %><%=email%><%}%>" id="title" placeholder="Email">
+					</div>
+				</div>
+				
+				
+				<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+				  <button type="button" class="btn btn-default" id="submit">提交</button>
+				</div>
+				</div>
+			</form>
+				<!-- <form role="form">
+					<div class="form-group">
+						<label class="col-lg-2" for="title">名称</label>
+						<input type="text" class="col-lg-10 form-control" id="title" name="title" placeholder="名称">
+					</div>
+					<div class="form-group">
+						<label for="name">操作定义</label>
+						<input type="text" class="form-control" id="name" name="name" placeholder="操作定义">
+					</div>
+					<div class="form-group">
+						<div class="radio-inline">
+							<label>
+							<input type="radio" name="enable" id="enable" value="true" checked>
+							可用
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+							<input type="radio" name="enable" id="enable" value="false">
+							不可用
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name">操作描述</label>
+						<textarea class="form-control" rows="3"></textarea>
+					</div>
+					<button type="button" class="btn btn-default" id="operationSubmit">提交</button>
+				</form> -->
+				
+			</div><!-- /.panel-body -->
+		
+
+		</div><!-- /.panel -->
+	</div><!-- /.col-lg-12 -->
+</div>
+
+
+
+
+
+ 
