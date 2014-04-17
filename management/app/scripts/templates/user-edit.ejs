@@ -13,43 +13,19 @@
 			<div class="panel-body">
 			<form class="form-horizontal" role="form">
 				<div class="form-group">
-					<label for="name" class="col-sm-2 control-label">资源定义</label>
+					<label for="username" class="col-sm-2 control-label">账号</label>
 					<div class="col-sm-10">
-					  <input type="text" class="form-control" name="name" id="name" value="<%= name %>" placeholder="操作定义">
+					  <input type="text" class="form-control" name="username" id="username" value="<%if(typeof username != 'undefined'){ %><%=username%><%}%>" placeholder="账号">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="title" class="col-sm-2 control-label">名称</label>
+					<label for="email" class="col-sm-2 control-label">Email</label>
 					<div class="col-sm-10">
-					  <input type="text" class="form-control" name="title" value="<%= title %>" id="title" placeholder="名称">
+					  <input type="text" class="form-control" name="email" value="<%if(typeof email != 'undefined'){ %><%=email%><%}%>" id="title" placeholder="Email">
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="title" class="col-sm-2 control-label">是否可用</label>
-					<div class="col-sm-10">
-						<div class="radio-inline">
-							<label>
-							<input type="radio" name="enable" id="enable" value="true"<% if(enable == true || enable == "true"){ %> checked<% } %>>
-							可用
-							</label>
-						</div>
-						<div class="radio-inline">
-							<label>
-							<input type="radio" name="enable" id="enable" value="false"<% if(enable == false || enable == "false"){ %> checked<% } %>>
-							不可用
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="title" class="col-sm-2 control-label">资源描述</label>
-					<div class="col-sm-10">
-					  <textarea class="form-control" rows="3" name="description"><%= description %></textarea>
-					</div>
-				</div>
-				<div class="form-group">
 				
-				</div>
+				
 				<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 				  <button type="button" class="btn btn-default" id="submit">提交</button>

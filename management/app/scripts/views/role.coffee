@@ -16,14 +16,14 @@ define [
 			
 #=================================================================================== 
 
-	class PermissionView extends Backbone.View
-		template: JST['app/scripts/templates/permission.ejs']
+	class RoleView extends Backbone.View
+		template: JST['app/scripts/templates/role.ejs']
 
-		dataTemplate: JST['app/scripts/templates/permission-data.ejs']
+		dataTemplate: JST['app/scripts/templates/role-data.ejs']
 
 		tagName: 'div'
 
-		id: 'permissions'
+		id: 'roles'
 
 		className: ''
 
@@ -77,7 +77,7 @@ define [
 			if not id
 				return
 			$.ajax
-				url: config.rest.permissions + "/" + id
+				url: config.rest.roles + "/" + id
 				headers:
 					'Access-Token': config.app.token
 				type: "DELETE"
