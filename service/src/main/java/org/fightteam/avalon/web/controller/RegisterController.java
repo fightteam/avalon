@@ -32,22 +32,17 @@ public class RegisterController {
     @RequestMapping(value = Routers.register,method = RequestMethod.POST)
     public @ResponseBody
     Map<String, Object> register(HttpServletRequest request, @ModelAttribute UserFormBean userFormBean){
-        System.out.println("1111111111111");
-        System.out.println(userFormBean);
         Consumer consumer = new Consumer();
         BeanUtils.copyProperties(userFormBean, consumer);
         consumer.setIp(getIp(request));
         userService.registerUser(consumer);
-
         Map<String, Object> map = new HashMap<>();
         map.put("status", HttpStatus.CREATED.value());
         map.put("message", "成功注册！");
         return map;
     }
-
     // 获取请求端实际IP
     private String getIp(HttpServletRequest request){
-
         if (request.getHeader("x-forwarded-for") == null) {
             return request.getRemoteAddr();
         }

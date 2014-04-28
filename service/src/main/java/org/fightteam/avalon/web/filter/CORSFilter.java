@@ -19,18 +19,12 @@ import java.io.IOException;
  */
 public class CORSFilter {
     private static final Logger logger = LoggerFactory.getLogger(CORSFilter.class);
-
-
-
     public void hasCrosPermission(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("============CORSFilter===============");
         logger.debug("in CORSFilter");
         response.addHeader("Access-Control-Allow-Origin", "http://localhost:9000");
         response.addHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
         response.addHeader("Access-Control-Allow-Headers", "Content-Type, WWW-Authenticate, Origin, Accept, Authenticate, X-Requested-With");
         response.addHeader("Access-Control-Max-Age", "1800");
         response.addHeader("Access-Control-Allow-Credentials", "true");
-
-
     }
 }
