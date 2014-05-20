@@ -27,11 +27,7 @@ public class CORSFilter {
         logger.debug("in CORSFilter");
         response.addHeader("Access-Control-Allow-Origin", "http://localhost:9000");
         response.addHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
-<<<<<<< HEAD
-        response.addHeader("Access-Control-Allow-Headers", "*");
-=======
         response.addHeader("Access-Control-Allow-Headers", "Content-Type, WWW-Authenticate, Origin, Accept, Authenticate, X-Requested-With");
->>>>>>> ff7d32616ceac67e69d4db324dde0f23cd310cf2
         response.addHeader("Access-Control-Max-Age", "1800");
         response.addHeader("Access-Control-Allow-Credentials", "true");
 

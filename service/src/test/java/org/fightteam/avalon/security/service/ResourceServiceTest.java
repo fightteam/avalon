@@ -61,6 +61,7 @@ public class ResourceServiceTest extends SpringMvcTest {
 
     @Before
     public void setUp() throws Exception {
+
         if (resourceRepository.count() > 0){
             return;
         }
