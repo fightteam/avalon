@@ -9,7 +9,11 @@ define [
 
 		url: null
 		
-		defaults: {}
+		defaults: {
+			title: ''
+			enable: true
+			description: ''
+		}
 			
 
 		initialize: (options) ->

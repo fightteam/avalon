@@ -222,7 +222,7 @@ module.exports = function (grunt) {
                     optimize: 'none',
                     paths: {
                         'templates': '../../.tmp/scripts/templates',
-                        'jquery': '../../app/bower_components/jquery/jquery',
+                        'jquery': '../../app/bower_components/jquery/dist/jquery',
                         'underscore': '../../app/bower_components/underscore/underscore',
                         'backbone': '../../app/bower_components/backbone/backbone'
                     },
@@ -409,20 +409,24 @@ module.exports = function (grunt) {
         'jst',
         'compass:dist',
         'useminPrepare',
-        'requirejs',
+        // 'requirejs',
         'imagemin',
         'htmlmin',
         'concat',
         'cssmin',
+        'autoprefixer',
         'uglify',
         'copy',
-        'rev',
+        // 'rev',
         'usemin'
     ]);
 
     grunt.registerTask('default', [
         'jshint',
         'test',
+        'build'
+    ]);
+    grunt.registerTask('dist', [
         'build'
     ]);
 };

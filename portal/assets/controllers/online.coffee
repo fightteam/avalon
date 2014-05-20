@@ -20,11 +20,11 @@ model.javascripts.push
 	absolute: true
 # model.javascripts.push
 # 	url:'RTCMultiConnection.min.js'
-# model.javascripts.push
-# 	url:'getMediaElement.min.js'
-# model.javascripts.push
-# 	url:'online.min.js'
-# model.javascripts.push
-# 	url:'online-media.min.js'
+model.javascripts.push
+	url:'getMediaElement.min.js'
+model.javascripts.push
+	url:'online.min.js'
+model.javascripts.push
+	url:'online-media.min.js'
 exports.index = (req, res)->
 	res.render 'online/index', model
