@@ -65,6 +65,7 @@ createVideo = ()->
 	navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia
 	navigator.getUserMedia
 		video: true
+		audio: true
 	,(stream)->
 		video = document.createElement('video')
 		video.src = URL.createObjectURL(stream)

@@ -280,7 +280,7 @@ public class ResourceServiceTest extends SpringMvcTest {
         Role admin = new Role();
         admin.setTitle("管理员");
         admin.setName("ADMIN");
-        admin.setDefinition("hasRole('ADMIN')");
+        admin.setDefinition("hasRole('ROLE_ADMIN')");
         admin.setDescription("管理员可以进行登录后台进行用户、角色管理、权限管理等等");
         List<Permission> permissions = new ArrayList<>();
         permissions.add(getRepository);
@@ -296,7 +296,7 @@ public class ResourceServiceTest extends SpringMvcTest {
         Role user = new Role();
         user.setTitle("普通用户");
         user.setName("USER");
-        user.setDefinition("hasRole('USER')");
+        user.setDefinition("hasRole('ROLE_USER')");
         user.setDescription("普通用户可以进行登陆");
 
         RoleGroup managerGroup = new RoleGroup();
@@ -323,7 +323,9 @@ public class ResourceServiceTest extends SpringMvcTest {
         faith.setPassword(passwordEncoder.encode("123456"));
         faith.setUsername("faith");
         faith.setRoleGroup(managerGroup);
-
+        List<Permission> permissionList = new ArrayList<>();
+        permissionList.add(getRepository);
+        faith.setPermissions(permissionList);
         userRepository.save(faith);
 
 
